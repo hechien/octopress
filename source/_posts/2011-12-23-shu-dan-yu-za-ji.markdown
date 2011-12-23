@@ -48,9 +48,9 @@ categories:
 * [MySQL設定檔優化 - Cache](http://article.denniswave.com/6345)
 * [MySQL優化全攻略 - 相關數據庫命令](http://blog.itcert.org/archives/1156)
 * [有什麼方法可以學優化MySQL or httpd嗎？](http://phorum.study-area.org/index.php?topic=55728.0)
-* [MySQL最佳化分析指令：EXPLAIN](http://homeserver.com.tw/mysql/mysql最佳化分析指令explain/)
+* [MySQL最佳化分析指令：EXPLAIN](http://tinyurl.com/73nlyhw) - http://homeserver.com.tw/mysql/mysql最佳化分析指令explain/
 * [MySQL數據庫性能優化之緩存參數優化](http://isky000.com/database/mysql-perfornamce-tuning-cache-parameter)
-* [MySQL數據庫性能優化專題](http://isky000.com/tag/mysql数据库性能优化专题)
+* [MySQL數據庫性能優化專題](http://tinyurl.com/6p9dtwm) - http://isky000.com/tag/mysql数据库性能优化专题
 * [What to tune in MySQL Server after installation](http://www.mysqlperformanceblog.com/2006/09/29/what-to-tune-in-mysql-server-after-installation/)
 * [Ruby on Rails served by unicorn with nginx for static files and reverse proxy on Ubuntu - detailed guide.](http://tech.tomgoren.com/archives/245)
 * [Rainbows! (Unicorn)](http://rainbows.rubyforge.org/)
@@ -70,11 +70,11 @@ categories:
 * [Google超讚的倫敦新總部](http://www.kaiak.tw/2011/12/google.html)
 * [Facebook矽谷新總部](http://www.techbang.com.tw/posts/7941-facebook-new-workplace-exposure-was-shocked-to-see-the-roc-flag)
 * [http://nota.lukhnos.org/](http://nota.lukhnos.org/)
-* [抽象滲漏法則 (The Joel on Software)](http://local.joelonsoftware.com/wiki/The_Joel_on_Software_Translation_Project:抽象滲漏法則)
+* [抽象滲漏法則 (The Joel on Software)](http://tinyurl.com/73l358p) - http://local.joelonsoftware.com/wiki/The_Joel_on_Software_Translation_Project:抽象滲漏法則
 * [[小說] 好萊塢製造 (有講到Apple)](http://www.booknest.net:8088/chapter/2724589.htm)
-* [有趣的賽局案例 - 雍正皇帝之九王奪嫡](http://www.startuplive.cc/2011/12/06/有趣的賽局案例●雍正皇帝之九王奪嫡/)
+* [有趣的賽局案例 - 雍正皇帝之九王奪嫡](http://tinyurl.com/6rgc3zm) - http://www.startuplive.cc/2011/12/06/有趣的賽局案例●雍正皇帝之九王奪嫡/
 * [進銷存好幫手： 神機妙算](http://jade-design-ltd.blogspot.com/2011/12/macospc-macos-fmp.html)
 * [中國沒有一個所謂的"全民的互連網"](http://forum.inside.com.tw/viewthread.php?tid=1119&page=1&extra#pid2781)
 * [Android 問題百出之 2.3.x 的 JavaScript Interface](http://fred-zone.blogspot.com/2011/12/android-23x-javascript-interface.html)
 * [快速排序法之父](http://www.programmer.com.cn/1889/)
-* [IT名人堂](http://www.programmer.com.cn/category/it名人堂/page/1)
+* [IT名人堂](http://tinyurl.com/7p7hfje) - http://www.programmer.com.cn/category/it名人堂/page/1
