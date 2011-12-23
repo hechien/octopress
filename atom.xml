@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2011-12-23T16:21:08+08:00</updated>
+  <updated>2011-12-23T16:27:48+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
-    <name><![CDATA[HeChien]]></name>
+    <name><![CDATA[赫謙]]></name>
     <email><![CDATA[hechien@me.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
