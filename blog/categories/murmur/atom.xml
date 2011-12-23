@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: murmur | My Octopress Blog]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/murmur/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2011-12-23T16:21:08+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[HeChien]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[開始了我的第一篇Octopress]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2011/12/23/kai-shi-liao-wo-de-di-%5B%3F%5D-pian-octopress/"/>
+    <updated>2011-12-23T16:13:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2011/12/23/kai-shi-liao-wo-de-di-[?]-pian-octopress</id>
+    <content type="html"><![CDATA[<h3>大家好</h3>
+
+<p>是的，很高興在這邊跟大家Say hello!</p>
+
+<p>之後這邊可能就是寫些小小的東西罷了 ...
+有Github + Octopress之後真方便啊 ... (嘆)</p>
+
+<!-- more -->
+
+
+<p>也可以趁這個機會好好學一下Markdown :P</p>
+]]></content>
+  </entry>
+  
+</feed>
