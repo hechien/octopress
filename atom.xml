@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2011-12-27T09:34:51+08:00</updated>
+  <updated>2011-12-27T10:07:55+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -46,6 +46,8 @@
 <li><a href="http://codequietly.com/blog/2010/06/rake-tasks-101">Rake Tasks 101</a></li>
 <li><a href="http://drnicwilliams.com/2009/03/30/closing-in-on-the-dream-one-click-to-deploy-rails-apps/">Closing in on the dream: &#8220;One click to deploy Rails apps&#8221;</a></li>
 <li><a href="http://m.onkey.org/active-record-batch-processing-in-parallel-processes">ActiveRecord batch processing in paralle processes</a></li>
+<li><a href="http://ihower.tw/blog/archives/5762">如何處理不同版本的 Gem 執行檔，以Rake 0.9.0 地雷為例</a></li>
+<li><a href="http://koans.heroku.com/">Ruby Konas Online - Learn Ruby</a></li>
 </ul>
 
 
@@ -115,6 +117,7 @@
 <li><a href="http://www.programmer.com.cn/1889/">快速排序法之父</a></li>
 <li><a href="http://tinyurl.com/7p7hfje">IT名人堂</a> - http://www.programmer.com.cn/category/it名人堂/page/1</li>
 <li><a href="http://automator.us/leopard/index.html">Automator in Leopard</a></li>
+<li><a href="http://www.dotblogs.com.tw/hatelove/archive/2010/04/14/namingruleguide.aspx">讀書心得 - Clean Code - Meaningful Names</a></li>
 </ul>
 
 ]]></content>
