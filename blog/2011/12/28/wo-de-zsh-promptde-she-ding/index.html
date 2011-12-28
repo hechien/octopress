@@ -5,14 +5,18 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - 赫謙小便籤</title>
+  <title>我的zsh prompt的設定 - 赫謙小便籤</title>
   <meta name="author" content="赫謙">
 
   
-  <meta name="description" content="Blog Archive 2011 我的zsh prompt的設定
-Dec 28 2011 posted in notes 書單與雜記
-Dec 23 2011 開始了我的第一篇Octopress
-Dec 23 2011 posted in murmur Recent Posts 我的zsh &hellip;">
+  <meta name="description" content="暫且來做個註記 &#8230; 我當前zsh的PS1 - .zshrc 1
+2
+3
+4
+5
+git_branch() { ref=$(git symbolic-ref HEAD 2> /dev/null) || return echo "(${ref#refs/heads/})"
+}
+PS1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +25,7 @@ Dec 23 2011 posted in murmur Recent Posts 我的zsh &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://hechien.github.com/octopress/blog/archives">
+  <link rel="canonical" href="http://hechien.github.com/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding">
   <link href="/octopress/favicon.png" rel="icon">
   <link href="/octopress/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/octopress/javascripts/modernizr-2.0.js"></script>
@@ -78,59 +82,104 @@ Dec 23 2011 posted in murmur Recent Posts 我的zsh &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">我的zsh Prompt的設定</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-28T14:58:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>暫且來做個註記 &#8230;</p>
 
-  
-  <h2>2011</h2>
-
-<article>
-  
-<h1><a href="/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding/">我的zsh prompt的設定</a></h1>
-<time datetime="2011-12-28T14:58:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>28</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/octopress/blog/categories/notes/'>notes</a></span>
-</footer>
-
-
-</article>
+<figure class='code'><figcaption><span>我當前zsh的PS1 - .zshrc </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git_branch() {
+</span><span class='line'>  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+</span><span class='line'>  echo "(${ref#refs/heads/})"
+</span><span class='line'>}
+</span><span class='line'>PS1="%~$(git_branch)%# "</span></code></pre></td></tr></table></div></figure>
 
 
-
-<article>
-  
-<h1><a href="/octopress/blog/2011/12/23/shu-dan-yu-za-ji/">書單與雜記</a></h1>
-<time datetime="2011-12-23T16:34:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>23</span> <span class='year'>2011</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/octopress/blog/2011/12/23/kai-shi-liao-wo-de-di-%5B%3F%5D-pian-octopress/">開始了我的第一篇Octopress</a></h1>
-<time datetime="2011-12-23T16:13:00+08:00" pubdate><span class='month'>Dec</span> <span class='day'>23</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/octopress/blog/categories/murmur/'>murmur</a></span>
-</footer>
-
-
-</article>
-
+<p>改用zsh之後，發現很多東西都得重新習慣了 &#8230; 而且用octopress好像rake new_post會失效 &#8230; what the hell -_-
+只好改回bash新增文章了 &#8230; XD&#8221;</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">赫謙</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-28T14:58:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://hechien.github.com/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding/" data-via="HeChian" data-counturl="http://hechien.github.com/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/octopress/blog/2011/12/23/shu-dan-yu-za-ji/" title="Previous Post: 書單與雜記">&laquo; 書單與雜記</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
