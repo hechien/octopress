@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2011-12-28T15:21:15+08:00</updated>
+  <updated>2011-12-28T16:30:18+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在iOS中透過Bonjour搜尋Domains以及服務]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2011/12/28/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu/"/>
+    <updated>2011-12-28T16:16:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2011/12/28/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu</id>
+    <content type="html"><![CDATA[<p><a href="http://zh.wikipedia.org/wiki/Bonjour">Bonjour</a>是蘋果的一個類似DNS的服務，適用於區域網路之中，所以在Mac OS X, iOS中都可以看到它的身影，且在一些印表機之中也看得到。</p>
+
+<p>今天我們就來嘗試用Bonjour來搜尋同一個區域網路底下有哪些服務吧。</p>
+
+<p>記得在.h檔中引入<code>&lt;Foundation/NSNetworkServices.h&gt;</code>，然後它需要一個delegate來代理整個回呼(Callback)的執行，所以必須要採用<code>NSNetServiceBrowserDelegate</code>這個Protocol。</p>
+
+<p>之後，我們可以透過實體化NSNetServiceBrowser來進行Domain的搜索：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'>  <span class="n">NSNetServiceBrowser</span> <span class="o">*</span><span class="n">browser</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSNetServiceBrowser</span> <span class="n">new</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">browser</span> <span class="nl">setDelegate:</span> <span class="n">self</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">browser</span> <span class="n">searchForRegistrationDomains</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>之後我們要實作以下五個delegate methods:</p>
+
+<ul>
+<li>netServiceBrowserWillSearch: // 開始搜尋</li>
+<li>netServiceBrowserDidStopSearch: // 停止搜尋</li>
+<li>netServiceBrowser:didNotSearch: // 搜尋如果失敗</li>
+<li>netServiceBrowser:didFindDomain:moreComing: // 如果有找到的話</li>
+<li>netServiceBrowser:didRemoveDomain:moreComing: // 如果某個Domain消失的話</li>
+</ul>
+
+
+<p>舉個<code>netServiceBrowser:didFindDomain:moreComing:</code>的例子：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">netServiceBrowser:</span><span class="p">(</span><span class="n">NSNetServiceBrowser</span> <span class="o">*</span><span class="p">)</span><span class="n">browser</span>
+</span><span class='line'>            <span class="nl">didFindDomain:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">domainString</span>
+</span><span class='line'>               <span class="nl">moreComing:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">moreComing</span><span class="p">{</span>
+</span><span class='line'>  <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;[ADD] Domain String: %@&quot;</span><span class="p">,</span> <span class="n">domainString</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">moreComing</span><span class="p">){</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如此一來，我們可以在<code>moreComing</code>為false的時候更新我們的UI列表即可。</p>
+
+<p>之後，再來繼續撰寫怎樣搜尋服務。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[我的zsh prompt的設定]]></title>
@@ -73,6 +131,7 @@
 <li><a href="http://m.onkey.org/active-record-batch-processing-in-parallel-processes">ActiveRecord batch processing in paralle processes</a></li>
 <li><a href="http://ihower.tw/blog/archives/5762">如何處理不同版本的 Gem 執行檔，以Rake 0.9.0 地雷為例</a></li>
 <li><a href="http://koans.heroku.com/">Ruby Konas Online - Learn Ruby</a></li>
+<li><a href="http://www.engineyard.com/blog/2011/the-resque-way/">The Resque Way</a></li>
 </ul>
 
 
@@ -88,6 +147,8 @@
 <ul>
 <li><a href="http://line25.com/tutorials/how-to-create-a-stylish-drop-cap-effect-with-css3">How to create a stylish drop cap effect in CSS 3</a></li>
 <li><a href="http://www.2ality.com/2011/11/janos.html">Web technology stacks - from LAMP to Janos</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html">Javascript继承机制的设计思想</a></li>
+<li><a href="http://blog.vjeux.com/2011/javascript/how-prototypal-inheritance-really-works.html">JavaScript - How Prototypal Inheritance really works?</a></li>
 </ul>
 
 
@@ -144,6 +205,8 @@
 <li><a href="http://automator.us/leopard/index.html">Automator in Leopard</a></li>
 <li><a href="http://www.dotblogs.com.tw/hatelove/archive/2010/04/14/namingruleguide.aspx">讀書心得 - Clean Code - Meaningful Names</a></li>
 <li><a href="http://heikezhi.com/2011/06/09/the-most-important-code-isnt-code/">代码中最重要的并不是代码</a></li>
+<li><a href="http://www.dns-sd.org/ServiceTypes.html">Bonjour Service Types: DNS SRV RFC 2782</a></li>
+<li><a href="http://www.linux-mag.com/id/1079/">Writing scripts for zsh</a></li>
 </ul>
 
 ]]></content>

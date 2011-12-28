@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
-  <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Cocoa | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/cocoa/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
   <updated>2011-12-28T16:30:18+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
@@ -72,29 +72,6 @@
 <p>如此一來，我們可以在<code>moreComing</code>為false的時候更新我們的UI列表即可。</p>
 
 <p>之後，再來繼續撰寫怎樣搜尋服務。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[我的zsh prompt的設定]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding/"/>
-    <updated>2011-12-28T14:58:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding</id>
-    <content type="html"><![CDATA[<p>暫且來做個註記 ...
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>我當前zsh的PS1 - .zshrc </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git_branch() {
-</span><span class='line'>  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-</span><span class='line'>  echo "(${ref#refs/heads/})"
-</span><span class='line'>}
-</span><span class='line'>PS1="%~$(git_branch)%# "</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>改用zsh之後，發現很多東西都得重新習慣了 ... 而且用octopress好像rake new_post會失效 ... what the hell -_-
-只好改回bash新增文章了 ... XD"</p>
 ]]></content>
   </entry>
   
