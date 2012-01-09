@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-01-05T18:37:41+08:00</updated>
+  <updated>2012-01-09T16:12:36+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -143,6 +143,18 @@
 <li><a href="http://guides.rubyonrails.org/association_basics.html#polymorphic-associations">Polymorphic associations - Rails API</a></li>
 <li><a href="http://37signals.com/svn/posts/1872-nuts-bolts-configuration-management-with-chef">Nuts &amp; Bolts: Configuration management with Chef - 37Signals</a></li>
 <li><a href="http://cn.intridea.com/2011/07/omniauth-intro/">OmniAuth, 昨天今天明天</a></li>
+<li><a href="http://blog.firsthand.ca/2011/10/rails-is-not-your-application.html">Rails is not your application</a></li>
+<li><a href="http://blog.grassbrook.com/post/460040593/look-into-rails-3-boot-process-and-initialization-proces">研究 Rails 3 的 boot process 和 initialization process</a></li>
+<li><a href="http://ruby5.envylabs.com/">Ruby 5 - envylabs</a></li>
+<li><a href="http://adventuresincoding.com/2010/05/10-textmate-bundlesplugins-to-boost-your-ruby-on-rails-development-productivity">10 Textmate bundles/plugins to boost your Ruby on Rails development productivity</a></li>
+</ul>
+
+
+<h2>Rails Plugins</h2>
+
+<ul>
+<li><a href="https://github.com/tsechingho/chosen-rails">chosen-rails</a></li>
+<li><a href="https://github.com/intridea/grape">grape</a> - 詳情參考 <a href="http://ruby-china.org/topics/781">http://ruby-china.org/topics/781</a></li>
 </ul>
 
 
@@ -166,6 +178,7 @@
 <li><a href="http://www.1stwebdesigner.com/inspiration/50-gorgeous-flash-websites-you-definitely-should-see/">50 Gorgeous Flash websites you definitely should see</a></li>
 <li><a href="http://www.1stwebdesigner.com/">1st Web Designer</a></li>
 <li><a href="http://www.tellustek.com/web-design.html">TTC - 一間網頁設計公司</a></li>
+<li><a href="http://www.alistapart.com/articles/getting-started-with-sass/">Getting started with Sass</a></li>
 </ul>
 
 
@@ -204,6 +217,7 @@
 <li><a href="http://article.denniswave.com/6337">MySQL索引分析和優化</a></li>
 <li><a href="http://article.denniswave.com/6320">透過分區(Partition)提昇MySQL性能(一)</a></li>
 <li><a href="http://article.denniswave.com/6342">透過分區(Partition)提昇MySQL性能(二)</a></li>
+<li><a href="http://www.infoq.com/cn/presentations/wsz-mysql-development">InfoQ: MySQL數據庫開發的三十六條軍規</a></li>
 </ul>
 
 
