@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-01-09T18:14:27+08:00</updated>
+  <updated>2012-01-11T14:44:54+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -149,6 +149,8 @@
 <li><a href="http://adventuresincoding.com/2010/05/10-textmate-bundlesplugins-to-boost-your-ruby-on-rails-development-productivity">10 Textmate bundles/plugins to boost your Ruby on Rails development productivity</a></li>
 <li><a href="https://github.com/chloerei/ruby-coding-conventions/wiki">Ruby coding conventions</a></li>
 <li><a href="http://erp-book.heroku.com/basic-ruby-style-01">基本的Ruby Style - 01</a></li>
+<li><a href="http://blogs.helion-prime.com/2009/09/03/multi-domain-applications-in-ruby-on-rails.html">Multi-domain applications in Ruby on Rails</a></li>
+<li><a href="http://www.lukemelia.com/blog/archives/2010/01/17/redis-in-practice-whos-online/">Redis in Practice: Who&#8217;s online</a></li>
 </ul>
 
 
@@ -181,6 +183,10 @@
 <li><a href="http://www.1stwebdesigner.com/">1st Web Designer</a></li>
 <li><a href="http://www.tellustek.com/web-design.html">TTC - 一間網頁設計公司</a></li>
 <li><a href="http://www.alistapart.com/articles/getting-started-with-sass/">Getting started with Sass</a></li>
+<li><a href="http://blogfreakz.com/web-design/best-web-design-mockup-tutorials-on-october-2009/">8 Best Web design mockup tutorials on October 2009</a></li>
+<li><a href="http://naldzgraphics.net/tutorials/44-must-learn-web-design-layout-tutorials-in-photoshop/">44 must learn web design layout tutorials in PhotoShop</a></li>
+<li><a href="http://blog.thedesigndrifter.com/?p=1173">PhotoShop vs HTML Web Design Mockups</a></li>
+<li><a href="http://www.pvmgarage.com/2010/04/touch-the-future-create-an-elegant-website-with-hmtl-5-and-css3/">Touch the future: Create an elegant website with HTML 5 and CSS 3</a></li>
 </ul>
 
 
@@ -195,6 +201,8 @@
 <li><a href="http://roamlog.info/archives/download-300-famous-fonts-for-free.html">300+優秀字體下載</a></li>
 <li><a href="http://www.1stwebdesigner.com/freebies/66-high-resolution-nature-desktop-backgrounds/">66 High resolution nature desktop backgrounds</a></li>
 <li><a href="http://www.1stwebdesigner.com/freebies/modern-design-trends-digital-art/">Modern design trends in digital art &amp; free brushes to copy them</a></li>
+<li><a href="http://www.looks.gd/design/sketchbooks-of-a-web-developer">Sketchbooks of a Web Developer</a></li>
+<li><a href="http://37signals.com/svn/posts/1061-why-we-skip-photoshop">Why we skip PhotoShop</a></li>
 </ul>
 
 
@@ -244,6 +252,8 @@
 <li><a href="http://heikezhi.com/2011/06/09/the-most-important-code-isnt-code/">代码中最重要的并不是代码</a></li>
 <li><a href="http://www.dns-sd.org/ServiceTypes.html">Bonjour Service Types: DNS SRV RFC 2782</a></li>
 <li><a href="http://www.linux-mag.com/id/1079/">Writing scripts for zsh</a></li>
+<li><a href="http://blog.getspool.com/2011/11/29/fast-easy-realtime-metrics-using-redis-bitmaps">Fast, easy, realtime metrics using Redis bitmaps</a></li>
+<li><a href="http://ihower.tw/blog/archives/3481">如何正確發送大量E-mail信件</a></li>
 </ul>
 
 ]]></content>
