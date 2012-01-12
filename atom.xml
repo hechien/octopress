@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-01-11T16:54:05+08:00</updated>
+  <updated>2012-01-12T18:38:13+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -151,6 +151,10 @@
 <li><a href="http://erp-book.heroku.com/basic-ruby-style-01">基本的Ruby Style - 01</a></li>
 <li><a href="http://blogs.helion-prime.com/2009/09/03/multi-domain-applications-in-ruby-on-rails.html">Multi-domain applications in Ruby on Rails</a></li>
 <li><a href="http://www.lukemelia.com/blog/archives/2010/01/17/redis-in-practice-whos-online/">Redis in Practice: Who&#8217;s online</a></li>
+<li><a href="http://www.getharvest.com/blog/2011/02/easy-rails-asset-handling-with-html5-and-s3/">Easy Rails Asset handling with HTML 5 &amp; S3</a></li>
+<li><a href="http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-asset-gem/">如何打包一個Asset Gem</a></li>
+<li><a href="http://www.slideshare.net/GreggPollack/rails-3-beautiful-code-3219240">Rails 3 beautiful code</a></li>
+<li><a href="http://asciicasts.com/episodes/238-mongoid">ASCII Casts: 238 - Mongoid</a></li>
 </ul>
 
 
@@ -159,6 +163,8 @@
 <ul>
 <li><a href="https://github.com/tsechingho/chosen-rails">chosen-rails</a></li>
 <li><a href="https://github.com/intridea/grape">grape</a> - 詳情參考 <a href="http://ruby-china.org/topics/781">http://ruby-china.org/topics/781</a></li>
+<li><a href="http://geokit.rubyforge.org/">Geokit</a></li>
+<li><a href="https://github.com/jlecour/geokit-rails3">Geokit-rails3</a></li>
 </ul>
 
 
@@ -190,6 +196,9 @@
 <li><a href="http://blog.miniasp.com/post/2008/12/13/CSS-Spriting-without-using-background-image.aspx">使用CSS Sprites設計網頁但不用background-image的技巧</a></li>
 <li><a href="https://sites.google.com/site/heavenhao/Home/webdesign/wang-ye-she-ji-ji-chu-jiao-cheng-yuan-chuang">网页设计教程</a></li>
 <li><a href="https://sites.google.com/site/heavenhao/Home/webdesign/css-sprites-ji-shu-shi-yong-xin-de">CSS sprites 技术心得</a></li>
+<li><a href="http://compass-style.org/help/tutorials/spriting/">Spriting with Compass</a></li>
+<li><a href="http://www.slideshare.net/tdreyno/simplifying-css-with-sass">Simplifying CSS with Sass</a></li>
+<li><a href="http://jackdempsey.me/2011/04/22/rails-3-1-sprockets-and-coffeescript.html">Rails 3.1: Understanding Sprockets and CoffeeScript</a></li>
 </ul>
 
 
@@ -208,6 +217,8 @@
 <li><a href="http://37signals.com/svn/posts/1061-why-we-skip-photoshop">Why we skip PhotoShop</a></li>
 <li><a href="http://blog.iworm.net/2009/02/24/%E4%B8%BA%E4%BD%951024768%E5%88%86%E8%BE%A8%E7%8E%87%E4%B8%8B%E7%BD%91%E9%A1%B5%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%B8%BA960px/">为何1024*768分辨率下网页的宽度为960px</a></li>
 <li><a href="https://sites.google.com/site/heavenhao/Home/webdesign/960px-xia-de-huang-jin-fen-ge">960px下的黄金分割</a></li>
+<li><a href="http://thenextweb.com/dd/2012/01/11/why-every-designer-should-start-with-paper-not-photoshop/">Why every designer should start with paper, not PhotoShop</a></li>
+<li><a href="http://whiteball.tw/blog/why-hsl/">為什麼用HSL色彩模型</a></li>
 </ul>
 
 
@@ -259,6 +270,9 @@
 <li><a href="http://www.linux-mag.com/id/1079/">Writing scripts for zsh</a></li>
 <li><a href="http://blog.getspool.com/2011/11/29/fast-easy-realtime-metrics-using-redis-bitmaps">Fast, easy, realtime metrics using Redis bitmaps</a></li>
 <li><a href="http://ihower.tw/blog/archives/3481">如何正確發送大量E-mail信件</a></li>
+<li><a href="https://www.destroyallsoftware.com/screencasts">Destroy all software: screencasts</a></li>
+<li><a href="http://tutsplus.com/">tuts+</a></li>
+<li><a href="http://webdesign.tutsplus.com/">Webdesign tuts+</a></li>
 </ul>
 
 ]]></content>
