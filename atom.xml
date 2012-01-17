@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-01-12T18:39:10+08:00</updated>
+  <updated>2012-01-17T18:35:50+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -156,6 +156,14 @@
 <li><a href="http://www.slideshare.net/GreggPollack/rails-3-beautiful-code-3219240">Rails 3 beautiful code</a></li>
 <li><a href="http://asciicasts.com/episodes/238-mongoid">ASCII Casts: 238 - Mongoid</a></li>
 <li><a href="http://blog.xdite.net/posts/2011/10/09/10-ruby-developer-must-have-tools/">10個Ruby Web Developer應該熟悉的工具</a></li>
+<li><a href="http://huacnlee.com/blog/move-rails-project-from-linux-file-system-to-mongodb-gridfs">Rails項目，從文件系統轉移到Mongodb GridFS</a></li>
+<li><a href="http://ruby.railstutorial.org/">Rails Tutorial</a></li>
+<li><a href="http://huacnlee.com/blog/use-mail-view-gem-to-test-your-rails-mailer">用 mail_view 测试你的 Rails ActionMailer</a></li>
+<li><a href="http://www.ipragmatech.com/ruby-on-rails/minify-compress-synch-amazons3-capistrano">Minify, Compress and Synch your assets on Amazon S3 using Capistrano and Rails</a></li>
+<li><a href="http://rule52.com/2011/06/sass-and-sprockets-for-rails-31/">Sass and Sprockets for Rails 3.1</a></li>
+<li><a href="http://blog.xdite.net/posts/2011/10/18/asset-pipeline-version-control-assets/">Asset Pipeline 的重大意義：Version Control Your Asset Package</a></li>
+<li><a href="http://wp.xdite.net/?p=3137">升級到 Rails 3.1，專案所要做的前置準備工作</a></li>
+<li><a href="http://metaskills.net/2011/05/18/use-compass-sass-framework-files-with-the-rails-3.1-asset-pipeline/">Use Compass Sass Framework Files With The Rails 3.1 Asset Pipeline</a></li>
 </ul>
 
 
@@ -173,6 +181,7 @@
 
 <ul>
 <li><a href="http://zh.wikipedia.org/wiki/Core_Data">Core Data (Wiki)</a></li>
+<li><a href="http://www2.nxtbk.com/nextscript_support/English/2.0/download.html">NextScript</a></li>
 </ul>
 
 
@@ -200,6 +209,8 @@
 <li><a href="http://compass-style.org/help/tutorials/spriting/">Spriting with Compass</a></li>
 <li><a href="http://www.slideshare.net/tdreyno/simplifying-css-with-sass">Simplifying CSS with Sass</a></li>
 <li><a href="http://jackdempsey.me/2011/04/22/rails-3-1-sprockets-and-coffeescript.html">Rails 3.1: Understanding Sprockets and CoffeeScript</a></li>
+<li><a href="http://www.slideshare.net/hlb/sass-compass-7653212">Sass &amp; Compass / W3CTech Shanghai</a></li>
+<li><a href="http://www.modernizr.com/">Modernizr</a></li>
 </ul>
 
 
@@ -220,6 +231,7 @@
 <li><a href="https://sites.google.com/site/heavenhao/Home/webdesign/960px-xia-de-huang-jin-fen-ge">960px下的黄金分割</a></li>
 <li><a href="http://thenextweb.com/dd/2012/01/11/why-every-designer-should-start-with-paper-not-photoshop/">Why every designer should start with paper, not PhotoShop</a></li>
 <li><a href="http://whiteball.tw/blog/why-hsl/">為什麼用HSL色彩模型</a></li>
+<li><a href="http://www.raincreativelab.com/paperbrowser/">Paper Browser: It&#8217;s a browser, only in paper.</a></li>
 </ul>
 
 
