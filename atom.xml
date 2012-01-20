@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-01-17T18:35:50+08:00</updated>
+  <updated>2012-01-20T12:07:33+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -164,6 +164,10 @@
 <li><a href="http://blog.xdite.net/posts/2011/10/18/asset-pipeline-version-control-assets/">Asset Pipeline 的重大意義：Version Control Your Asset Package</a></li>
 <li><a href="http://wp.xdite.net/?p=3137">升級到 Rails 3.1，專案所要做的前置準備工作</a></li>
 <li><a href="http://metaskills.net/2011/05/18/use-compass-sass-framework-files-with-the-rails-3.1-asset-pipeline/">Use Compass Sass Framework Files With The Rails 3.1 Asset Pipeline</a></li>
+<li><a href="https://github.com/bbatsov/ruby-style-guide">Ruby Style Guide</a></li>
+<li><a href="http://rails-bestpractices.com/posts/55-generate-polymorphic-url">Generate Polymorphic URL</a></li>
+<li><a href="http://blogger.godfat.org/2008/11/rails-polymorphic-association.html">Rails Polymorphic Association</a></li>
+<li><a href="http://cloud.github.com/downloads/intridea/grape/The%20Grapes%20of%20Rapid.pdf">The Grapes of Rapid.pdf</a></li>
 </ul>
 
 
@@ -257,6 +261,9 @@
 <li><a href="http://article.denniswave.com/6320">透過分區(Partition)提昇MySQL性能(一)</a></li>
 <li><a href="http://article.denniswave.com/6342">透過分區(Partition)提昇MySQL性能(二)</a></li>
 <li><a href="http://www.infoq.com/cn/presentations/wsz-mysql-development">InfoQ: MySQL數據庫開發的三十六條軍規</a></li>
+<li><a href="http://cafemei.blogspot.com/2011/04/chef-solo-rvm-linux-rails.html">chef-solo + rvm - Rails 快速裝機</a></li>
+<li><a href="http://reality.hk/posts/2011/12/21/vagrant/">用 Vagrant 快速建立開發環境</a></li>
+<li><a href="http://ben6.blogspot.com/2011/11/vagrantvirtualbox-2-packagebox.html">Vagrant+virtualbox (2): 實戰封裝自制package.box</a></li>
 </ul>
 
 
@@ -286,6 +293,7 @@
 <li><a href="https://www.destroyallsoftware.com/screencasts">Destroy all software: screencasts</a></li>
 <li><a href="http://tutsplus.com/">tuts+</a></li>
 <li><a href="http://webdesign.tutsplus.com/">Webdesign tuts+</a></li>
+<li><a href="http://rightgun.blogspot.com/2007/06/blog-post_8781.html">零股交易心得</a></li>
 </ul>
 
 ]]></content>
