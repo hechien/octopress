@@ -82,18 +82,18 @@
 
 <p>後來我發現這個方式很適合用在類似需要<code>Record.includes(:user)</code>的時候，因為<code>User</code>的欄位可能過多且資料量太大導致就算打了index也跑不快，所以用這種方式來撈可以加速 &#8230; 因此我便寫了</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># record.rb
-</span><span class='line'>belongs_to :user, select: :id</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span>record.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user</span><span class="p">,</span> <span class="nb">select</span><span class="p">:</span> <span class="ss">:id</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>可是後來發現這樣會沒辦法在事後加上欄位，所以在需要特定欄位的時候必須另外寫一個自訂的關連</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># record.rb
-</span><span class='line'>belongs_to :user_with_udid, {select: [:id, :udid], class_name: "User", foreign_key: :user_id}</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span>record.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user_with_udid</span><span class="p">,</span> <span class="p">{</span><span class="nb">select</span><span class="p">:</span> <span class="o">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:udid</span><span class="o">]</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="n">foreign_key</span><span class="p">:</span> <span class="ss">:user_id</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>這樣子一來，就能夠用以下方式取得UDID了
