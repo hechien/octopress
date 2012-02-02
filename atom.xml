@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-02-02T11:04:47+08:00</updated>
+  <updated>2012-02-02T16:11:53+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails的關連小筆記]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji/"/>
+    <updated>2012-02-02T16:04:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji</id>
+    <content type="html"><![CDATA[<p>今天在<a href="http://rails-bestpractices.com">rails best practices</a>中看到一則<a href="http://rails-bestpractices.com/posts/80-active-record-query-interface-optimization">ActiveRecord Query Interface Optimization</a>，裡面提到在<code>has_many</code>與<code>belongs_to</code>的時候可以自訂<code>:select</code>來指定要撈出的欄位 &#8230; 所以請繼續閱讀</p>
+
+<!-- more -->
+
+
+<p>後來我發現這個方式很適合用在類似需要<code>Record.includes(:user)</code>的時候，因為<code>User</code>的欄位可能過多且資料量太大導致就算打了index也跑不快，所以用這種方式來撈可以加速 &#8230; 因此我便寫了</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># record.rb
+</span><span class='line'>belongs_to :user, select: :id</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可是後來發現這樣會沒辦法在事後加上欄位，所以在需要特定欄位的時候必須另外寫一個自訂的關連</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># record.rb
+</span><span class='line'>belongs_to :user_with_udid, {select: [:id, :udid], class_name: "User", foreign_key: :user_id}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這樣子一來，就能夠用以下方式取得UDID了
+<code>Record.includes(:user_with_udid).last.udid</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在iOS中透過Bonjour搜尋Domains以及服務]]></title>
