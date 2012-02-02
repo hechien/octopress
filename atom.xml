@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-02-02T16:14:06+08:00</updated>
+  <updated>2012-02-02T18:14:55+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -205,6 +205,7 @@
 <li><a href="http://blog.joshsoftware.com/2010/12/16/multiple-applications-with-devise-omniauth-and-single-sign-on/">Multiple applications with Devise, Omniauth and Single Sign On</a></li>
 <li><a href="http://intridea.com/2011/5/13/rails3-gems?blog=company">Rails 3: Fully Loaded</a></li>
 <li><a href="http://ruby-china.org/wiki/gems">Ruby China - 推荐 Gem 列表</a></li>
+<li><a href="http://stackoverflow.com/questions/4627703/using-devise-tokens-to-log-in-is-this-built-in">Using Devise tokens to log in, is this built in?</a></li>
 </ul>
 
 
