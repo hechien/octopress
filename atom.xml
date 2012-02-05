@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-02-05T10:39:56+08:00</updated>
+  <updated>2012-02-05T10:43:11+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -50,7 +50,9 @@
 
 <p>下個指令</p>
 
-<p><code>$ service nginx restart # restart nginx沒有用 ... 或者 /etc/init.d/nginx restart也可以</code></p>
+<p><code>$ service nginx restart</code></p>
+
+<p><code>restart nginx</code>沒有用 &#8230; 或者<code>/etc/init.d/nginx restart</code>也可以</p>
 
 <p>到此，nginx的設定就搞定了，我們就可以做其他的東西了 &#8230;</p>
 
