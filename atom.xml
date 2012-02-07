@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-02-05T10:43:11+08:00</updated>
+  <updated>2012-02-07T14:26:27+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -40,7 +40,82 @@
 
 <p>關於nginx的設定，可以上網找找，我這邊大多是用預設值的，而虛擬主機的部分看底下設定檔</p>
 
-<p>Liquid error: ClassNotFound: no lexer for alias &#8216;conf&#8217; found</p>
+<figure class='code'><figcaption><span>nginx conf </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>upstream demoapp {
+</span><span class='line'>  server unix:/tmp/app.sock fail_timeout=0;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>server {
+</span><span class='line'>  listen 80;
+</span><span class='line'>
+</span><span class='line'>  root /path/to/app/current/public;  server_name app.domain.com;
+</span><span class='line'>  access_log /var/log/nginx/app-access.log;
+</span><span class='line'>  error_log /var/log/nginx/app-error.log;
+</span><span class='line'>  rewrite_log on;
+</span><span class='line'>
+</span><span class='line'>  location / {
+</span><span class='line'>    proxy_redirect off;
+</span><span class='line'>    proxy_set_header Host $http_host;
+</span><span class='line'>    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span><span class='line'>
+</span><span class='line'>    if (!-f $request_filename) {
+</span><span class='line'>      proxy_pass http://demoapp;    }
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  location ~* (stylesheets|javascripts|images) {
+</span><span class='line'>    if (!-f $request_filename) {
+</span><span class='line'>      break;
+</span><span class='line'>    }
+</span><span class='line'>    if ($query_string ~* "^[0-9]{10}$") {
+</span><span class='line'>      expires max;
+</span><span class='line'>      break;
+</span><span class='line'>    }
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  error_page 500 502 503 504 /500.html;
+</span><span class='line'>  location = /500.html {
+</span><span class='line'>    root /path/to/app/current/public;
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
 
 <p>因為我會用Capistrano來deploy，所以路徑最後一定是 current/public ，建議不要想要去改預定的東西，那只是找麻煩而已 &#8230;</p>
 
@@ -425,6 +500,7 @@
 <li><a href="http://www.raincreativelab.com/paperbrowser/">Paper Browser: It&#8217;s a browser, only in paper.</a></li>
 <li><a href="http://www.techbang.com.tw/posts/8175-simple-and-elegant-20-america-switch-interface-design">20個美型開關介面設計，每天都在用，原來可以這麼好看</a></li>
 <li><a href="http://thestrangeattractor.net/">看他們的分頁設計</a></li>
+<li><a href="http://dribbble.com/">Dribble</a></li>
 </ul>
 
 
