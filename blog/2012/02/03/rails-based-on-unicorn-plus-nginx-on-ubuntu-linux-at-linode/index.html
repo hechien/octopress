@@ -135,6 +135,7 @@
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
+<span class='line-number'>38</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>upstream demoapp {
 </span><span class='line'>  server unix:/tmp/app.sock fail_timeout=0;
 </span><span class='line'>}
@@ -142,7 +143,8 @@
 </span><span class='line'>server {
 </span><span class='line'>  listen 80;
 </span><span class='line'>
-</span><span class='line'>  root /path/to/app/current/public;  server_name app.domain.com;
+</span><span class='line'>  root /path/to/app/current/public;
+</span><span class='line'>  server_name app.domain.com;
 </span><span class='line'>  access_log /var/log/nginx/app-access.log;
 </span><span class='line'>  error_log /var/log/nginx/app-error.log;
 </span><span class='line'>  rewrite_log on;

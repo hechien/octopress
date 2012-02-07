@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-02-07T14:26:27+08:00</updated>
+  <updated>2012-02-07T14:57:54+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -78,6 +78,7 @@
 <span class='line-number'>35</span>
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
+<span class='line-number'>38</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>upstream demoapp {
 </span><span class='line'>  server unix:/tmp/app.sock fail_timeout=0;
 </span><span class='line'>}
@@ -85,7 +86,8 @@
 </span><span class='line'>server {
 </span><span class='line'>  listen 80;
 </span><span class='line'>
-</span><span class='line'>  root /path/to/app/current/public;  server_name app.domain.com;
+</span><span class='line'>  root /path/to/app/current/public;
+</span><span class='line'>  server_name app.domain.com;
 </span><span class='line'>  access_log /var/log/nginx/app-access.log;
 </span><span class='line'>  error_log /var/log/nginx/app-error.log;
 </span><span class='line'>  rewrite_log on;
