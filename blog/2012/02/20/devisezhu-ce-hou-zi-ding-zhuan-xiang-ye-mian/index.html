@@ -3,11 +3,11 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Rails的關連小筆記 - 赫謙小便籤</title>
+    <title>Devise註冊後自訂轉向頁面 - 赫謙小便籤</title>
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="Rails的關連小筆記 今天在rails best practices中看到一則ActiveRecord Query Interface Optimization，裡面提到在has_many與belongs_to的時候可以自訂:select來指定要撈出的欄位 &#8230; 所以請繼續閱讀 &hellip;">
+    <meta name="description" content="Devise註冊後自訂轉向頁面 因為公司的網站在註冊會員之後需要根據不同的App來顯示不同的layout或畫面，因此註冊後要自訂一個轉向頁面，所以我們必須要自己override原本的RegistrationsController &#8230; &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,30 +74,13 @@
 </script>
 
 	<div id="content" class="inner"><article class="post">
-    <h1 class="title">Rails的關連小筆記</h1>
-    <div class="entry"><p>今天在<a href="http://rails-bestpractices.com">rails best practices</a>中看到一則<a href="http://rails-bestpractices.com/posts/80-active-record-query-interface-optimization">ActiveRecord Query Interface Optimization</a>，裡面提到在<code>has_many</code>與<code>belongs_to</code>的時候可以自訂<code>:select</code>來指定要撈出的欄位 &#8230; 所以請繼續閱讀</p>
+    <h1 class="title">Devise註冊後自訂轉向頁面</h1>
+    <div class="entry"><p>因為公司的網站在註冊會員之後需要根據不同的App來顯示不同的layout或畫面，因此註冊後要自訂一個轉向頁面，所以我們必須要自己override原本的RegistrationsController &#8230; <!-- more -->
+上網找了資料之後看到說只需要自訂<code>after_sign_up_path_for</code>就可以了，所以開始嘗試卻發現不管怎麼做都會失敗，把<code>after_sign_up_path_for</code>改成<code>after_sign_in_path_for</code>也沒用，logger也都沒有任何記錄</p>
 
-<!-- more -->
+<p>後來讀到<a href="https://github.com/plataformatec/devise/wiki/How-To:-Redirect-to-a-specific-page-on-successful-sign-up-(registration">這篇</a>)後注意到另外一個名稱：<code>after_inactive_sign_up_path_for</code>，更改了之後發現it works!仔細想想才曉得，原來是因為我有增加confirmation的功能，讓使用者必須要按下Confirm連結才會activated，因此，<code>after_sign_up_path_for</code>是給沒打開Confirm功能用的，而<code>after_inactive_sign_up_path_for</code>則是給啟用Confirm功能用的。</p>
 
-
-<p>後來我發現這個方式很適合用在類似需要<code>Record.includes(:user)</code>的時候，因為<code>User</code>的欄位可能過多且資料量太大導致就算打了index也跑不快，所以用這種方式來撈可以加速 &#8230; 因此我便寫了</p>
-
-<figure class='code'><figcaption><span>record.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user</span><span class="p">,</span> <span class="nb">select</span><span class="p">:</span> <span class="ss">:id</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可是後來發現這樣會沒辦法在事後加上欄位，所以在需要特定欄位的時候必須另外寫一個自訂的關連</p>
-
-<figure class='code'><figcaption><span>record.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user_with_udid</span><span class="p">,</span> <span class="p">{</span><span class="nb">select</span><span class="p">:</span> <span class="o">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:udid</span><span class="o">]</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="n">foreign_key</span><span class="p">:</span> <span class="ss">:user_id</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>這樣子一來，就能夠用以下方式取得UDID了
-<code>Record.includes(:user_with_udid).last.udid</code></p>
+<p>附加內容：Camelcase => 底線的作法： <code>"PocketSnapper".underscore #=&gt; "pocket_snapper"</code></p>
 </div>
     <div class="meta">
         <div class="date">
@@ -112,12 +95,12 @@
   
 
 
-<time datetime="2012-02-02T16:04:00+08:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2012</time></div>
+<time datetime="2012-02-20T16:54:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2012</time></div>
         <div class="tags">
 
 <div class="cat">
   
-    <a class='category' href='/octopress/blog/categories/active-record/'>active record</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
+    <a class='category' href='/octopress/blog/categories/devise/'>devise</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
   
 </div>
 
