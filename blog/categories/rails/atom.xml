@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-02-20T17:05:13+08:00</updated>
+  <updated>2012-02-20T17:06:24+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -18,10 +18,16 @@
     <link href="http://hechien.github.com/octopress/blog/2012/02/20/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian/"/>
     <updated>2012-02-20T16:54:00+08:00</updated>
     <id>http://hechien.github.com/octopress/blog/2012/02/20/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian</id>
-    <content type="html"><![CDATA[<p>因為公司的網站在註冊會員之後需要根據不同的App來顯示不同的layout或畫面，因此註冊後要自訂一個轉向頁面，所以我們必須要自己override原本的RegistrationsController ... <!-- more -->
-上網找了資料之後看到說只需要自訂<code>after_sign_up_path_for</code>就可以了，所以開始嘗試卻發現不管怎麼做都會失敗，把<code>after_sign_up_path_for</code>改成<code>after_sign_in_path_for</code>也沒用，logger也都沒有任何記錄</p>
+    <content type="html"><![CDATA[<p>因為公司的網站在註冊會員之後需要根據不同的App來顯示不同的layout或畫面，因此註冊後要自訂一個轉向頁面，所以我們必須要自己override原本的RegistrationsController ...</p>
 
-<p>後來讀到<a href="https://github.com/plataformatec/devise/wiki/How-To:-Redirect-to-a-specific-page-on-successful-sign-up-(registration">這篇</a>)後注意到另外一個名稱：<code>after_inactive_sign_up_path_for</code>，更改了之後發現it works!仔細想想才曉得，原來是因為我有增加confirmation的功能，讓使用者必須要按下Confirm連結才會activated，因此，<code>after_sign_up_path_for</code>是給沒打開Confirm功能用的，而<code>after_inactive_sign_up_path_for</code>則是給啟用Confirm功能用的。</p>
+<!-- more -->
+
+
+<p>上網找了資料之後看到說只需要自訂<code>after_sign_up_path_for</code>就可以了，所以開始嘗試卻發現不管怎麼做都會失敗，把<code>after_sign_up_path_for</code>改成<code>after_sign_in_path_for</code>也沒用，logger也都沒有任何記錄</p>
+
+<p>後來讀到<a href="https://github.com/plataformatec/devise/wiki/How-To:-Redirect-to-a-specific-page-on-successful-sign-up-(registration">這篇</a>)後注意到另外一個名稱：<code>after_inactive_sign_up_path_for</code>，更改了之後發現it works!</p>
+
+<p>仔細想想才曉得，原來是因為我有增加confirmation的功能，讓使用者必須要按下Confirm連結才會activated，因此，<code>after_sign_up_path_for</code>是給沒打開Confirm功能用的，而<code>after_inactive_sign_up_path_for</code>則是給啟用Confirm功能用的。</p>
 
 <p>附加內容：Camelcase => 底線的作法： <code>"PocketSnapper".underscore #=&gt; "pocket_snapper"</code></p>
 ]]></content>
