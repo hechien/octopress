@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: compass | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/compass/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-03-13T11:36:55+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[compass-rails + anjlab-bootstrap-rails發生的小問題]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti/"/>
+    <updated>2012-03-13T11:28:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti</id>
+    <content type="html"><![CDATA[<h1>事情發生經過</h1>
+
+<p>那時跟著 [[http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast]] 剛用Bootstrap建構好網站的頁面，也加上了navigation bar (就是上面黑黑的那條)，根據指示加上 <code>bootstrap_and_overrides.css</code>這支檔案用以讓<code>padding-top</code>可以從預設的<code>40px</code>改為<code>60px</code>，可是裝上<code>compass-rails</code>之後，我的世界開始變了樣 ... (誤)
+後來直接在<code>application.html.erb</code>內的<code>head</code>區塊中加上以下程式碼</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">body</span><span class="p">{</span>
+</span><span class='line'>  <span class="k">padding-top</span><span class="o">:</span> <span class="m">60px</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">padding-bottom</span><span class="o">:</span> <span class="m">40px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>嗯，打完收工，一切搞定，萬事OK</p>
+]]></content>
+  </entry>
+  
+</feed>

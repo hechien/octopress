@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: anjlab-bootstrap-rails | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/anjlab-bootstrap-rails/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-03-13T11:36:55+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[透過gem手動安裝anjlab的twitter bootstrap]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/13/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap/"/>
+    <updated>2012-03-13T11:24:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/13/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap</id>
+    <content type="html"><![CDATA[<p>因為一些原因要手動自己裝anjlab的anjlab-bootstrap-rails，所以特此記錄一下 ...</p>
+
+<p>先Clone下來
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/anjlab/bootstrap-rails.git</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>再進去該目錄後執行
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd bootstrap-rails
+</span><span class='line'>rake install</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>打完收工</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: draft | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/draft/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-03-13T11:36:55+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Devise開發小筆記]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/03/devisekai-fa-xiao-bi-ji/"/>
+    <updated>2012-03-03T01:14:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/03/devisekai-fa-xiao-bi-ji</id>
+    <content type="html"><![CDATA[<p>這篇很不幸的被我遺忘了 .... - -|||</p>
+
+<p>以後有機會再來寫</p>
+]]></content>
+  </entry>
+  
+</feed>
