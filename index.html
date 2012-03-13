@@ -7,8 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="透過gem手動安裝anjlab的twitter Bootstrap 因為一些原因要手動自己裝anjlab的anjlab-bootstrap-rails，所以特此記錄一下 &#8230; 先Clone下來 1
-git clone git://github.com/anjlab/bootstrap- &hellip;">
+    <meta name="description" content="Compass-rails + Anjlab-bootstrap-rails發生的小問題 事情發生經過 那時跟著 [[http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast]] &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -75,6 +74,52 @@ git clone git://github.com/anjlab/bootstrap- &hellip;">
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti/">Compass-rails + Anjlab-bootstrap-rails發生的小問題</a></h1>
+    <div class="entry">
+        <h1>事情發生經過</h1>
+
+<p>那時跟著 [[http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast]] 剛用Bootstrap建構好網站的頁面，也加上了navigation bar (就是上面黑黑的那條)，根據指示加上 <code>bootstrap_and_overrides.css</code>這支檔案用以讓<code>padding-top</code>可以從預設的<code>40px</code>改為<code>60px</code>，可是裝上<code>compass-rails</code>之後，我的世界開始變了樣 &#8230; (誤)
+後來直接在<code>application.html.erb</code>內的<code>head</code>區塊中加上以下程式碼</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">body</span><span class="p">{</span>
+</span><span class='line'>  <span class="k">padding-top</span><span class="o">:</span> <span class="m">60px</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">padding-bottom</span><span class="o">:</span> <span class="m">40px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>嗯，打完收工，一切搞定，萬事OK</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-13T11:28:00+08:00" pubdate data-updated="true">Mar 13<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
