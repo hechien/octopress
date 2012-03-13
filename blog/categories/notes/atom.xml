@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-03-13T11:36:55+08:00</updated>
+  <updated>2012-03-13T11:39:13+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -20,7 +20,7 @@
     <id>http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti</id>
     <content type="html"><![CDATA[<h1>事情發生經過</h1>
 
-<p>那時跟著 [[http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast]] 剛用Bootstrap建構好網站的頁面，也加上了navigation bar (就是上面黑黑的那條)，根據指示加上 <code>bootstrap_and_overrides.css</code>這支檔案用以讓<code>padding-top</code>可以從預設的<code>40px</code>改為<code>60px</code>，可是裝上<code>compass-rails</code>之後，我的世界開始變了樣 ... (誤)
+<p>那時跟著 <a href="http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast">http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast</a> 剛用Bootstrap建構好網站的頁面，也加上了navigation bar (就是上面黑黑的那條)，根據指示加上 <code>bootstrap_and_overrides.css</code>這支檔案用以讓<code>padding-top</code>可以從預設的<code>40px</code>改為<code>60px</code>，可是裝上<code>compass-rails</code>之後，我的世界開始變了樣 ... (誤)
 後來直接在<code>application.html.erb</code>內的<code>head</code>區塊中加上以下程式碼</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -69,6 +69,252 @@
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Rails based on Unicorn + Nginx on Ubuntu Linux @ Linode]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/02/03/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode/"/>
+    <updated>2012-02-03T23:42:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/02/03/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode</id>
+    <content type="html"><![CDATA[<p>這篇文章是從原本「赫謙隨筆(Posterous)」中轉過來的，所以內文是一樣的。</p>
+
+<!-- more -->
+
+
+<p>最近在配置公司主機，其實說真的好像在自討苦吃一樣，在推薦Linode之前原本也考慮過AWS，但是因為不熟所以不敢去碰只好選了Linode ... 而且Linode其實也不錯就是了:P</p>
+
+<p>Okay，閒話休提，我來講講配置這整個環境的主要流程一下 ... 我選的是Linode 1024方案(記憶體配1023 MB給我是哪招？)，一開始用32bit的系統但覺得好像效能有點差，所以後來重切硬碟裝上Ubuntu 11 64bit的系統 ... (結果記憶體吃更大囧")</p>
+
+<p>總之，先選好你要的Linux OS，然後根據XDite的Rails 101看Ubuntu配置，不過phpMyAdmin那邊可以跳過不看，passenger也不必裝，這邊用的是Nginx + Unicorn。</p>
+
+<p>記得，不要用apt-get的方式安裝nginx，所以直接上 nginx.org 抓最新stable的版本下來，然後根據這段configure參數來編譯</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>nginx configure with arguments </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./configure   --prefix=/usr   --conf-path=/etc/nginx/nginx.conf   --pid-path=/var/run/nginx.pid   --lock-path=/var/lock/nginx.lock   --http-log-path=/var/log/nginx/access.log   --error-log-path=/var/log/nginx/error.log   --http-client-body-temp-path=/var/lib/nginx/body   --http-proxy-temp-path=/var/lib/nginx/proxy   --http-fastcgi-temp-path=/var/lib/nginx/fastcgi   --http-uwsgi-temp-path=/var/lib/nginx/uwsgi   --http-scgi-temp-path=/var/lib/nginx/scgi   --with-http_ssl_module   --with-http_stub_status_module   --user=nginx   --group=nginx   --without-mail_pop3_module   --without-mail_imap_module   --without-mail_smtp_module --with-http_gzip_static_module; make &amp;&amp; make install</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>如果你有什麼要調整的再自己去調整，然後編譯完nginx後我們就可以裝unicorn了，裝unicorn就gem i unicorn就好。</p>
+
+<p>關於nginx的設定，可以上網找找，我這邊大多是用預設值的，而虛擬主機的部分看底下設定檔</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>nginx conf </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>upstream demoapp {
+</span><span class='line'>  server unix:/tmp/app.sock fail_timeout=0;
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>server {
+</span><span class='line'>  listen 80;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  root /path/to/app/current/public;
+</span><span class='line'>  server_name app.domain.com;
+</span><span class='line'>  access_log /var/log/nginx/app-access.log;
+</span><span class='line'>  error_log /var/log/nginx/app-error.log;
+</span><span class='line'>  rewrite_log on;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  location / {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>proxy_redirect off;
+</span><span class='line'>proxy_set_header Host $http_host;
+</span><span class='line'>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span><span class='line'>
+</span><span class='line'>if (!-f $request_filename) {
+</span><span class='line'>  proxy_pass http://demoapp;    }
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  location ~* (stylesheets|javascripts|images) {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>if (!-f $request_filename) {
+</span><span class='line'>  break;
+</span><span class='line'>}
+</span><span class='line'>if ($query_string ~* "^[0-9]{10}$") {
+</span><span class='line'>  expires max;
+</span><span class='line'>  break;
+</span><span class='line'>}
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  error_page 500 502 503 504 /500.html;
+</span><span class='line'>  location = /500.html {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>root /path/to/app/current/public;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>因為我會用Capistrano來deploy，所以路徑最後一定是 current/public ，建議不要想要去改預定的東西，那只是找麻煩而已 ...</p>
+
+<p>之後存檔離開，我們要把這個虛擬主機檔案丟在 /etc/nginx/sites-avaliable 底下，然後</p>
+
+<p><code>ln -s /etc/nginx/sites-avaliable/demoapp /etc/nginx/sites-enabled/</code></p>
+
+<p>下個指令</p>
+
+<p><code>$ service nginx restart</code></p>
+
+<p><code>restart nginx</code>沒有用 ... 或者<code>/etc/init.d/nginx restart</code>也可以</p>
+
+<p>到此，nginx的設定就搞定了，我們就可以做其他的東西了 ...</p>
+
+<p>記得，deploy千萬不要用root哦，哪天被打到哭了不要說我沒有講 ... =.=</p>
+
+<p>切換到負責deploy的身分上(記得這身分不要給sudoer permission)，然後在家目錄開一個資料夾叫做 configs，建立兩個檔案: database.yml.production 跟 database.yml.production.demoapp</p>
+
+<p>會這樣做是因為database.yml.production可以拿來當skel檔案，有新的app的時候只要copy過去修改內容即可 ...</p>
+
+<p>接著在本地端在config中新增一個unicorn.rb</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>unicorn.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">app_root</span> <span class="o">=</span> <span class="s2">&quot;/root/path/of/app&quot;</span>
+</span><span class='line'><span class="n">app_name</span> <span class="o">=</span> <span class="s2">&quot;demoapp&quot;</span>
+</span><span class='line'><span class="n">listen</span> <span class="s2">&quot;/tmp/app.sock&quot;</span><span class="p">,</span> <span class="ss">:backlog</span> <span class="o">=&gt;</span> <span class="mi">2048</span> <span class="c1">#這邊要跟nginx虛擬主機檔中upstream內定義的務必一樣</span>
+</span><span class='line'><span class="n">worker_processes</span> <span class="mi">4</span> <span class="c1">#看情況開</span>
+</span><span class='line'><span class="n">preload_app</span> <span class="kp">false</span>
+</span><span class='line'><span class="n">timeout</span> <span class="mi">30</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;module Rails</span>
+</span><span class='line'><span class="sr">  class &amp;lt;&amp;lt;self&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">root</span>
+</span><span class='line'>  <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">3</span><span class="o">].</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">working_directory</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app_root</span><span class="p">,</span> <span class="n">app_name</span><span class="p">,</span> <span class="s2">&quot;current&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">working_directory</span> <span class="o">&lt;</span><span class="sr">/em&gt;working_directory</span>
+</span><span class='line'><span class="sr">logs_path = &quot;</span><span class="si">#{</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">working_directory</span><span class="si">}</span><span class="sr">/</span><span class="n">log</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">pid &quot;</span><span class="c1">#{&lt;/em&gt;working_directory}/tmp/pids/unicorn.pid&quot;</span>
+</span><span class='line'><span class="n">stderr_path</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">logs_path</span><span class="si">}</span><span class="s2">/unicorn.stderr.log&quot;</span>
+</span><span class='line'><span class="n">stdout_path</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">logs_path</span><span class="si">}</span><span class="s2">/unicorn.stdout.log&quot;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;GC.respond_to?(:copy_on_write_friendly=) and GC.copy_on_write_friendly = true&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">before_fork</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="p">,</span> <span class="n">worker</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">defined?</span><span class="p">(</span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">)</span> <span class="ow">and</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">disconnect!</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  old_pid = &quot;</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="sr">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pids</span><span class="o">/</span><span class="n">unicorn</span><span class="o">.</span><span class="n">pid</span><span class="o">.</span><span class="n">oldbin</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">  if File.exists?(old_pid) &amp;amp;&amp;amp; server.pid != old_pid&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;pre&gt;&lt;code&gt;begin</span>
+</span><span class='line'><span class="s2">  Process.kill(&quot;</span><span class="no">QUIT</span><span class="s2">&quot;, File.read(old_pid).to_i)</span>
+</span><span class='line'><span class="s2">rescue Errno::ENOENT, Errno::ESRCH</span>
+</span><span class='line'><span class="s2">  puts &quot;</span><span class="no">Send</span> <span class="s1">&#39;QUIT&#39;</span> <span class="n">signal</span> <span class="n">to</span> <span class="n">unicorn</span> <span class="n">error!</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">end</span>
+</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;  end</span>
+</span><span class='line'><span class="s2">end&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;after_fork do |server, worker|</span>
+</span><span class='line'><span class="s2">  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection</span>
+</span><span class='line'><span class="s2">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>存檔離開，扔入git並且push過後就可以準備deploy了，deploy搞定之後基本上就成功了 ....</p>
+
+<p>這邊講得很簡陋，不過因為是公司的主機的關係，所以我一定得講得很簡陋XD
+不過大致上的流程都講完了，就也只是這樣子而已 ... 下一篇再來講怎樣透過Capistrano去Deploy ...</p>
+
+<p>最近Github釋出了Hubot，我也還沒有時間去看呢 ... 有人要分享怎樣做嗎XDDD</p>
+
+<p>之後我會再貼上我配置主機的方式，希望有人願意share心得一起交流</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Rails的關連小筆記]]></title>
     <link href="http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji/"/>
     <updated>2012-02-02T16:04:00+08:00</updated>
@@ -90,68 +336,6 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 這樣子一來，就能夠用以下方式取得UDID了
 <code>Record.includes(:user_with_udid).last.udid</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在iOS中透過Bonjour搜尋Domains以及服務]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2011/12/28/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu/"/>
-    <updated>2011-12-28T16:16:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2011/12/28/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu</id>
-    <content type="html"><![CDATA[<p><a href="http://zh.wikipedia.org/wiki/Bonjour">Bonjour</a>是蘋果的一個類似DNS的服務，適用於區域網路之中，所以在Mac OS X, iOS中都可以看到它的身影，且在一些印表機之中也看得到。</p>
-
-<p>今天我們就來嘗試用Bonjour來搜尋同一個區域網路底下有哪些服務吧。</p>
-
-<p>記得在.h檔中引入<code>&lt;Foundation/NSNetworkServices.h&gt;</code>，然後它需要一個delegate來代理整個回呼(Callback)的執行，所以必須要採用<code>NSNetServiceBrowserDelegate</code>這個Protocol。</p>
-
-<p>之後，我們可以透過實體化NSNetServiceBrowser來進行Domain的搜索：</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'>  <span class="n">NSNetServiceBrowser</span> <span class="o">*</span><span class="n">browser</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSNetServiceBrowser</span> <span class="n">new</span><span class="p">];</span>
-</span><span class='line'>  <span class="p">[</span><span class="n">browser</span> <span class="nl">setDelegate:</span> <span class="n">self</span><span class="p">];</span>
-</span><span class='line'>  <span class="p">[</span><span class="n">browser</span> <span class="n">searchForRegistrationDomains</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>之後我們要實作以下五個delegate methods:</p>
-
-<ul>
-<li>netServiceBrowserWillSearch: // 開始搜尋</li>
-<li>netServiceBrowserDidStopSearch: // 停止搜尋</li>
-<li>netServiceBrowser:didNotSearch: // 搜尋如果失敗</li>
-<li>netServiceBrowser:didFindDomain:moreComing: // 如果有找到的話</li>
-<li>netServiceBrowser:didRemoveDomain:moreComing: // 如果某個Domain消失的話</li>
-</ul>
-
-
-<p>舉個<code>netServiceBrowser:didFindDomain:moreComing:</code>的例子：</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">netServiceBrowser:</span><span class="p">(</span><span class="n">NSNetServiceBrowser</span> <span class="o">*</span><span class="p">)</span><span class="n">browser</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>        <span class="nl">didFindDomain:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">domainString</span>
-</span><span class='line'>           <span class="nl">moreComing:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">moreComing</span><span class="p">{</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;[ADD] Domain String: %@&quot;</span><span class="p">,</span> <span class="n">domainString</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">moreComing</span><span class="p">){</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>如此一來，我們可以在<code>moreComing</code>為false的時候更新我們的UI列表即可。</p>
-
-<p>之後，再來繼續撰寫怎樣搜尋服務。</p>
 ]]></content>
   </entry>
   

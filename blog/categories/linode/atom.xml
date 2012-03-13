@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: rails | 赫謙小便籤]]></title>
-  <link href="http://hechien.github.com/octopress/blog/categories/rails/atom.xml" rel="self"/>
+  <title><![CDATA[Category: linode | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/linode/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
   <updated>2012-03-13T11:39:13+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
@@ -12,71 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[compass-rails + anjlab-bootstrap-rails發生的小問題]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti/"/>
-    <updated>2012-03-13T11:28:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti</id>
-    <content type="html"><![CDATA[<h1>事情發生經過</h1>
-
-<p>那時跟著 <a href="http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast">http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast</a> 剛用Bootstrap建構好網站的頁面，也加上了navigation bar (就是上面黑黑的那條)，根據指示加上 <code>bootstrap_and_overrides.css</code>這支檔案用以讓<code>padding-top</code>可以從預設的<code>40px</code>改為<code>60px</code>，可是裝上<code>compass-rails</code>之後，我的世界開始變了樣 ... (誤)
-後來直接在<code>application.html.erb</code>內的<code>head</code>區塊中加上以下程式碼</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">body</span><span class="p">{</span>
-</span><span class='line'>  <span class="k">padding-top</span><span class="o">:</span> <span class="m">60px</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">padding-bottom</span><span class="o">:</span> <span class="m">40px</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>嗯，打完收工，一切搞定，萬事OK</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[透過gem手動安裝anjlab的twitter bootstrap]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/13/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap/"/>
-    <updated>2012-03-13T11:24:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/13/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap</id>
-    <content type="html"><![CDATA[<p>因為一些原因要手動自己裝anjlab的anjlab-bootstrap-rails，所以特此記錄一下 ...</p>
-
-<p>先Clone下來
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/anjlab/bootstrap-rails.git</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>再進去該目錄後執行
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd bootstrap-rails
-</span><span class='line'>rake install</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>打完收工</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Devise註冊後自訂轉向頁面]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/02/20/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian/"/>
-    <updated>2012-02-20T16:54:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/02/20/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian</id>
-    <content type="html"><![CDATA[<p>因為公司的網站在註冊會員之後需要根據不同的App來顯示不同的layout或畫面，因此註冊後要自訂一個轉向頁面，所以我們必須要自己override原本的RegistrationsController ...</p>
-
-<!-- more -->
-
-
-<p>上網找了資料之後看到說只需要自訂<code>after_sign_up_path_for</code>就可以了，所以開始嘗試卻發現不管怎麼做都會失敗，把<code>after_sign_up_path_for</code>改成<code>after_sign_in_path_for</code>也沒用，logger也都沒有任何記錄</p>
-
-<p>後來讀到<a href="https://github.com/plataformatec/devise/wiki/How-To:-Redirect-to-a-specific-page-on-successful-sign-up-(registration)">https://github.com/plataformatec/devise/wiki/How-To:-Redirect-to-a-specific-page-on-successful-sign-up-(registration)</a>後注意到另外一個名稱：<code>after_inactive_sign_up_path_for</code>，更改了之後發現it works!</p>
-
-<p>仔細想想才曉得，原來是因為我有增加confirmation的功能，讓使用者必須要按下Confirm連結才會activated，因此，<code>after_sign_up_path_for</code>是給沒打開Confirm功能用的，而<code>after_inactive_sign_up_path_for</code>則是給啟用Confirm功能用的。</p>
-
-<p>附加內容：Camelcase => 底線的作法： <code>"PocketSnapper".underscore #=&gt; "pocket_snapper"</code></p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails based on Unicorn + Nginx on Ubuntu Linux @ Linode]]></title>
@@ -321,31 +256,6 @@
 <p>最近Github釋出了Hubot，我也還沒有時間去看呢 ... 有人要分享怎樣做嗎XDDD</p>
 
 <p>之後我會再貼上我配置主機的方式，希望有人願意share心得一起交流</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails的關連小筆記]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji/"/>
-    <updated>2012-02-02T16:04:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji</id>
-    <content type="html"><![CDATA[<p>今天在<a href="http://rails-bestpractices.com">rails best practices</a>中看到一則<a href="http://rails-bestpractices.com/posts/80-active-record-query-interface-optimization">ActiveRecord Query Interface Optimization</a>，裡面提到在<code>has_many</code>與<code>belongs_to</code>的時候可以自訂<code>:select</code>來指定要撈出的欄位 ... 所以請繼續閱讀</p>
-
-<!-- more -->
-
-
-<p>後來我發現這個方式很適合用在類似需要<code>Record.includes(:user)</code>的時候，因為<code>User</code>的欄位可能過多且資料量太大導致就算打了index也跑不快，所以用這種方式來撈可以加速 ... 因此我便寫了
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>record.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user</span><span class="p">,</span> <span class="nb">select</span><span class="p">:</span> <span class="ss">:id</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-可是後來發現這樣會沒辦法在事後加上欄位，所以在需要特定欄位的時候必須另外寫一個自訂的關連
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>record.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user_with_udid</span><span class="p">,</span> <span class="p">{</span><span class="nb">select</span><span class="p">:</span> <span class="o">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:udid</span><span class="o">]</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="n">foreign_key</span><span class="p">:</span> <span class="ss">:user_id</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-這樣子一來，就能夠用以下方式取得UDID了
-<code>Record.includes(:user_with_udid).last.udid</code></p>
 ]]></content>
   </entry>
   
