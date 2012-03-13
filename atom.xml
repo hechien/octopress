@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-02-29T18:39:45+08:00</updated>
+  <updated>2012-03-13T11:27:52+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[透過gem手動安裝anjlab的twitter bootstrap]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/13/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap/"/>
+    <updated>2012-03-13T11:24:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/13/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap</id>
+    <content type="html"><![CDATA[<p>因為一些原因要手動自己裝anjlab的anjlab-bootstrap-rails，所以特此記錄一下 &#8230;</p>
+
+<p>先Clone下來</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/anjlab/bootstrap-rails.git</span></code></pre></td></tr></table></div></figure>
+
+
+<p>再進去該目錄後執行</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd bootstrap-rails
+</span><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>打完收工</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Devise開發小筆記]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/03/devisekai-fa-xiao-bi-ji/"/>
+    <updated>2012-03-03T01:14:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/03/devisekai-fa-xiao-bi-ji</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Devise註冊後自訂轉向頁面]]></title>
@@ -529,6 +563,10 @@
 <li><a href="http://paulirish.com/2011/the-history-of-the-html5-shiv/">The Story of the HTML 5 Shiv</a></li>
 <li><a href="http://www.reset-info.com/2009/07/css-sprites.html">CSS圖片群組</a></li>
 <li><a href="http://html5boilerplate.com/">HTML 5 Boilerplate</a></li>
+<li><a href="http://www.alistapart.com/articles/responsive-web-design/">A list apart - Responsive Web Design</a></li>
+<li><a href="http://www.webdesignshock.com/responsive-design-problems/">11 Reasons Why Responsive Design Isn’t That Cool!</a></li>
+<li><a href="http://framework.newcreator.com/article/38">CSS Grid System vs. RWD</a></li>
+<li><a href="http://www.mrmu.com.tw/2011/10/11/writing-efficient-css-selectors/">如何撰寫有效率的CSS選擇器(CSS Selector)</a></li>
 </ul>
 
 
