@@ -7,7 +7,17 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="Compass-rails + Anjlab-bootstrap-rails發生的小問題 事情發生經過 那時跟著 http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast &hellip;">
+    <meta name="description" content="Paperclip 上傳驗證 因為一些原因，需要驗證使用者是否有上傳照片，若有上傳照片才需要驗證檔案大小、檔案格式 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+# model.rb validates_attachment_size :avatar, { less_than: 300. &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,6 +84,65 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng/">Paperclip 上傳驗證</a></h1>
+    <div class="entry">
+        <p>因為一些原因，需要驗證使用者是否有上傳照片，若有上傳照片才需要驗證檔案大小、檔案格式</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># model.rb</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">validates_attachment_size</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">less_than</span><span class="p">:</span> <span class="mi">300</span><span class="o">.</span><span class="n">kilobytes</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span><span class="p">{</span><span class="o">|</span><span class="n">imports</span><span class="o">|</span> <span class="n">imports</span><span class="o">.</span><span class="n">avatar</span><span class="o">.</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">present?</span><span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">validates_attachment_content_type</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">content_type</span><span class="p">:</span> <span class="o">[</span><span class="s2">&quot;image/png&quot;</span><span class="p">,</span> <span class="s2">&quot;image/jpeg&quot;</span><span class="p">,</span> <span class="s2">&quot;image/jpg&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">:</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span><span class="p">{</span><span class="o">|</span><span class="n">imports</span><span class="o">|</span> <span class="n">imports</span><span class="o">.</span><span class="n">avatar</span><span class="o">.</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">present?</span><span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-23T11:44:00+08:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/paperclip/'>paperclip</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -504,50 +573,10 @@
     </div>
 </article>
 
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/2011/12/23/kai-shi-liao-wo-de-di-%5B%3F%5D-pian-octopress/">開始了我的第一篇Octopress</a></h1>
-    <div class="entry">
-        <h3>大家好</h3>
-
-<p>是的，很高興在這邊跟大家Say hello!</p>
-
-<p>之後這邊可能就是寫些小小的東西罷了 &#8230;
-有Github + Octopress之後真方便啊 &#8230; (嘆)</p>
-
-
-        
-        <a href="/octopress/blog/2011/12/23/kai-shi-liao-wo-de-di-%5B%3F%5D-pian-octopress/" class="more-link">繼續閱讀 &rarr;</a>
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-23T16:13:00+08:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2011</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/murmur/'>murmur</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
 <nav id="pagenavi">
     
+    
+        <a href="/octopress/blog/page/2/" class="next">Next</a>
     
     <a href="/octopress/blog/archives" class="center">Blog Archives</a>
 </nav></div>

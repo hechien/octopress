@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-03-13T11:39:13+08:00</updated>
+  <updated>2012-03-23T11:58:20+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Paperclip 上傳驗證]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng/"/>
+    <updated>2012-03-23T11:44:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng</id>
+    <content type="html"><![CDATA[<p>因為一些原因，需要驗證使用者是否有上傳照片，若有上傳照片才需要驗證檔案大小、檔案格式</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;model.rb&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">validates_attachment_size</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">less_than</span><span class="p">:</span> <span class="mi">300</span><span class="o">.</span><span class="n">kilobytes</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span><span class="p">{</span><span class="o">|</span><span class="n">imports</span><span class="o">|</span> <span class="n">imports</span><span class="o">.</span><span class="n">avatar</span><span class="o">.</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">present?</span><span class="p">}</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;validates_attachment_content_type :avatar, {</span>
+</span><span class='line'><span class="sr">  content_type: [&quot;image/</span><span class="n">png</span><span class="s2">&quot;, &quot;</span><span class="n">image</span><span class="o">/</span><span class="n">jpeg</span><span class="s2">&quot;, &quot;</span><span class="n">image</span><span class="o">/</span><span class="n">jpg</span><span class="s2">&quot;],</span>
+</span><span class='line'><span class="s2">  if: Proc.new{|imports| imports.avatar.uploaded_file.present?}</span>
+</span><span class='line'><span class="s2">}&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[compass-rails + anjlab-bootstrap-rails發生的小問題]]></title>
@@ -311,31 +350,6 @@
 <p>最近Github釋出了Hubot，我也還沒有時間去看呢 ... 有人要分享怎樣做嗎XDDD</p>
 
 <p>之後我會再貼上我配置主機的方式，希望有人願意share心得一起交流</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails的關連小筆記]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji/"/>
-    <updated>2012-02-02T16:04:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji</id>
-    <content type="html"><![CDATA[<p>今天在<a href="http://rails-bestpractices.com">rails best practices</a>中看到一則<a href="http://rails-bestpractices.com/posts/80-active-record-query-interface-optimization">ActiveRecord Query Interface Optimization</a>，裡面提到在<code>has_many</code>與<code>belongs_to</code>的時候可以自訂<code>:select</code>來指定要撈出的欄位 ... 所以請繼續閱讀</p>
-
-<!-- more -->
-
-
-<p>後來我發現這個方式很適合用在類似需要<code>Record.includes(:user)</code>的時候，因為<code>User</code>的欄位可能過多且資料量太大導致就算打了index也跑不快，所以用這種方式來撈可以加速 ... 因此我便寫了
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>record.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user</span><span class="p">,</span> <span class="nb">select</span><span class="p">:</span> <span class="ss">:id</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-可是後來發現這樣會沒辦法在事後加上欄位，所以在需要特定欄位的時候必須另外寫一個自訂的關連
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>record.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user_with_udid</span><span class="p">,</span> <span class="p">{</span><span class="nb">select</span><span class="p">:</span> <span class="o">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:udid</span><span class="o">]</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="n">foreign_key</span><span class="p">:</span> <span class="ss">:user_id</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-這樣子一來，就能夠用以下方式取得UDID了
-<code>Record.includes(:user_with_udid).last.udid</code></p>
 ]]></content>
   </entry>
   
