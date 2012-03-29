@@ -7,7 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="Rails Best Practice 與 Refactor rails_best_practices是一個很不錯的Gem套件，它匯集了一些調整Rails Performace的小技巧，並且透過指令 bundle exec rails_best_practice .的方式就能夠列出你的問題， &hellip;">
+    <meta name="description" content="Paperclip的default_url Style 用Paperclip的話一定會有用到特定尺寸的，可是當特定尺寸沒有上傳圖片的話要顯示特定尺寸的預設圖片該怎麼搞？ 嗯，我現在有三種尺寸：large, medium, thumb，但我只要在default_url設定時加上:style就好， &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,6 +74,112 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/2012/03/29/paperclipde-default-url-style/">Paperclip的default_url Style</a></h1>
+    <div class="entry">
+        <p>用Paperclip的話一定會有用到特定尺寸的，可是當特定尺寸沒有上傳圖片的話要顯示特定尺寸的預設圖片該怎麼搞？</p>
+
+<p>嗯，我現在有三種尺寸：<code>large, medium, thumb</code>，但我只要在<code>default_url</code>設定時加上<code>:style</code>就好，例如：</p>
+
+<p><code>has_attached_file :image, {styles: {large: "", medium: "", thumb: ""}, default_url: "/path/to/missing/image/missing_:style.jpg"}</code></p>
+
+<p>如此一來，如果<code>medium</code>沒有東西的話，它會自動帶出<code>missing_medium.jpg</code>來。</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-29T15:59:00+08:00" pubdate data-updated="true">Mar 29<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/paperclip/'>paperclip</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/2012/03/28/nginx-tunning/">Nginx Tunning</a></h1>
+    <div class="entry">
+        <p>準備讓公司的系統上線了，在調整Nginx的效能 &#8230;</p>
+
+<p>參考這篇 <a href="http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13">http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13</a> 然後看了一下，看到<code>worker_processes 16;</code>感覺好像太高，畢竟我們公司的Server才1G RAM &#8230; 怕直接死掉XD</p>
+
+<p>不過<code>nofile</code>的值我是設定<code>32768</code>，然後根據這篇 <a href="http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html">http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html</a> 設定了 <code>fs.file-max</code> 的值到<code>2390251</code></p>
+
+<p><code>worker_connections</code>的部份則是參考這篇 <a href="http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html">http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html</a></p>
+
+<p>不過若是可以，這篇也要參考一下 <a href="http://sudone.com/nginx/nginx_worker_processes.html">http://sudone.com/nginx/nginx_worker_processes.html</a></p>
+
+<p>最大連接數的計算公式是：<code>worker_processes * worker_connections / 4</code>，而worker_connections最好超過9000的話，我是直接上到10240，所以我的設定檔大概長這樣：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>worker_processes 8;
+</span><span class='line'>worker_rlimit_nofile 32768;
+</span><span class='line'>
+</span><span class='line'>events {
+</span><span class='line'>  worker_connections 10240;
+</span><span class='line'>  use epoll;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上網查了一下，<code>epoll</code>似乎是Linux 2.6核心加入的功能，效能似乎不錯便加上去了。</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-28T15:32:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/nginx/'>nginx</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/tunning/'>tunning</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -420,143 +526,6 @@
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/active-record/'>active record</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/2011/12/28/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu/">在iOS中透過Bonjour搜尋Domains以及服務</a></h1>
-    <div class="entry">
-        <p><a href="http://zh.wikipedia.org/wiki/Bonjour">Bonjour</a>是蘋果的一個類似DNS的服務，適用於區域網路之中，所以在Mac OS X, iOS中都可以看到它的身影，且在一些印表機之中也看得到。</p>
-
-<p>今天我們就來嘗試用Bonjour來搜尋同一個區域網路底下有哪些服務吧。</p>
-
-<p>記得在.h檔中引入<code>&lt;Foundation/NSNetworkServices.h&gt;</code>，然後它需要一個delegate來代理整個回呼(Callback)的執行，所以必須要採用<code>NSNetServiceBrowserDelegate</code>這個Protocol。</p>
-
-<p>之後，我們可以透過實體化NSNetServiceBrowser來進行Domain的搜索：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'>  <span class="n">NSNetServiceBrowser</span> <span class="o">*</span><span class="n">browser</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSNetServiceBrowser</span> <span class="n">new</span><span class="p">];</span>
-</span><span class='line'>  <span class="p">[</span><span class="n">browser</span> <span class="nl">setDelegate:</span> <span class="n">self</span><span class="p">];</span>
-</span><span class='line'>  <span class="p">[</span><span class="n">browser</span> <span class="n">searchForRegistrationDomains</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>之後我們要實作以下五個delegate methods:</p>
-
-<ul>
-<li>netServiceBrowserWillSearch: // 開始搜尋</li>
-<li>netServiceBrowserDidStopSearch: // 停止搜尋</li>
-<li>netServiceBrowser:didNotSearch: // 搜尋如果失敗</li>
-<li>netServiceBrowser:didFindDomain:moreComing: // 如果有找到的話</li>
-<li>netServiceBrowser:didRemoveDomain:moreComing: // 如果某個Domain消失的話</li>
-</ul>
-
-
-<p>舉個<code>netServiceBrowser:didFindDomain:moreComing:</code>的例子：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">netServiceBrowser:</span><span class="p">(</span><span class="n">NSNetServiceBrowser</span> <span class="o">*</span><span class="p">)</span><span class="n">browser</span>
-</span><span class='line'>            <span class="nl">didFindDomain:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">domainString</span>
-</span><span class='line'>               <span class="nl">moreComing:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">moreComing</span><span class="p">{</span>
-</span><span class='line'>  <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;[ADD] Domain String: %@&quot;</span><span class="p">,</span> <span class="n">domainString</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">moreComing</span><span class="p">){</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如此一來，我們可以在<code>moreComing</code>為false的時候更新我們的UI列表即可。</p>
-
-<p>之後，再來繼續撰寫怎樣搜尋服務。</p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-28T16:16:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/cocoa/'>Cocoa</a>, <a class='category' href='/octopress/blog/categories/bonjour/'>bonjour</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding/">我的zsh Prompt的設定</a></h1>
-    <div class="entry">
-        <p>暫且來做個註記 &#8230;</p>
-
-<figure class='code'><figcaption><span>我當前zsh的PS1 - .zshrc </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git_branch() {
-</span><span class='line'>  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-</span><span class='line'>  echo "(${ref#refs/heads/})"
-</span><span class='line'>}
-</span><span class='line'>PS1="%~$(git_branch)%# "</span></code></pre></td></tr></table></div></figure>
-
-
-<p>改用zsh之後，發現很多東西都得重新習慣了 &#8230; 而且用octopress好像rake new_post會失效 &#8230; what the hell -_-
-只好改回bash新增文章了 &#8230; XD&#8221;</p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-28T14:58:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/zsh/'>zsh</a>
   
 </div>
 

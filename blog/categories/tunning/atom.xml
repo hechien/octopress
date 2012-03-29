@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tunning | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/tunning/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-03-29T16:04:42+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Nginx Tunning]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning/"/>
+    <updated>2012-03-28T15:32:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning</id>
+    <content type="html"><![CDATA[<p>準備讓公司的系統上線了，在調整Nginx的效能 ...</p>
+
+<p>參考這篇 <a href="http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13">http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13</a> 然後看了一下，看到<code>worker_processes 16;</code>感覺好像太高，畢竟我們公司的Server才1G RAM ... 怕直接死掉XD</p>
+
+<p>不過<code>nofile</code>的值我是設定<code>32768</code>，然後根據這篇 <a href="http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html">http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html</a> 設定了 <code>fs.file-max</code> 的值到<code>2390251</code></p>
+
+<p><code>worker_connections</code>的部份則是參考這篇 <a href="http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html">http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html</a></p>
+
+<p>不過若是可以，這篇也要參考一下 <a href="http://sudone.com/nginx/nginx_worker_processes.html">http://sudone.com/nginx/nginx_worker_processes.html</a></p>
+
+<p>最大連接數的計算公式是：<code>worker_processes * worker_connections / 4</code>，而worker_connections最好超過9000的話，我是直接上到10240，所以我的設定檔大概長這樣：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>worker_processes 8;
+</span><span class='line'>worker_rlimit_nofile 32768;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>events {
+</span><span class='line'>  worker_connections 10240;
+</span><span class='line'>  use epoll;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>上網查了一下，<code>epoll</code>似乎是Linux 2.6核心加入的功能，效能似乎不錯便加上去了。</p>
+]]></content>
+  </entry>
+  
+</feed>

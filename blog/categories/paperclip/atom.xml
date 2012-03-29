@@ -4,7 +4,7 @@
   <title><![CDATA[Category: paperclip | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/paperclip/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-03-23T16:34:33+08:00</updated>
+  <updated>2012-03-29T16:04:42+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Paperclip的default_url style]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style/"/>
+    <updated>2012-03-29T15:59:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style</id>
+    <content type="html"><![CDATA[<p>用Paperclip的話一定會有用到特定尺寸的，可是當特定尺寸沒有上傳圖片的話要顯示特定尺寸的預設圖片該怎麼搞？</p>
+
+<p>嗯，我現在有三種尺寸：<code>large, medium, thumb</code>，但我只要在<code>default_url</code>設定時加上<code>:style</code>就好，例如：</p>
+
+<p><code>has_attached_file :image, {styles: {large: "", medium: "", thumb: ""}, default_url: "/path/to/missing/image/missing_:style.jpg"}</code></p>
+
+<p>如此一來，如果<code>medium</code>沒有東西的話，它會自動帶出<code>missing_medium.jpg</code>來。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Paperclip 上傳驗證]]></title>

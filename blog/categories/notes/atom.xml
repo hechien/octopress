@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-03-23T16:34:33+08:00</updated>
+  <updated>2012-03-29T16:04:42+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Paperclip的default_url style]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style/"/>
+    <updated>2012-03-29T15:59:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style</id>
+    <content type="html"><![CDATA[<p>用Paperclip的話一定會有用到特定尺寸的，可是當特定尺寸沒有上傳圖片的話要顯示特定尺寸的預設圖片該怎麼搞？</p>
+
+<p>嗯，我現在有三種尺寸：<code>large, medium, thumb</code>，但我只要在<code>default_url</code>設定時加上<code>:style</code>就好，例如：</p>
+
+<p><code>has_attached_file :image, {styles: {large: "", medium: "", thumb: ""}, default_url: "/path/to/missing/image/missing_:style.jpg"}</code></p>
+
+<p>如此一來，如果<code>medium</code>沒有東西的話，它會自動帶出<code>missing_medium.jpg</code>來。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Nginx Tunning]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning/"/>
+    <updated>2012-03-28T15:32:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning</id>
+    <content type="html"><![CDATA[<p>準備讓公司的系統上線了，在調整Nginx的效能 ...</p>
+
+<p>參考這篇 <a href="http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13">http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13</a> 然後看了一下，看到<code>worker_processes 16;</code>感覺好像太高，畢竟我們公司的Server才1G RAM ... 怕直接死掉XD</p>
+
+<p>不過<code>nofile</code>的值我是設定<code>32768</code>，然後根據這篇 <a href="http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html">http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html</a> 設定了 <code>fs.file-max</code> 的值到<code>2390251</code></p>
+
+<p><code>worker_connections</code>的部份則是參考這篇 <a href="http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html">http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html</a></p>
+
+<p>不過若是可以，這篇也要參考一下 <a href="http://sudone.com/nginx/nginx_worker_processes.html">http://sudone.com/nginx/nginx_worker_processes.html</a></p>
+
+<p>最大連接數的計算公式是：<code>worker_processes * worker_connections / 4</code>，而worker_connections最好超過9000的話，我是直接上到10240，所以我的設定檔大概長這樣：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>worker_processes 8;
+</span><span class='line'>worker_rlimit_nofile 32768;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>events {
+</span><span class='line'>  worker_connections 10240;
+</span><span class='line'>  use epoll;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>上網查了一下，<code>epoll</code>似乎是Linux 2.6核心加入的功能，效能似乎不錯便加上去了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Paperclip 上傳驗證]]></title>
@@ -84,272 +135,6 @@
     <content type="html"><![CDATA[<p>這篇很不幸的被我遺忘了 .... - -|||</p>
 
 <p>以後有機會再來寫</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Devise註冊後自訂轉向頁面]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/02/20/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian/"/>
-    <updated>2012-02-20T16:54:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/02/20/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian</id>
-    <content type="html"><![CDATA[<p>因為公司的網站在註冊會員之後需要根據不同的App來顯示不同的layout或畫面，因此註冊後要自訂一個轉向頁面，所以我們必須要自己override原本的RegistrationsController ...</p>
-
-<!-- more -->
-
-
-<p>上網找了資料之後看到說只需要自訂<code>after_sign_up_path_for</code>就可以了，所以開始嘗試卻發現不管怎麼做都會失敗，把<code>after_sign_up_path_for</code>改成<code>after_sign_in_path_for</code>也沒用，logger也都沒有任何記錄</p>
-
-<p>後來讀到<a href="https://github.com/plataformatec/devise/wiki/How-To:-Redirect-to-a-specific-page-on-successful-sign-up-(registration)">https://github.com/plataformatec/devise/wiki/How-To:-Redirect-to-a-specific-page-on-successful-sign-up-(registration)</a>後注意到另外一個名稱：<code>after_inactive_sign_up_path_for</code>，更改了之後發現it works!</p>
-
-<p>仔細想想才曉得，原來是因為我有增加confirmation的功能，讓使用者必須要按下Confirm連結才會activated，因此，<code>after_sign_up_path_for</code>是給沒打開Confirm功能用的，而<code>after_inactive_sign_up_path_for</code>則是給啟用Confirm功能用的。</p>
-
-<p>附加內容：Camelcase => 底線的作法： <code>"PocketSnapper".underscore #=&gt; "pocket_snapper"</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails based on Unicorn + Nginx on Ubuntu Linux @ Linode]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/02/03/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode/"/>
-    <updated>2012-02-03T23:42:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/02/03/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode</id>
-    <content type="html"><![CDATA[<p>這篇文章是從原本「赫謙隨筆(Posterous)」中轉過來的，所以內文是一樣的。</p>
-
-<!-- more -->
-
-
-<p>最近在配置公司主機，其實說真的好像在自討苦吃一樣，在推薦Linode之前原本也考慮過AWS，但是因為不熟所以不敢去碰只好選了Linode ... 而且Linode其實也不錯就是了:P</p>
-
-<p>Okay，閒話休提，我來講講配置這整個環境的主要流程一下 ... 我選的是Linode 1024方案(記憶體配1023 MB給我是哪招？)，一開始用32bit的系統但覺得好像效能有點差，所以後來重切硬碟裝上Ubuntu 11 64bit的系統 ... (結果記憶體吃更大囧")</p>
-
-<p>總之，先選好你要的Linux OS，然後根據XDite的Rails 101看Ubuntu配置，不過phpMyAdmin那邊可以跳過不看，passenger也不必裝，這邊用的是Nginx + Unicorn。</p>
-
-<p>記得，不要用apt-get的方式安裝nginx，所以直接上 nginx.org 抓最新stable的版本下來，然後根據這段configure參數來編譯</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>nginx configure with arguments </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./configure   --prefix=/usr   --conf-path=/etc/nginx/nginx.conf   --pid-path=/var/run/nginx.pid   --lock-path=/var/lock/nginx.lock   --http-log-path=/var/log/nginx/access.log   --error-log-path=/var/log/nginx/error.log   --http-client-body-temp-path=/var/lib/nginx/body   --http-proxy-temp-path=/var/lib/nginx/proxy   --http-fastcgi-temp-path=/var/lib/nginx/fastcgi   --http-uwsgi-temp-path=/var/lib/nginx/uwsgi   --http-scgi-temp-path=/var/lib/nginx/scgi   --with-http_ssl_module   --with-http_stub_status_module   --user=nginx   --group=nginx   --without-mail_pop3_module   --without-mail_imap_module   --without-mail_smtp_module --with-http_gzip_static_module; make &amp;&amp; make install</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>如果你有什麼要調整的再自己去調整，然後編譯完nginx後我們就可以裝unicorn了，裝unicorn就gem i unicorn就好。</p>
-
-<p>關於nginx的設定，可以上網找找，我這邊大多是用預設值的，而虛擬主機的部分看底下設定檔</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>nginx conf </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>upstream demoapp {
-</span><span class='line'>  server unix:/tmp/app.sock fail_timeout=0;
-</span><span class='line'>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>server {
-</span><span class='line'>  listen 80;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  root /path/to/app/current/public;
-</span><span class='line'>  server_name app.domain.com;
-</span><span class='line'>  access_log /var/log/nginx/app-access.log;
-</span><span class='line'>  error_log /var/log/nginx/app-error.log;
-</span><span class='line'>  rewrite_log on;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  location / {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>proxy_redirect off;
-</span><span class='line'>proxy_set_header Host $http_host;
-</span><span class='line'>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-</span><span class='line'>
-</span><span class='line'>if (!-f $request_filename) {
-</span><span class='line'>  proxy_pass http://demoapp;    }
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  }&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  location ~* (stylesheets|javascripts|images) {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>if (!-f $request_filename) {
-</span><span class='line'>  break;
-</span><span class='line'>}
-</span><span class='line'>if ($query_string ~* "^[0-9]{10}$") {
-</span><span class='line'>  expires max;
-</span><span class='line'>  break;
-</span><span class='line'>}
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  }&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  error_page 500 502 503 504 /500.html;
-</span><span class='line'>  location = /500.html {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>root /path/to/app/current/public;
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>因為我會用Capistrano來deploy，所以路徑最後一定是 current/public ，建議不要想要去改預定的東西，那只是找麻煩而已 ...</p>
-
-<p>之後存檔離開，我們要把這個虛擬主機檔案丟在 /etc/nginx/sites-avaliable 底下，然後</p>
-
-<p><code>ln -s /etc/nginx/sites-avaliable/demoapp /etc/nginx/sites-enabled/</code></p>
-
-<p>下個指令</p>
-
-<p><code>$ service nginx restart</code></p>
-
-<p><code>restart nginx</code>沒有用 ... 或者<code>/etc/init.d/nginx restart</code>也可以</p>
-
-<p>到此，nginx的設定就搞定了，我們就可以做其他的東西了 ...</p>
-
-<p>記得，deploy千萬不要用root哦，哪天被打到哭了不要說我沒有講 ... =.=</p>
-
-<p>切換到負責deploy的身分上(記得這身分不要給sudoer permission)，然後在家目錄開一個資料夾叫做 configs，建立兩個檔案: database.yml.production 跟 database.yml.production.demoapp</p>
-
-<p>會這樣做是因為database.yml.production可以拿來當skel檔案，有新的app的時候只要copy過去修改內容即可 ...</p>
-
-<p>接著在本地端在config中新增一個unicorn.rb</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>unicorn.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">app_root</span> <span class="o">=</span> <span class="s2">&quot;/root/path/of/app&quot;</span>
-</span><span class='line'><span class="n">app_name</span> <span class="o">=</span> <span class="s2">&quot;demoapp&quot;</span>
-</span><span class='line'><span class="n">listen</span> <span class="s2">&quot;/tmp/app.sock&quot;</span><span class="p">,</span> <span class="ss">:backlog</span> <span class="o">=&gt;</span> <span class="mi">2048</span> <span class="c1">#這邊要跟nginx虛擬主機檔中upstream內定義的務必一樣</span>
-</span><span class='line'><span class="n">worker_processes</span> <span class="mi">4</span> <span class="c1">#看情況開</span>
-</span><span class='line'><span class="n">preload_app</span> <span class="kp">false</span>
-</span><span class='line'><span class="n">timeout</span> <span class="mi">30</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;module Rails</span>
-</span><span class='line'><span class="sr">  class &amp;lt;&amp;lt;self&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">root</span>
-</span><span class='line'>  <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">3</span><span class="o">].</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">working_directory</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app_root</span><span class="p">,</span> <span class="n">app_name</span><span class="p">,</span> <span class="s2">&quot;current&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">working_directory</span> <span class="o">&lt;</span><span class="sr">/em&gt;working_directory</span>
-</span><span class='line'><span class="sr">logs_path = &quot;</span><span class="si">#{</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">working_directory</span><span class="si">}</span><span class="sr">/</span><span class="n">log</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="s2">pid &quot;</span><span class="c1">#{&lt;/em&gt;working_directory}/tmp/pids/unicorn.pid&quot;</span>
-</span><span class='line'><span class="n">stderr_path</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">logs_path</span><span class="si">}</span><span class="s2">/unicorn.stderr.log&quot;</span>
-</span><span class='line'><span class="n">stdout_path</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">logs_path</span><span class="si">}</span><span class="s2">/unicorn.stdout.log&quot;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;GC.respond_to?(:copy_on_write_friendly=) and GC.copy_on_write_friendly = true&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">before_fork</span> <span class="k">do</span> <span class="o">|</span><span class="n">server</span><span class="p">,</span> <span class="n">worker</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">defined?</span><span class="p">(</span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">)</span> <span class="ow">and</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">disconnect!</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  old_pid = &quot;</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="sr">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pids</span><span class="o">/</span><span class="n">unicorn</span><span class="o">.</span><span class="n">pid</span><span class="o">.</span><span class="n">oldbin</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="s2">  if File.exists?(old_pid) &amp;amp;&amp;amp; server.pid != old_pid&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;pre&gt;&lt;code&gt;begin</span>
-</span><span class='line'><span class="s2">  Process.kill(&quot;</span><span class="no">QUIT</span><span class="s2">&quot;, File.read(old_pid).to_i)</span>
-</span><span class='line'><span class="s2">rescue Errno::ENOENT, Errno::ESRCH</span>
-</span><span class='line'><span class="s2">  puts &quot;</span><span class="no">Send</span> <span class="s1">&#39;QUIT&#39;</span> <span class="n">signal</span> <span class="n">to</span> <span class="n">unicorn</span> <span class="n">error!</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="s2">end</span>
-</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;  end</span>
-</span><span class='line'><span class="s2">end&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;after_fork do |server, worker|</span>
-</span><span class='line'><span class="s2">  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection</span>
-</span><span class='line'><span class="s2">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>存檔離開，扔入git並且push過後就可以準備deploy了，deploy搞定之後基本上就成功了 ....</p>
-
-<p>這邊講得很簡陋，不過因為是公司的主機的關係，所以我一定得講得很簡陋XD
-不過大致上的流程都講完了，就也只是這樣子而已 ... 下一篇再來講怎樣透過Capistrano去Deploy ...</p>
-
-<p>最近Github釋出了Hubot，我也還沒有時間去看呢 ... 有人要分享怎樣做嗎XDDD</p>
-
-<p>之後我會再貼上我配置主機的方式，希望有人願意share心得一起交流</p>
 ]]></content>
   </entry>
   

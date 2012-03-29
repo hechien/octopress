@@ -8,7 +8,7 @@
     </url>
     <url>
         <loc>http://hechien.github.com/octopress/blog/2011/12/23/shu-dan-yu-za-ji/</loc>
-        <lastmod>2012-03-02T22:51:02+08:00</lastmod>
+        <lastmod>2012-03-28T17:29:24+08:00</lastmod>
     </url>
     <url>
         <loc>
@@ -69,11 +69,21 @@
         <lastmod>2012-03-23T16:34:17+08:00</lastmod>
     </url>
     <url>
+        <loc>http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning/</loc>
+        <lastmod>2012-03-28T16:04:28+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style/
+        </loc>
+        <lastmod>2012-03-29T16:04:19+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://hechien.github.com/octopress/blog/archives/</loc>
-        <lastmod>2012-03-23T16:34:17+08:00</lastmod>
+        <lastmod>2012-03-29T16:04:19+08:00</lastmod>
     </url>
     <url>
         <loc>http://hechien.github.com/octopress/</loc>
-        <lastmod>2012-03-23T16:34:17+08:00</lastmod>
+        <lastmod>2012-03-29T16:04:19+08:00</lastmod>
     </url>
 </urlset>

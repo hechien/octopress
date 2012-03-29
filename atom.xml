@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-03-23T16:34:33+08:00</updated>
+  <updated>2012-03-29T16:04:42+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,58 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Paperclip的default_url style]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style/"/>
+    <updated>2012-03-29T15:59:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style</id>
+    <content type="html"><![CDATA[<p>用Paperclip的話一定會有用到特定尺寸的，可是當特定尺寸沒有上傳圖片的話要顯示特定尺寸的預設圖片該怎麼搞？</p>
+
+<p>嗯，我現在有三種尺寸：<code>large, medium, thumb</code>，但我只要在<code>default_url</code>設定時加上<code>:style</code>就好，例如：</p>
+
+<p><code>has_attached_file :image, {styles: {large: "", medium: "", thumb: ""}, default_url: "/path/to/missing/image/missing_:style.jpg"}</code></p>
+
+<p>如此一來，如果<code>medium</code>沒有東西的話，它會自動帶出<code>missing_medium.jpg</code>來。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Nginx Tunning]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning/"/>
+    <updated>2012-03-28T15:32:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning</id>
+    <content type="html"><![CDATA[<p>準備讓公司的系統上線了，在調整Nginx的效能 &#8230;</p>
+
+<p>參考這篇 <a href="http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13">http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13</a> 然後看了一下，看到<code>worker_processes 16;</code>感覺好像太高，畢竟我們公司的Server才1G RAM &#8230; 怕直接死掉XD</p>
+
+<p>不過<code>nofile</code>的值我是設定<code>32768</code>，然後根據這篇 <a href="http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html">http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html</a> 設定了 <code>fs.file-max</code> 的值到<code>2390251</code></p>
+
+<p><code>worker_connections</code>的部份則是參考這篇 <a href="http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html">http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html</a></p>
+
+<p>不過若是可以，這篇也要參考一下 <a href="http://sudone.com/nginx/nginx_worker_processes.html">http://sudone.com/nginx/nginx_worker_processes.html</a></p>
+
+<p>最大連接數的計算公式是：<code>worker_processes * worker_connections / 4</code>，而worker_connections最好超過9000的話，我是直接上到10240，所以我的設定檔大概長這樣：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>worker_processes 8;
+</span><span class='line'>worker_rlimit_nofile 32768;
+</span><span class='line'>
+</span><span class='line'>events {
+</span><span class='line'>  worker_connections 10240;
+</span><span class='line'>  use epoll;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上網查了一下，<code>epoll</code>似乎是Linux 2.6核心加入的功能，效能似乎不錯便加上去了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails Best Practice 與 Refactor]]></title>
@@ -970,6 +1022,16 @@
 <li><a href="http://blog.miaout17.net/2010/10/26/rails3-mongoid-devise-heroku-mongohq/">Rails3, Mongoid, Devise, Heroku, MongoHQ筆記</a></li>
 <li><a href="http://www.slideshare.net/jsmestad/mongodb-mongoid-with-rails">MongoDB &amp; Mongoid with Rails</a></li>
 <li><a href="http://liamkaufman.com/blog/2012/02/25/adding_real-time_to_rails_with_socket.IO_nodejs_and_backbonejs_with_demo/">Adding Real-Time to Rails With Socket.IO, Node.js and Backbone.js (With Demo)</a></li>
+<li><a href="http://tech.vonstark.co/post/20053649068/ruby-non-blocking-goliath">Ruby中超強悍的 Non-Blocking 的框架 : Goliath</a></li>
+</ul>
+
+
+<h2>Ruby 1.9</h2>
+
+<ul>
+<li><a href="http://www.oreillynet.com/ruby/blog/2007/06/on_the_horizon_ten_things_i_li.html">On The Horizon : Ten Things I like about Ruby 1.9</a></li>
+<li><a href="http://blog.rubybestpractices.com/posts/gregory/011-tap-that-hash.html">Should I Tap that Hash? (Ruby 1.9 Style)</a></li>
+<li><a href="http://www.igvita.com/2011/02/03/new-ruby-19-features-tips-tricks/">New Ruby 1.9 Features, Tips &amp; Tricks</a></li>
 </ul>
 
 
@@ -1038,6 +1100,7 @@
 <li><a href="http://www.webdesignshock.com/responsive-design-problems/">11 Reasons Why Responsive Design Isn’t That Cool!</a></li>
 <li><a href="http://framework.newcreator.com/article/38">CSS Grid System vs. RWD</a></li>
 <li><a href="http://www.mrmu.com.tw/2011/10/11/writing-efficient-css-selectors/">如何撰寫有效率的CSS選擇器(CSS Selector)</a></li>
+<li><a href="http://coolshell.cn/articles/6840.html">CSS 布局:40个教程、技巧、例子和最佳实践</a></li>
 </ul>
 
 
@@ -1091,6 +1154,7 @@
 <li><a href="http://reality.hk/posts/2011/12/21/vagrant/">用 Vagrant 快速建立開發環境</a></li>
 <li><a href="http://ben6.blogspot.com/2011/11/vagrantvirtualbox-2-packagebox.html">Vagrant+virtualbox (2): 實戰封裝自制package.box</a></li>
 <li><a href="http://blog.gslin.org/archives/2011/10/28/2757/mixpanel-%E5%BE%9E-aws-%E6%90%AC%E5%88%B0-softlayer/">Mixpanel 從 AWS 搬到 Softlayer</a></li>
+<li><a href="http://blog.bradgessler.com/use-monit-with-rails-not-god">Use Monit with Rails, not God</a></li>
 </ul>
 
 
@@ -1132,6 +1196,7 @@
 <li><a href="http://darcyclarke.me/development/front-end-job-interview-questions/">Front-end Job Interview Questions</a></li>
 <li><a href="http://big5.sznews.com/health/content/2011-03/02/content_5390289.htm">對比︰古今中外最佳性愛次數_深圳新聞網</a></li>
 <li><a href="http://chomp.com/">Chomp</a></li>
+<li><a href="http://www.hksilicon.com/kb/articles/60067/20cheat-sheet">網站開發人員必備的 20 張速記片 (cheat sheet)</a></li>
 </ul>
 
 ]]></content>
