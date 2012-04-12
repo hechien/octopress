@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-12T15:37:29+08:00</updated>
+  <updated>2012-04-12T15:38:59+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -19,6 +19,9 @@
     <updated>2012-04-12T15:14:00+08:00</updated>
     <id>http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml</id>
     <content type="html"><![CDATA[<p>原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。</p>
+
+<!-- more -->
+
 
 <p>首先要先安裝middleman：<code>gem i middleman</code></p>
 

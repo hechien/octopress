@@ -7,7 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="Middleman + Pow + Livereload + HAML 原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。 首先要先安裝middleman：gem i &hellip;">
+    <meta name="description" content="Middleman + Pow + Livereload + HAML 原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。 繼續閱讀 &rarr; Apr 12th, 2012 &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -81,67 +81,9 @@
     <div class="entry">
         <p>原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。</p>
 
-<p>首先要先安裝middleman：<code>gem i middleman</code></p>
-
-<p>安裝好之後建立Project：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mkdir ~/Documents/playgroud/middleman
-</span><span class='line'><span class="nb">cd</span> ~/Documents/playground/middleman
-</span><span class='line'>middleman init . --bundler --rack
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在Gemfile中加入：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;guard-livereload&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>執行<code>bundle install</code>後，透過<code>bundle exec guard init livereload</code>產生Guardfile，然後修改Guardfile</p>
-
-<figure class='code'><figcaption><span>Guardfile </span><a href='https://gist.github.com/1221542'>link</a></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># More info at https://github.com/guard/guard#readme</span>
-</span><span class='line'><span class="c1"># XDite&#39;s guardflie: https://gist.github.com/1221542</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">guard</span> <span class="s1">&#39;livereload&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{source/.+\.(erb|haml|md)}</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{source/helpers/.+\.rb}</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(public/|source/assets).+\.(css|js|html)}</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(source/.+\.css)\.s[ac]ss}</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(source/.+\.js)\.coffee}</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{config/locales/.+\.yml}</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改好後存檔離開，執行 <code>bundle exec guard</code></p>
-
-<p>安裝powder： <code>gem i powder</code></p>
-
-<p>如果沒有安裝pow的話就：<code>powder install</code></p>
-
-<p>然後建立好Link：<code>powder link</code>，這樣應該會建立<code>http://middleman.dev</code>的網址給你使用</p>
-
-<p>安裝瀏覽器外掛(Chrome)： <a href="https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei">https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei</a></p>
-
-<p>一切就緒後，瀏覽器上應該會出現一個 LR 的圖示，按下去吧 &#8230;</p>
 
         
-        
+        <a href="/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml/" class="more-link">繼續閱讀 &rarr;</a>
     </div>
     <div class="meta">
         <div class="date">
