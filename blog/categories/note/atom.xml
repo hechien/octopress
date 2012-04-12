@@ -4,7 +4,7 @@
   <title><![CDATA[Category: note | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/note/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-12T15:36:46+08:00</updated>
+  <updated>2012-04-12T15:37:29+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -24,7 +24,13 @@
 
 <p>安裝好之後建立Project：</p>
 
-<p>Liquid error: ClassNotFound: no lexer for alias 'shellscript' found</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mkdir ~/Documents/playgroud/middleman
+</span><span class='line'><span class="nb">cd</span> ~/Documents/playground/middleman
+</span><span class='line'>middleman init . --bundler --rack
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>在Gemfile中加入：</p>
 
