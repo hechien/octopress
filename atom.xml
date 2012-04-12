@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-12T15:27:55+08:00</updated>
+  <updated>2012-04-12T15:30:06+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -24,35 +24,46 @@
 
 <p>安裝好之後建立Project：</p>
 
-<p>{% codeblock %}
-  mkdir ~/Documents/playgroud/middleman
-  cd ~/Documents/playground/middleman
-  middleman init . &#8211;bundler &#8211;rack
-{% endblock %}</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir ~/Documents/playgroud/middleman
+</span><span class='line'>  cd ~/Documents/playground/middleman
+</span><span class='line'>  middleman init . --bundler --rack</span></code></pre></td></tr></table></div></figure>
+
 
 <p>在Gemfile中加入：</p>
 
-<p>{% codeblock %}
-  gem &#8216;guard-livereload&#8217;
-{% endblock %}</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem 'guard-livereload'</span></code></pre></td></tr></table></div></figure>
+
 
 <p>執行<code>bundle install</code>後，透過<code>bundle exec guard init livereload</code>產生Guardfile，然後修改Guardfile</p>
 
-<p>{% codeblock lang:ruby %}</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># More info at https://github.com/guard/guard#readme</span>
+</span><span class='line'><span class="c1"># XDite&#39;s guardflie: https://gist.github.com/1221542</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">guard</span> <span class="s1">&#39;livereload&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{source/.+\.(erb|haml|md)}</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{source/helpers/.+\.rb}</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(public/|source/assets).+\.(css|js|html)}</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(source/.+\.css)\.s[ac]ss}</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(source/.+\.js)\.coffee}</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{config/locales/.+\.yml}</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<h1>More info at https://github.com/guard/guard#readme</h1>
-
-<h1>XDite&#8217;s guardflie: https://gist.github.com/1221542</h1>
-
-<p>guard &#8216;livereload&#8217; do
-  watch(%r{source/.+.(erb|haml|md)})
-  watch(%r{source/helpers/.+.rb})
-  watch(%r{(public/|source/assets).+.(css|js|html)})
-  watch(%r{(source/.+.css).s[ac]ss}) { |m| m[1] }
-  watch(%r{(source/.+.js).coffee}) { |m| m[1] }
-  watch(%r{config/locales/.+.yml})
-end
-{% endcodeblock %}</p>
 
 <p>修改好後存檔離開，執行 <code>bundle exec guard</code></p>
 
