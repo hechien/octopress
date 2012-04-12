@@ -4,7 +4,7 @@
   <title><![CDATA[Category: middleman | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/middleman/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-12T15:30:06+08:00</updated>
+  <updated>2012-04-12T15:31:53+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -20,25 +20,22 @@
     <id>http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml</id>
     <content type="html"><![CDATA[<p>原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。</p>
 
-<p>首先要先安裝<code>middleman</code>：<code>gem i middleman</code></p>
+<p>首先要先安裝middleman：<code>gem i middleman</code></p>
 
 <p>安裝好之後建立Project：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir ~/Documents/playgroud/middleman
-</span><span class='line'>  cd ~/Documents/playground/middleman
-</span><span class='line'>  middleman init . --bundler --rack</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>Liquid error: ClassNotFound: no lexer for alias 'shell' found</p>
 
 <p>在Gemfile中加入：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem 'guard-livereload'</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;guard-livereload&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>執行<code>bundle install</code>後，透過<code>bundle exec guard init livereload</code>產生Guardfile，然後修改Guardfile</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Guardfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
