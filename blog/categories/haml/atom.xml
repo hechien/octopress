@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: haml | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/haml/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-04-12T15:27:55+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Middleman + Pow + Livereload + HAML]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml/"/>
+    <updated>2012-04-12T15:14:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml</id>
+    <content type="html"><![CDATA[<p>原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。</p>
+
+<p>首先要先安裝<code>middleman</code>：<code>gem i middleman</code></p>
+
+<p>安裝好之後建立Project：</p>
+
+<p>{% codeblock %}
+  mkdir ~/Documents/playgroud/middleman
+  cd ~/Documents/playground/middleman
+  middleman init . --bundler --rack
+{% endblock %}</p>
+
+<p>在Gemfile中加入：</p>
+
+<p>{% codeblock %}
+  gem 'guard-livereload'
+{% endblock %}</p>
+
+<p>執行<code>bundle install</code>後，透過<code>bundle exec guard init livereload</code>產生Guardfile，然後修改Guardfile</p>
+
+<p>{% codeblock lang:ruby %}</p>
+
+<h1>More info at https://github.com/guard/guard#readme</h1>
+
+<h1>XDite's guardflie: https://gist.github.com/1221542</h1>
+
+<p>guard 'livereload' do
+  watch(%r{source/.+.(erb|haml|md)})
+  watch(%r{source/helpers/.+.rb})
+  watch(%r{(public/|source/assets).+.(css|js|html)})
+  watch(%r{(source/.+.css).s[ac]ss}) { |m| m[1] }
+  watch(%r{(source/.+.js).coffee}) { |m| m[1] }
+  watch(%r{config/locales/.+.yml})
+end
+{% endcodeblock %}</p>
+
+<p>修改好後存檔離開，執行 <code>bundle exec guard</code></p>
+
+<p>安裝powder： <code>gem i powder</code></p>
+
+<p>如果沒有安裝pow的話就：<code>powder install</code></p>
+
+<p>然後建立好Link：<code>powder link</code>，這樣應該會建立<code>http://middleman.dev</code>的網址給你使用</p>
+
+<p>安裝瀏覽器外掛(Chrome)： <a href="https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei">https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei</a></p>
+
+<p>一切就緒後，瀏覽器上應該會出現一個 LR 的圖示，按下去吧 ...</p>
+]]></content>
+  </entry>
+  
+</feed>
