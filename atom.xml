@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:55:07+08:00</updated>
+  <updated>2012-04-24T11:58:21+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[加上了Disqus留言系統囉]]></title>
+    <link href="http://hechien.github.com/octopress/blog/jia-shang-liao-disqusliu-yan-xi-tong-luo/"/>
+    <updated>2012-04-24T11:56:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/jia-shang-liao-disqusliu-yan-xi-tong-luo</id>
+    <content type="html"><![CDATA[<p>根據這篇<a href="http://whiteball.tw/blog/before-you-deploy-octopress/">在 Octopress 佈署出去前要注意的小地方</a>中所提到的幾點我有一一在調整，除了404還沒弄好跟導覽列的部份以外其他都加上去了。</p>
+
+<p>所以現在我的RSS URL是Feedburner提供的、網址也不會有日期、Disqus也掛上了(而且好簡單喔！)、清單項目的縮排也弄好了 &#8230; octopress真的超好用的>///&lt;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RVM與cron]]></title>
@@ -1366,25 +1377,6 @@
 <li><a href="http://iphone4.tw/forums/showthread.php?t=80396">給Mac設計師的裝機手冊</a></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[開始了我的第一篇Octopress]]></title>
-    <link href="http://hechien.github.com/octopress/blog/kai-shi-liao-wo-de-di-%5B%3F%5D-pian-octopress/"/>
-    <updated>2011-12-23T16:13:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/kai-shi-liao-wo-de-di-[?]-pian-octopress</id>
-    <content type="html"><![CDATA[<h3>大家好</h3>
-
-<p>是的，很高興在這邊跟大家Say hello!</p>
-
-<p>之後這邊可能就是寫些小小的東西罷了 &#8230;
-有Github + Octopress之後真方便啊 &#8230; (嘆)</p>
-
-<!-- more -->
-
-
-<p>也可以趁這個機會好好學一下Markdown :P</p>
 ]]></content>
   </entry>
   
