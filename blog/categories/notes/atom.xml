@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T09:57:24+08:00</updated>
+  <updated>2012-04-24T09:58:10+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -122,6 +122,17 @@
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[被Media Queries婊了一下]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/04/05/bei-media-queriesbiao-liao-%5B%3F%5D-xia/"/>
+    <updated>2012-04-05T18:28:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/04/05/bei-media-queriesbiao-liao-[?]-xia</id>
+    <content type="html"><![CDATA[<p>清明前一天，行銷同事告訴我某專案網站無法用IE 8開啟，到清明後一天才開始修正。一開始，找了老半天就是找不到任何錯誤，想說會不會是HTML 5的不支援問題導致的，可是開其他專案網站卻又都正常，後來發現到CSS中有用到Media Queries的部分，所以我拿掉之後IE 8就可以用了！</p>
+
+<p>特此記錄一下T<sup>T"</sup></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Paperclip的default_url style]]></title>
     <link href="http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style/"/>
     <updated>2012-03-29T15:59:00+08:00</updated>
@@ -133,42 +144,6 @@
 <p><code>has_attached_file :image, {styles: {large: "", medium: "", thumb: ""}, default_url: "/path/to/missing/image/missing_:style.jpg"}</code></p>
 
 <p>如此一來，如果<code>medium</code>沒有東西的話，它會自動帶出<code>missing_medium.jpg</code>來。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Nginx Tunning]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning/"/>
-    <updated>2012-03-28T15:32:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning</id>
-    <content type="html"><![CDATA[<p>準備讓公司的系統上線了，在調整Nginx的效能 ...</p>
-
-<p>參考這篇 <a href="http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13">http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13</a> 然後看了一下，看到<code>worker_processes 16;</code>感覺好像太高，畢竟我們公司的Server才1G RAM ... 怕直接死掉XD</p>
-
-<p>不過<code>nofile</code>的值我是設定<code>32768</code>，然後根據這篇 <a href="http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html">http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html</a> 設定了 <code>fs.file-max</code> 的值到<code>2390251</code></p>
-
-<p><code>worker_connections</code>的部份則是參考這篇 <a href="http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html">http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html</a></p>
-
-<p>不過若是可以，這篇也要參考一下 <a href="http://sudone.com/nginx/nginx_worker_processes.html">http://sudone.com/nginx/nginx_worker_processes.html</a></p>
-
-<p>最大連接數的計算公式是：<code>worker_processes * worker_connections / 4</code>，而worker_connections最好超過9000的話，我是直接上到10240，所以我的設定檔大概長這樣：</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>worker_processes 8;
-</span><span class='line'>worker_rlimit_nofile 32768;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>events {
-</span><span class='line'>  worker_connections 10240;
-</span><span class='line'>  use epoll;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>上網查了一下，<code>epoll</code>似乎是Linux 2.6核心加入的功能，效能似乎不錯便加上去了。</p>
 ]]></content>
   </entry>
   
