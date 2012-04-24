@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:37:33+08:00</updated>
+  <updated>2012-04-24T11:43:40+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RVM與cron]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/04/24/rvmyu-cron/"/>
+    <updated>2012-04-24T11:40:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/04/24/rvmyu-cron</id>
+    <content type="html"><![CDATA[<p>今天發生了一件事情，crontab設定的task不能正常的跑Ruby script，檢查一下原以為是Path的問題，不管怎樣設定Path都會沒辦法正常的load rubygems，後來找了一下後發現原來官方就有<a href="http://beginrescueend.com/integration/cron/">教學</a>了 &#8230;</p>
+
+<p>總之，把cron內加上rvm ruby的路徑就可以了</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby Load Path設定]]></title>

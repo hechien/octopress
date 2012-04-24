@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:37:33+08:00</updated>
+  <updated>2012-04-24T11:43:40+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RVM與cron]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/04/24/rvmyu-cron/"/>
+    <updated>2012-04-24T11:40:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/04/24/rvmyu-cron</id>
+    <content type="html"><![CDATA[<p>今天發生了一件事情，crontab設定的task不能正常的跑Ruby script，檢查一下原以為是Path的問題，不管怎樣設定Path都會沒辦法正常的load rubygems，後來找了一下後發現原來官方就有<a href="http://beginrescueend.com/integration/cron/">教學</a>了 ...</p>
+
+<p>總之，把cron內加上rvm ruby的路徑就可以了</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby Load Path設定]]></title>
@@ -145,17 +156,6 @@
 <p>安裝瀏覽器外掛(Chrome)： <a href="https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei">https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei</a></p>
 
 <p>一切就緒後，瀏覽器上應該會出現一個 LR 的圖示，按下去吧 ...</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[被Media Queries婊了一下]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/05/bei-media-queriesbiao-liao-%5B%3F%5D-xia/"/>
-    <updated>2012-04-05T18:28:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/05/bei-media-queriesbiao-liao-[?]-xia</id>
-    <content type="html"><![CDATA[<p>清明前一天，行銷同事告訴我某專案網站無法用IE 8開啟，到清明後一天才開始修正。一開始，找了老半天就是找不到任何錯誤，想說會不會是HTML 5的不支援問題導致的，可是開其他專案網站卻又都正常，後來發現到CSS中有用到Media Queries的部分，所以我拿掉之後IE 8就可以用了！</p>
-
-<p>特此記錄一下T<sup>T"</sup></p>
 ]]></content>
   </entry>
   
