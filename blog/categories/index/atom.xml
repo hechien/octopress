@@ -4,7 +4,7 @@
   <title><![CDATA[Category: index | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/index/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T09:47:43+08:00</updated>
+  <updated>2012-04-24T09:57:24+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -22,7 +22,8 @@
 
 <p>我們都知道，Rails可以透過<code>rails g migration blahblah</code>來產生Migration file然後在裡面寫<code>add_index</code>來打索引，可是切記切記！！不要把索引寫在同一個表內 ... 當資料量大，而且其中一個index打失敗你就會哭了 ...</p>
 
-<p><code>Mysql2::Error: Specified key was too long; max key length is 1000 bytes: CREATE  INDEX</code>index_products_on_url_identify_and_name<code>ON</code>products<code>(</code>url_identify<code>,</code>name<code>)</code></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Mysql2::Error: Specified key was too long; max key length is 1000 bytes: CREATE  INDEX &lt;code>index_products_on_url_identify_and_name&lt;/code> ON &lt;code>products&lt;/code> (&lt;code>url_identify&lt;/code>, &lt;code>name&lt;/code>)</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>慘痛T_T</p>
 ]]></content>
