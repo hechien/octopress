@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T10:53:43+08:00</updated>
+  <updated>2012-04-24T11:37:33+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby Load Path設定]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/04/24/ruby-load-pathshe-ding/"/>
+    <updated>2012-04-24T11:33:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/04/24/ruby-load-pathshe-ding</id>
+    <content type="html"><![CDATA[
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#!/usr/bin/env ruby</span>
+</span><span class='line'><span class="c1">#encoding: utf-8</span>
+</span><span class='line'><span class="vg">$LOAD_PATH</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;.&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;kdan_mobile&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[node.js寫TCP Socket Server]]></title>
@@ -1228,6 +1250,7 @@
 <li><a href="http://framework.newcreator.com/article/38">CSS Grid System vs. RWD</a></li>
 <li><a href="http://www.mrmu.com.tw/2011/10/11/writing-efficient-css-selectors/">如何撰寫有效率的CSS選擇器(CSS Selector)</a></li>
 <li><a href="http://coolshell.cn/articles/6840.html">CSS 布局:40个教程、技巧、例子和最佳实践</a></li>
+<li><a href="http://whiteball.tw/blog/mobile-web-performance-optimize/">行動網頁效能最佳化</a></li>
 </ul>
 
 
