@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-12T15:38:59+08:00</updated>
+  <updated>2012-04-24T09:47:43+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[node.js寫TCP Socket Server]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server/"/>
+    <updated>2012-04-24T09:40:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server</id>
+    <content type="html"><![CDATA[<p>最近正苦惱著要怎樣加快API的回應速度，後來把腦筋動到一般的Socket上，打算直接寫個Socket Server負責回應API Request ... 我看人家<a href="http://www.inside.com.tw/2012/01/10/group-chatting">Whatsapp用Erlang搞定兩百二十萬條的連線數</a>，但是我不會寫Erlang啊！</p>
+
+<p>所以只好先把腦筋動到node.js上面，然後稍微Google了一下後便寫出了底下的東西 ...</p>
+
+<!-- more -->
+
+
+<p>https://gist.github.com/2470084</p>
+
+<p>參考資料都在裡面，真的感覺node.js很棒啊 ...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails打索引技巧]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao/"/>
+    <updated>2012-04-24T09:36:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao</id>
+    <content type="html"><![CDATA[<p>做專案學到的一個技巧 ... 應該說，是很慘痛的學到一個技巧=_= ...</p>
+
+<p>我們都知道，Rails可以透過<code>rails g migration blahblah</code>來產生Migration file然後在裡面寫<code>add_index</code>來打索引，可是切記切記！！不要把索引寫在同一個表內 ... 當資料量大，而且其中一個index打失敗你就會哭了 ...</p>
+
+<p><code>Mysql2::Error: Specified key was too long; max key length is 1000 bytes: CREATE  INDEX</code>index_products_on_url_identify_and_name<code>ON</code>products<code>(</code>url_identify<code>,</code>name<code>)</code></p>
+
+<p>慘痛T_T</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Middleman + Pow + Livereload + HAML]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml/"/>
+    <updated>2012-04-12T15:14:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml</id>
+    <content type="html"><![CDATA[<p>原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。</p>
+
+<!-- more -->
+
+
+<p>首先要先安裝middleman：<code>gem i middleman</code></p>
+
+<p>安裝好之後建立Project：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>mkdir ~/Documents/playgroud/middleman
+</span><span class='line'><span class="nb">cd</span> ~/Documents/playground/middleman
+</span><span class='line'>middleman init . --bundler --rack
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>在Gemfile中加入：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;guard-livereload&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>執行<code>bundle install</code>後，透過<code>bundle exec guard init livereload</code>產生Guardfile，然後修改Guardfile</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Guardfile </span><a href='https://gist.github.com/1221542'>link</a></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;More info at https:/</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">guard</span><span class="o">/</span><span class="n">guard</span><span class="c1">#readme&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="no">XDite</span><span class="s1">&#39;s guardflie: https://gist.github.com/1221542&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;guard &#39;</span><span class="n">livereload</span><span class="err">&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{source/.+.(erb|haml|md)}</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{source/helpers/.+.rb}</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(public/|source/assets).+.(css|js|html)}</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(source/.+.css).s[ac]ss}</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(source/.+.js).coffee}</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{config/locales/.+.yml}</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>修改好後存檔離開，執行 <code>bundle exec guard</code></p>
+
+<p>安裝powder： <code>gem i powder</code></p>
+
+<p>如果沒有安裝pow的話就：<code>powder install</code></p>
+
+<p>然後建立好Link：<code>powder link</code>，這樣應該會建立<code>http://middleman.dev</code>的網址給你使用</p>
+
+<p>安裝瀏覽器外掛(Chrome)： <a href="https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei">https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei</a></p>
+
+<p>一切就緒後，瀏覽器上應該會出現一個 LR 的圖示，按下去吧 ...</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Paperclip的default_url style]]></title>
@@ -61,80 +168,6 @@
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>上網查了一下，<code>epoll</code>似乎是Linux 2.6核心加入的功能，效能似乎不錯便加上去了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Paperclip 上傳驗證]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng/"/>
-    <updated>2012-03-23T11:44:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng</id>
-    <content type="html"><![CDATA[<p>因為一些原因，需要驗證使用者是否有上傳照片，若有上傳照片才需要驗證檔案大小、檔案格式</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;model.rb&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">validates_attachment_size</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">less_than</span><span class="p">:</span> <span class="mi">300</span><span class="o">.</span><span class="n">kilobytes</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span><span class="p">{</span><span class="o">|</span><span class="n">imports</span><span class="o">|</span> <span class="n">imports</span><span class="o">.</span><span class="n">avatar</span><span class="o">.</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">present?</span><span class="p">}</span>
-</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;validates_attachment_content_type :avatar, {</span>
-</span><span class='line'><span class="sr">  content_type: [&quot;image/</span><span class="n">png</span><span class="s2">&quot;, &quot;</span><span class="n">image</span><span class="o">/</span><span class="n">jpeg</span><span class="s2">&quot;, &quot;</span><span class="n">image</span><span class="o">/</span><span class="n">jpg</span><span class="s2">&quot;],</span>
-</span><span class='line'><span class="s2">  if: Proc.new{|imports| imports.avatar.uploaded_file.present?}</span>
-</span><span class='line'><span class="s2">}&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[compass-rails + anjlab-bootstrap-rails發生的小問題]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti/"/>
-    <updated>2012-03-13T11:28:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti</id>
-    <content type="html"><![CDATA[<h1>事情發生經過</h1>
-
-<p>那時跟著 <a href="http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast">http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast</a> 剛用Bootstrap建構好網站的頁面，也加上了navigation bar (就是上面黑黑的那條)，根據指示加上 <code>bootstrap_and_overrides.css</code>這支檔案用以讓<code>padding-top</code>可以從預設的<code>40px</code>改為<code>60px</code>，可是裝上<code>compass-rails</code>之後，我的世界開始變了樣 ... (誤)
-後來直接在<code>application.html.erb</code>內的<code>head</code>區塊中加上以下程式碼</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">body</span><span class="p">{</span>
-</span><span class='line'>  <span class="k">padding-top</span><span class="o">:</span> <span class="m">60px</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">padding-bottom</span><span class="o">:</span> <span class="m">40px</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>嗯，打完收工，一切搞定，萬事OK</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Devise開發小筆記]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/03/devisekai-fa-xiao-bi-ji/"/>
-    <updated>2012-03-03T01:14:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/03/devisekai-fa-xiao-bi-ji</id>
-    <content type="html"><![CDATA[<p>這篇很不幸的被我遺忘了 .... - -|||</p>
-
-<p>以後有機會再來寫</p>
 ]]></content>
   </entry>
   

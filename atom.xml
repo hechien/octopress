@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-12T15:38:59+08:00</updated>
+  <updated>2012-04-24T09:47:43+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[node.js寫TCP Socket Server]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server/"/>
+    <updated>2012-04-24T09:40:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server</id>
+    <content type="html"><![CDATA[<p>最近正苦惱著要怎樣加快API的回應速度，後來把腦筋動到一般的Socket上，打算直接寫個Socket Server負責回應API Request &#8230; 我看人家<a href="http://www.inside.com.tw/2012/01/10/group-chatting">Whatsapp用Erlang搞定兩百二十萬條的連線數</a>，但是我不會寫Erlang啊！</p>
+
+<p>所以只好先把腦筋動到node.js上面，然後稍微Google了一下後便寫出了底下的東西 &#8230;</p>
+
+<!-- more -->
+
+
+<p>https://gist.github.com/2470084</p>
+
+<p>參考資料都在裡面，真的感覺node.js很棒啊 &#8230;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails打索引技巧]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao/"/>
+    <updated>2012-04-24T09:36:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao</id>
+    <content type="html"><![CDATA[<p>做專案學到的一個技巧 &#8230; 應該說，是很慘痛的學到一個技巧=_= &#8230;</p>
+
+<p>我們都知道，Rails可以透過<code>rails g migration blahblah</code>來產生Migration file然後在裡面寫<code>add_index</code>來打索引，可是切記切記！！不要把索引寫在同一個表內 &#8230; 當資料量大，而且其中一個index打失敗你就會哭了 &#8230;</p>
+
+<p><code>Mysql2::Error: Specified key was too long; max key length is 1000 bytes: CREATE  INDEX</code>index_products_on_url_identify_and_name<code>ON</code>products<code>(</code>url_identify<code>,</code>name<code>)</code></p>
+
+<p>慘痛T_T</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Middleman + Pow + Livereload + HAML]]></title>
@@ -1111,6 +1144,7 @@
 <li><a href="http://www.simonecarletti.com/blog/2009/12/inside-ruby-on-rails-delegate/">Understanding Ruby and Rails: Delegate</a></li>
 <li><a href="http://www.simonecarletti.com/blog/2010/04/inside-ruby-on-rails-serializing-ruby-objects-with-json/">Understanding Ruby and Rails: Serializing Ruby objects with JSON</a></li>
 <li><a href="http://pragprog.com/book/warv/the-rails-view">The Rails View: Create a Beautiful and Maintainable User Experience (想買這本書)</a></li>
+<li><a href="http://ruby-china.org/topics/93">Rails 3.1 Http Streaming 开启方法</a></li>
 </ul>
 
 
@@ -1130,6 +1164,9 @@
 <li><a href="https://github.com/intridea/grape">grape</a> - 詳情參考 <a href="http://ruby-china.org/topics/781">http://ruby-china.org/topics/781</a></li>
 <li><a href="http://geokit.rubyforge.org/">Geokit</a></li>
 <li><a href="https://github.com/jlecour/geokit-rails3">Geokit-rails3</a></li>
+<li><a href="http://ruby-china.org/topics/1397">大家的rails项目里的读写分离怎么做的？</a></li>
+<li><a href="https://www.ruby-toolbox.com/categories/Active_Record_Sharding">Active Record Sharding</a></li>
+<li><a href="https://github.com/kovyrin/db-charmer">DB-Charmer</a></li>
 </ul>
 
 
@@ -1243,6 +1280,11 @@
 <li><a href="http://ben6.blogspot.com/2011/11/vagrantvirtualbox-2-packagebox.html">Vagrant+virtualbox (2): 實戰封裝自制package.box</a></li>
 <li><a href="http://blog.gslin.org/archives/2011/10/28/2757/mixpanel-%E5%BE%9E-aws-%E6%90%AC%E5%88%B0-softlayer/">Mixpanel 從 AWS 搬到 Softlayer</a></li>
 <li><a href="http://blog.bradgessler.com/use-monit-with-rails-not-god">Use Monit with Rails, not God</a></li>
+<li><a href="http://ruby-china.org/topics/471">求 nginx+unicorn 部署rails 完整配置</a></li>
+<li><a href="http://ruby-china.org/topics/2282">数据库异地提速？</a></li>
+<li><a href="http://163.32.219.6/blog/u882061/cce-linux/2009/10/31/1237">只要十分鐘，快速優化 MySQL 資料庫</a></li>
+<li><a href="http://www.neo.com.tw/archives/1122">[MySQL] 使用 mysqldump 線上備份 InnoDB</a></li>
+<li><a href="http://www.wretch.cc/blog/Webbhyj/1149986">CentOS 5.5 + Cacti</a></li>
 </ul>
 
 
@@ -1285,6 +1327,7 @@
 <li><a href="http://big5.sznews.com/health/content/2011-03/02/content_5390289.htm">對比︰古今中外最佳性愛次數_深圳新聞網</a></li>
 <li><a href="http://chomp.com/">Chomp</a></li>
 <li><a href="http://www.hksilicon.com/kb/articles/60067/20cheat-sheet">網站開發人員必備的 20 張速記片 (cheat sheet)</a></li>
+<li><a href="http://iphone4.tw/forums/showthread.php?t=80396">給Mac設計師的裝機手冊</a></li>
 </ul>
 
 ]]></content>

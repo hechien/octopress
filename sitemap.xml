@@ -8,7 +8,7 @@
     </url>
     <url>
         <loc>http://hechien.github.com/octopress/blog/2011/12/23/shu-dan-yu-za-ji/</loc>
-        <lastmod>2012-04-05T18:30:51+08:00</lastmod>
+        <lastmod>2012-04-23T14:33:35+08:00</lastmod>
     </url>
     <url>
         <loc>
@@ -88,14 +88,24 @@
         <loc>
             http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml/
         </loc>
-        <lastmod>2012-04-12T15:38:50+08:00</lastmod>
+        <lastmod>2012-04-24T09:40:39+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao/</loc>
+        <lastmod>2012-04-24T09:40:50+08:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server/
+        </loc>
+        <lastmod>2012-04-24T09:47:34+08:00</lastmod>
     </url>
     <url>
         <loc>http://hechien.github.com/octopress/blog/archives/</loc>
-        <lastmod>2012-04-12T15:38:50+08:00</lastmod>
+        <lastmod>2012-04-24T09:47:34+08:00</lastmod>
     </url>
     <url>
         <loc>http://hechien.github.com/octopress/</loc>
-        <lastmod>2012-04-12T15:38:50+08:00</lastmod>
+        <lastmod>2012-04-24T09:47:34+08:00</lastmod>
     </url>
 </urlset>
