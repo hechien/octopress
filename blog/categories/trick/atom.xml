@@ -4,7 +4,7 @@
   <title><![CDATA[Category: trick | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/trick/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails打索引技巧]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao/"/>
+    <link href="http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao/"/>
     <updated>2012-04-24T09:36:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao</id>
+    <id>http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao</id>
     <content type="html"><![CDATA[<p>做專案學到的一個技巧 ... 應該說，是很慘痛的學到一個技巧=_= ...</p>
 
 <p>我們都知道，Rails可以透過<code>rails g migration blahblah</code>來產生Migration file然後在裡面寫<code>add_index</code>來打索引，可是切記切記！！不要把索引寫在同一個表內 ... 當資料量大，而且其中一個index打失敗你就會哭了 ...</p>

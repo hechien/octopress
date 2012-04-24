@@ -4,7 +4,7 @@
   <title><![CDATA[Category: active record | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/active-record/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails的關連小筆記]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji/"/>
+    <link href="http://hechien.github.com/octopress/blog/railsde-guan-lian-xiao-bi-ji/"/>
     <updated>2012-02-02T16:04:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji</id>
+    <id>http://hechien.github.com/octopress/blog/railsde-guan-lian-xiao-bi-ji</id>
     <content type="html"><![CDATA[<p>今天在<a href="http://rails-bestpractices.com">rails best practices</a>中看到一則<a href="http://rails-bestpractices.com/posts/80-active-record-query-interface-optimization">ActiveRecord Query Interface Optimization</a>，裡面提到在<code>has_many</code>與<code>belongs_to</code>的時候可以自訂<code>:select</code>來指定要撈出的欄位 ... 所以請繼續閱讀</p>
 
 <!-- more -->

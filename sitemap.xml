@@ -2,110 +2,98 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>
-            http://hechien.github.com/octopress/blog/2011/12/23/kai-shi-liao-wo-de-di-%5B%3F%5D-pian-octopress/
+            http://hechien.github.com/octopress/blog/kai-shi-liao-wo-de-di-%5B%3F%5D-pian-octopress/
         </loc>
         <lastmod>2012-02-02T11:02:58+08:00</lastmod>
     </url>
     <url>
-        <loc>http://hechien.github.com/octopress/blog/2011/12/23/shu-dan-yu-za-ji/</loc>
+        <loc>http://hechien.github.com/octopress/blog/shu-dan-yu-za-ji/</loc>
         <lastmod>2012-04-24T10:58:38+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://hechien.github.com/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding/
-        </loc>
+        <loc>http://hechien.github.com/octopress/blog/wo-de-zsh-promptde-she-ding/</loc>
         <lastmod>2012-02-20T17:09:30+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://hechien.github.com/octopress/blog/2011/12/28/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu/
+            http://hechien.github.com/octopress/blog/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu/
         </loc>
         <lastmod>2012-02-02T11:02:58+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji/
-        </loc>
+        <loc>http://hechien.github.com/octopress/blog/railsde-guan-lian-xiao-bi-ji/</loc>
         <lastmod>2012-02-20T17:04:20+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://hechien.github.com/octopress/blog/2012/02/03/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode/
+            http://hechien.github.com/octopress/blog/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode/
         </loc>
         <lastmod>2012-03-13T11:39:03+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://hechien.github.com/octopress/blog/2012/02/20/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian/
+            http://hechien.github.com/octopress/blog/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian/
         </loc>
         <lastmod>2012-02-20T17:08:23+08:00</lastmod>
     </url>
     <url>
-        <loc>http://hechien.github.com/octopress/blog/2012/03/03/devisekai-fa-xiao-bi-ji/</loc>
+        <loc>http://hechien.github.com/octopress/blog/devisekai-fa-xiao-bi-ji/</loc>
         <lastmod>2012-03-13T11:35:47+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://hechien.github.com/octopress/blog/2012/03/13/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap/
+            http://hechien.github.com/octopress/blog/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap/
         </loc>
         <lastmod>2012-03-13T11:36:47+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti/
+            http://hechien.github.com/octopress/blog/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti/
         </loc>
         <lastmod>2012-03-13T11:38:43+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://hechien.github.com/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng/
-        </loc>
+        <loc>http://hechien.github.com/octopress/blog/paperclip-shang-chuan-yan-zheng/</loc>
         <lastmod>2012-03-23T11:58:06+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://hechien.github.com/octopress/blog/2012/03/23/rails-best-practice-yu-refactor/
-        </loc>
+        <loc>http://hechien.github.com/octopress/blog/rails-best-practice-yu-refactor/</loc>
         <lastmod>2012-04-24T09:57:52+08:00</lastmod>
     </url>
     <url>
-        <loc>http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning/</loc>
+        <loc>http://hechien.github.com/octopress/blog/nginx-tunning/</loc>
         <lastmod>2012-03-28T16:04:28+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style/
-        </loc>
+        <loc>http://hechien.github.com/octopress/blog/paperclipde-default-url-style/</loc>
         <lastmod>2012-03-29T16:04:19+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://hechien.github.com/octopress/blog/2012/04/05/bei-media-queriesbiao-liao-%5B%3F%5D-xia/
+            http://hechien.github.com/octopress/blog/bei-media-queriesbiao-liao-%5B%3F%5D-xia/
         </loc>
         <lastmod>2012-04-24T09:57:59+08:00</lastmod>
     </url>
     <url>
         <loc>
-            http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml/
+            http://hechien.github.com/octopress/blog/middleman-plus-pow-plus-livereload-plus-haml/
         </loc>
         <lastmod>2012-04-24T09:40:39+08:00</lastmod>
     </url>
     <url>
-        <loc>http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao/</loc>
+        <loc>http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao/</loc>
         <lastmod>2012-04-24T09:57:12+08:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server/
-        </loc>
+        <loc>http://hechien.github.com/octopress/blog/node-dot-jsxie-tcp-socket-server/</loc>
         <lastmod>2012-04-24T09:47:34+08:00</lastmod>
     </url>
     <url>
-        <loc>http://hechien.github.com/octopress/blog/2012/04/24/ruby-load-pathshe-ding/</loc>
+        <loc>http://hechien.github.com/octopress/blog/ruby-load-pathshe-ding/</loc>
         <lastmod>2012-04-24T11:37:10+08:00</lastmod>
     </url>
     <url>
-        <loc>http://hechien.github.com/octopress/blog/2012/04/24/rvmyu-cron/</loc>
+        <loc>http://hechien.github.com/octopress/blog/rvmyu-cron/</loc>
         <lastmod>2012-04-24T11:43:27+08:00</lastmod>
     </url>
     <url>

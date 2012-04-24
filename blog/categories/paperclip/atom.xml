@@ -4,7 +4,7 @@
   <title><![CDATA[Category: paperclip | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/paperclip/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Paperclip的default_url style]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style/"/>
+    <link href="http://hechien.github.com/octopress/blog/paperclipde-default-url-style/"/>
     <updated>2012-03-29T15:59:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style</id>
+    <id>http://hechien.github.com/octopress/blog/paperclipde-default-url-style</id>
     <content type="html"><![CDATA[<p>用Paperclip的話一定會有用到特定尺寸的，可是當特定尺寸沒有上傳圖片的話要顯示特定尺寸的預設圖片該怎麼搞？</p>
 
 <p>嗯，我現在有三種尺寸：<code>large, medium, thumb</code>，但我只要在<code>default_url</code>設定時加上<code>:style</code>就好，例如：</p>
@@ -30,9 +30,9 @@
   
   <entry>
     <title type="html"><![CDATA[Paperclip 上傳驗證]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng/"/>
+    <link href="http://hechien.github.com/octopress/blog/paperclip-shang-chuan-yan-zheng/"/>
     <updated>2012-03-23T11:44:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng</id>
+    <id>http://hechien.github.com/octopress/blog/paperclip-shang-chuan-yan-zheng</id>
     <content type="html"><![CDATA[<p>因為一些原因，需要驗證使用者是否有上傳照片，若有上傳照片才需要驗證檔案大小、檔案格式</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>

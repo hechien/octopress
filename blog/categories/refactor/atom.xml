@@ -4,7 +4,7 @@
   <title><![CDATA[Category: refactor | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/refactor/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails Best Practice 與 Refactor]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/23/rails-best-practice-yu-refactor/"/>
+    <link href="http://hechien.github.com/octopress/blog/rails-best-practice-yu-refactor/"/>
     <updated>2012-03-23T16:17:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/23/rails-best-practice-yu-refactor</id>
+    <id>http://hechien.github.com/octopress/blog/rails-best-practice-yu-refactor</id>
     <content type="html"><![CDATA[<p><code>rails_best_practices</code>是一個很不錯的Gem套件，它匯集了一些調整Rails Performace的小技巧，並且透過指令 <code>bundle exec rails_best_practice .</code>的方式就能夠列出你的問題，跳轉可以看到我噴了哪些東西XD</p>
 
 <p>可以透過<code>gem rails_best_practices</code>來安裝，官方網站在 <a href="https://github.com/railsbp/rails_best_practices">https://github.com/railsbp/rails_best_practices</a></p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: deploy | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/deploy/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails based on Unicorn + Nginx on Ubuntu Linux @ Linode]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/02/03/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode/"/>
+    <link href="http://hechien.github.com/octopress/blog/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode/"/>
     <updated>2012-02-03T23:42:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/02/03/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode</id>
+    <id>http://hechien.github.com/octopress/blog/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode</id>
     <content type="html"><![CDATA[<p>這篇文章是從原本「赫謙隨筆(Posterous)」中轉過來的，所以內文是一樣的。</p>
 
 <!-- more -->

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: zsh | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/zsh/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[我的zsh prompt的設定]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding/"/>
+    <link href="http://hechien.github.com/octopress/blog/wo-de-zsh-promptde-she-ding/"/>
     <updated>2011-12-28T14:58:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding</id>
+    <id>http://hechien.github.com/octopress/blog/wo-de-zsh-promptde-she-ding</id>
     <content type="html"><![CDATA[<p>暫且來做個註記 ...
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>我當前zsh的PS1 - .zshrc </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>

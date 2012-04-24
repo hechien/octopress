@@ -4,7 +4,7 @@
   <title><![CDATA[Category: devise | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/devise/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Devise註冊後自訂轉向頁面]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/02/20/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian/"/>
+    <link href="http://hechien.github.com/octopress/blog/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian/"/>
     <updated>2012-02-20T16:54:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/02/20/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian</id>
+    <id>http://hechien.github.com/octopress/blog/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian</id>
     <content type="html"><![CDATA[<p>因為公司的網站在註冊會員之後需要根據不同的App來顯示不同的layout或畫面，因此註冊後要自訂一個轉向頁面，所以我們必須要自己override原本的RegistrationsController ...</p>
 
 <!-- more -->

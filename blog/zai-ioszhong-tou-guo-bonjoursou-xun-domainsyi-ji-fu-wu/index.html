@@ -1,0 +1,202 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>在iOS中透過Bonjour搜尋Domains以及服務 - 赫謙小便籤</title>
+    <meta name="author" content="赫謙">
+
+    
+    <meta name="description" content="在iOS中透過Bonjour搜尋Domains以及服務 Bonjour是蘋果的一個類似DNS的服務，適用於區域網路之中，所以在Mac OS X, iOS中都可以看到它的身影，且在一些印表機之中也看得到。 今天我們就來嘗試用Bonjour來搜尋同一個區域網路底下有哪些服務吧。 記得在.h檔中引入& &hellip;">
+    
+    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+
+    <link href="http://feeds.feedburner.com/hechienstickies" rel="alternate" title="赫謙小便籤" type="application/atom+xml">
+    <link rel="canonical" href="">
+    <link href="/octopress/favicon.png" rel="shortcut icon">
+    <link href="/octopress/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]><script src="/octopress/javascripts/html5.js"></script><![endif]-->
+    <script src="/octopress/javascripts/jquery.min.js"></script>
+    
+    
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-9528313-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+	<header class="inner"><h1 class="left"><a href="/octopress/">赫謙小便籤</a></h1>
+<nav class="menu left"><ul class="main">
+	<li><a href="/octopress/">Blog</a></li>
+	<li><a href="/octopress/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<div class="right">
+	<form class="search right" action="http://google.com/search" method="get">
+		<input class="left" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:hechien.github.com/octopress">
+	</form>
+	<div class="social right">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/HeChian" title="Twitter">Twitter</a>
+		
+		
+		<a class="rss" href="http://feeds.feedburner.com/hechienstickies" title="RSS">RSS</a>
+		
+	</div>
+</div>
+</header>
+	
+<div id="banner" class="inner">
+	<div class="container">
+		<ul class="feed"></ul>
+	</div>
+	<small><a href="http://twitter.com/HeChian">HeChian</a> @ <a href="http://twitter.com">Twitter</a></small>
+	<div class="loading">Loading...</div>
+</div>
+<script src="/octopress/javascripts/twitter.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('#banner').getTwitterFeed('HeChian', 5);
+	})(jQuery);
+</script>
+
+	<div id="content" class="inner"><article class="post">
+    <h1 class="title">在iOS中透過Bonjour搜尋Domains以及服務</h1>
+    <div class="entry"><p><a href="http://zh.wikipedia.org/wiki/Bonjour">Bonjour</a>是蘋果的一個類似DNS的服務，適用於區域網路之中，所以在Mac OS X, iOS中都可以看到它的身影，且在一些印表機之中也看得到。</p>
+
+<p>今天我們就來嘗試用Bonjour來搜尋同一個區域網路底下有哪些服務吧。</p>
+
+<p>記得在.h檔中引入<code>&lt;Foundation/NSNetworkServices.h&gt;</code>，然後它需要一個delegate來代理整個回呼(Callback)的執行，所以必須要採用<code>NSNetServiceBrowserDelegate</code>這個Protocol。</p>
+
+<p>之後，我們可以透過實體化NSNetServiceBrowser來進行Domain的搜索：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'>  <span class="n">NSNetServiceBrowser</span> <span class="o">*</span><span class="n">browser</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSNetServiceBrowser</span> <span class="n">new</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">browser</span> <span class="nl">setDelegate:</span> <span class="n">self</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">browser</span> <span class="n">searchForRegistrationDomains</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>之後我們要實作以下五個delegate methods:</p>
+
+<ul>
+<li>netServiceBrowserWillSearch: // 開始搜尋</li>
+<li>netServiceBrowserDidStopSearch: // 停止搜尋</li>
+<li>netServiceBrowser:didNotSearch: // 搜尋如果失敗</li>
+<li>netServiceBrowser:didFindDomain:moreComing: // 如果有找到的話</li>
+<li>netServiceBrowser:didRemoveDomain:moreComing: // 如果某個Domain消失的話</li>
+</ul>
+
+
+<p>舉個<code>netServiceBrowser:didFindDomain:moreComing:</code>的例子：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">netServiceBrowser:</span><span class="p">(</span><span class="n">NSNetServiceBrowser</span> <span class="o">*</span><span class="p">)</span><span class="n">browser</span>
+</span><span class='line'>            <span class="nl">didFindDomain:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">domainString</span>
+</span><span class='line'>               <span class="nl">moreComing:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">moreComing</span><span class="p">{</span>
+</span><span class='line'>  <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;[ADD] Domain String: %@&quot;</span><span class="p">,</span> <span class="n">domainString</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">moreComing</span><span class="p">){</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如此一來，我們可以在<code>moreComing</code>為false的時候更新我們的UI列表即可。</p>
+
+<p>之後，再來繼續撰寫怎樣搜尋服務。</p>
+</div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-28T16:16:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2011</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/cocoa/'>Cocoa</a>, <a class='category' href='/octopress/blog/categories/bonjour/'>bonjour</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
+<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4eb4a0c47196e907"></script>
+</div>
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer class="inner">Copyright &copy; 2012 赫謙小便籤</footer>
+	<script src="/octopress/javascripts/jquery.easing.1.3.js"></script>
+<script src="/octopress/javascripts/jquery.fancybox.pack.js"></script>
+<script src="/octopress/javascripts/slash.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'hechienstickies';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hechien.github.com/octopress/blog/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu/';
+        var disqus_url = 'http://hechien.github.com/octopress/blog/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+</html>

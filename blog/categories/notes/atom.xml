@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[RVM與cron]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/24/rvmyu-cron/"/>
+    <link href="http://hechien.github.com/octopress/blog/rvmyu-cron/"/>
     <updated>2012-04-24T11:40:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/24/rvmyu-cron</id>
+    <id>http://hechien.github.com/octopress/blog/rvmyu-cron</id>
     <content type="html"><![CDATA[<p>今天發生了一件事情，crontab設定的task不能正常的跑Ruby script，檢查一下原以為是Path的問題，不管怎樣設定Path都會沒辦法正常的load rubygems，後來找了一下後發現原來官方就有<a href="http://beginrescueend.com/integration/cron/">教學</a>了 ...</p>
 
 <p>總之，把cron內加上rvm ruby的路徑就可以了</p>
@@ -26,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ruby Load Path設定]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/24/ruby-load-pathshe-ding/"/>
+    <link href="http://hechien.github.com/octopress/blog/ruby-load-pathshe-ding/"/>
     <updated>2012-04-24T11:33:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/24/ruby-load-pathshe-ding</id>
+    <id>http://hechien.github.com/octopress/blog/ruby-load-pathshe-ding</id>
     <content type="html"><![CDATA[<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -53,9 +53,9 @@
   
   <entry>
     <title type="html"><![CDATA[node.js寫TCP Socket Server]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server/"/>
+    <link href="http://hechien.github.com/octopress/blog/node-dot-jsxie-tcp-socket-server/"/>
     <updated>2012-04-24T09:40:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server</id>
+    <id>http://hechien.github.com/octopress/blog/node-dot-jsxie-tcp-socket-server</id>
     <content type="html"><![CDATA[<p>最近正苦惱著要怎樣加快API的回應速度，後來把腦筋動到一般的Socket上，打算直接寫個Socket Server負責回應API Request ... 我看人家<a href="http://www.inside.com.tw/2012/01/10/group-chatting">Whatsapp用Erlang搞定兩百二十萬條的連線數</a>，但是我不會寫Erlang啊！</p>
 
 <p>所以只好先把腦筋動到node.js上面，然後稍微Google了一下後便寫出了底下的東西 ...</p>
@@ -71,9 +71,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails打索引技巧]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao/"/>
+    <link href="http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao/"/>
     <updated>2012-04-24T09:36:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao</id>
+    <id>http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao</id>
     <content type="html"><![CDATA[<p>做專案學到的一個技巧 ... 應該說，是很慘痛的學到一個技巧=_= ...</p>
 
 <p>我們都知道，Rails可以透過<code>rails g migration blahblah</code>來產生Migration file然後在裡面寫<code>add_index</code>來打索引，可是切記切記！！不要把索引寫在同一個表內 ... 當資料量大，而且其中一個index打失敗你就會哭了 ...</p>
@@ -87,9 +87,9 @@
   
   <entry>
     <title type="html"><![CDATA[Middleman + Pow + Livereload + HAML]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml/"/>
+    <link href="http://hechien.github.com/octopress/blog/middleman-plus-pow-plus-livereload-plus-haml/"/>
     <updated>2012-04-12T15:14:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml</id>
+    <id>http://hechien.github.com/octopress/blog/middleman-plus-pow-plus-livereload-plus-haml</id>
     <content type="html"><![CDATA[<p>原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。</p>
 
 <!-- more -->

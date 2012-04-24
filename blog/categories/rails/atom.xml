@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails打索引技巧]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao/"/>
+    <link href="http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao/"/>
     <updated>2012-04-24T09:36:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao</id>
+    <id>http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao</id>
     <content type="html"><![CDATA[<p>做專案學到的一個技巧 ... 應該說，是很慘痛的學到一個技巧=_= ...</p>
 
 <p>我們都知道，Rails可以透過<code>rails g migration blahblah</code>來產生Migration file然後在裡面寫<code>add_index</code>來打索引，可是切記切記！！不要把索引寫在同一個表內 ... 當資料量大，而且其中一個index打失敗你就會哭了 ...</p>
@@ -31,9 +31,9 @@
   
   <entry>
     <title type="html"><![CDATA[Paperclip的default_url style]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style/"/>
+    <link href="http://hechien.github.com/octopress/blog/paperclipde-default-url-style/"/>
     <updated>2012-03-29T15:59:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style</id>
+    <id>http://hechien.github.com/octopress/blog/paperclipde-default-url-style</id>
     <content type="html"><![CDATA[<p>用Paperclip的話一定會有用到特定尺寸的，可是當特定尺寸沒有上傳圖片的話要顯示特定尺寸的預設圖片該怎麼搞？</p>
 
 <p>嗯，我現在有三種尺寸：<code>large, medium, thumb</code>，但我只要在<code>default_url</code>設定時加上<code>:style</code>就好，例如：</p>
@@ -46,9 +46,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails Best Practice 與 Refactor]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/23/rails-best-practice-yu-refactor/"/>
+    <link href="http://hechien.github.com/octopress/blog/rails-best-practice-yu-refactor/"/>
     <updated>2012-03-23T16:17:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/23/rails-best-practice-yu-refactor</id>
+    <id>http://hechien.github.com/octopress/blog/rails-best-practice-yu-refactor</id>
     <content type="html"><![CDATA[<p><code>rails_best_practices</code>是一個很不錯的Gem套件，它匯集了一些調整Rails Performace的小技巧，並且透過指令 <code>bundle exec rails_best_practice .</code>的方式就能夠列出你的問題，跳轉可以看到我噴了哪些東西XD</p>
 
 <p>可以透過<code>gem rails_best_practices</code>來安裝，官方網站在 <a href="https://github.com/railsbp/rails_best_practices">https://github.com/railsbp/rails_best_practices</a></p>
@@ -449,9 +449,9 @@
   
   <entry>
     <title type="html"><![CDATA[Paperclip 上傳驗證]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng/"/>
+    <link href="http://hechien.github.com/octopress/blog/paperclip-shang-chuan-yan-zheng/"/>
     <updated>2012-03-23T11:44:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng</id>
+    <id>http://hechien.github.com/octopress/blog/paperclip-shang-chuan-yan-zheng</id>
     <content type="html"><![CDATA[<p>因為一些原因，需要驗證使用者是否有上傳照片，若有上傳照片才需要驗證檔案大小、檔案格式</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -488,9 +488,9 @@
   
   <entry>
     <title type="html"><![CDATA[compass-rails + anjlab-bootstrap-rails發生的小問題]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti/"/>
+    <link href="http://hechien.github.com/octopress/blog/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti/"/>
     <updated>2012-03-13T11:28:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti</id>
+    <id>http://hechien.github.com/octopress/blog/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti</id>
     <content type="html"><![CDATA[<h1>事情發生經過</h1>
 
 <p>那時跟著 <a href="http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast">http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast</a> 剛用Bootstrap建構好網站的頁面，也加上了navigation bar (就是上面黑黑的那條)，根據指示加上 <code>bootstrap_and_overrides.css</code>這支檔案用以讓<code>padding-top</code>可以從預設的<code>40px</code>改為<code>60px</code>，可是裝上<code>compass-rails</code>之後，我的世界開始變了樣 ... (誤)

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: node.js | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/node-js/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[node.js寫TCP Socket Server]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server/"/>
+    <link href="http://hechien.github.com/octopress/blog/node-dot-jsxie-tcp-socket-server/"/>
     <updated>2012-04-24T09:40:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server</id>
+    <id>http://hechien.github.com/octopress/blog/node-dot-jsxie-tcp-socket-server</id>
     <content type="html"><![CDATA[<p>最近正苦惱著要怎樣加快API的回應速度，後來把腦筋動到一般的Socket上，打算直接寫個Socket Server負責回應API Request ... 我看人家<a href="http://www.inside.com.tw/2012/01/10/group-chatting">Whatsapp用Erlang搞定兩百二十萬條的連線數</a>，但是我不會寫Erlang啊！</p>
 
 <p>所以只好先把腦筋動到node.js上面，然後稍微Google了一下後便寫出了底下的東西 ...</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[RVM與cron]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/24/rvmyu-cron/"/>
+    <link href="http://hechien.github.com/octopress/blog/rvmyu-cron/"/>
     <updated>2012-04-24T11:40:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/24/rvmyu-cron</id>
+    <id>http://hechien.github.com/octopress/blog/rvmyu-cron</id>
     <content type="html"><![CDATA[<p>今天發生了一件事情，crontab設定的task不能正常的跑Ruby script，檢查一下原以為是Path的問題，不管怎樣設定Path都會沒辦法正常的load rubygems，後來找了一下後發現原來官方就有<a href="http://beginrescueend.com/integration/cron/">教學</a>了 &#8230;</p>
 
 <p>總之，把cron內加上rvm ruby的路徑就可以了</p>
@@ -26,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ruby Load Path設定]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/24/ruby-load-pathshe-ding/"/>
+    <link href="http://hechien.github.com/octopress/blog/ruby-load-pathshe-ding/"/>
     <updated>2012-04-24T11:33:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/24/ruby-load-pathshe-ding</id>
+    <id>http://hechien.github.com/octopress/blog/ruby-load-pathshe-ding</id>
     <content type="html"><![CDATA[
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -48,9 +48,9 @@
   
   <entry>
     <title type="html"><![CDATA[node.js寫TCP Socket Server]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server/"/>
+    <link href="http://hechien.github.com/octopress/blog/node-dot-jsxie-tcp-socket-server/"/>
     <updated>2012-04-24T09:40:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/24/node-dot-jsxie-tcp-socket-server</id>
+    <id>http://hechien.github.com/octopress/blog/node-dot-jsxie-tcp-socket-server</id>
     <content type="html"><![CDATA[<p>最近正苦惱著要怎樣加快API的回應速度，後來把腦筋動到一般的Socket上，打算直接寫個Socket Server負責回應API Request &#8230; 我看人家<a href="http://www.inside.com.tw/2012/01/10/group-chatting">Whatsapp用Erlang搞定兩百二十萬條的連線數</a>，但是我不會寫Erlang啊！</p>
 
 <p>所以只好先把腦筋動到node.js上面，然後稍微Google了一下後便寫出了底下的東西 &#8230;</p>
@@ -66,9 +66,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails打索引技巧]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao/"/>
+    <link href="http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao/"/>
     <updated>2012-04-24T09:36:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/24/railsda-suo-yin-ji-qiao</id>
+    <id>http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao</id>
     <content type="html"><![CDATA[<p>做專案學到的一個技巧 &#8230; 應該說，是很慘痛的學到一個技巧=_= &#8230;</p>
 
 <p>我們都知道，Rails可以透過<code>rails g migration blahblah</code>來產生Migration file然後在裡面寫<code>add_index</code>來打索引，可是切記切記！！不要把索引寫在同一個表內 &#8230; 當資料量大，而且其中一個index打失敗你就會哭了 &#8230;</p>
@@ -83,9 +83,9 @@
   
   <entry>
     <title type="html"><![CDATA[Middleman + Pow + Livereload + HAML]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml/"/>
+    <link href="http://hechien.github.com/octopress/blog/middleman-plus-pow-plus-livereload-plus-haml/"/>
     <updated>2012-04-12T15:14:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/12/middleman-plus-pow-plus-livereload-plus-haml</id>
+    <id>http://hechien.github.com/octopress/blog/middleman-plus-pow-plus-livereload-plus-haml</id>
     <content type="html"><![CDATA[<p>原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。</p>
 
 <!-- more -->
@@ -154,9 +154,9 @@
   
   <entry>
     <title type="html"><![CDATA[被Media Queries婊了一下]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/04/05/bei-media-queriesbiao-liao-%5B%3F%5D-xia/"/>
+    <link href="http://hechien.github.com/octopress/blog/bei-media-queriesbiao-liao-%5B%3F%5D-xia/"/>
     <updated>2012-04-05T18:28:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/04/05/bei-media-queriesbiao-liao-[?]-xia</id>
+    <id>http://hechien.github.com/octopress/blog/bei-media-queriesbiao-liao-[?]-xia</id>
     <content type="html"><![CDATA[<p>清明前一天，行銷同事告訴我某專案網站無法用IE 8開啟，到清明後一天才開始修正。一開始，找了老半天就是找不到任何錯誤，想說會不會是HTML 5的不支援問題導致的，可是開其他專案網站卻又都正常，後來發現到CSS中有用到Media Queries的部分，所以我拿掉之後IE 8就可以用了！</p>
 
 <p>特此記錄一下T<sup>T&#8221;</sup></p>
@@ -165,9 +165,9 @@
   
   <entry>
     <title type="html"><![CDATA[Paperclip的default_url style]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style/"/>
+    <link href="http://hechien.github.com/octopress/blog/paperclipde-default-url-style/"/>
     <updated>2012-03-29T15:59:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/29/paperclipde-default-url-style</id>
+    <id>http://hechien.github.com/octopress/blog/paperclipde-default-url-style</id>
     <content type="html"><![CDATA[<p>用Paperclip的話一定會有用到特定尺寸的，可是當特定尺寸沒有上傳圖片的話要顯示特定尺寸的預設圖片該怎麼搞？</p>
 
 <p>嗯，我現在有三種尺寸：<code>large, medium, thumb</code>，但我只要在<code>default_url</code>設定時加上<code>:style</code>就好，例如：</p>
@@ -180,9 +180,9 @@
   
   <entry>
     <title type="html"><![CDATA[Nginx Tunning]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning/"/>
+    <link href="http://hechien.github.com/octopress/blog/nginx-tunning/"/>
     <updated>2012-03-28T15:32:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning</id>
+    <id>http://hechien.github.com/octopress/blog/nginx-tunning</id>
     <content type="html"><![CDATA[<p>準備讓公司的系統上線了，在調整Nginx的效能 &#8230;</p>
 
 <p>參考這篇 <a href="http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13">http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13</a> 然後看了一下，看到<code>worker_processes 16;</code>感覺好像太高，畢竟我們公司的Server才1G RAM &#8230; 怕直接死掉XD</p>
@@ -217,9 +217,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails Best Practice 與 Refactor]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/23/rails-best-practice-yu-refactor/"/>
+    <link href="http://hechien.github.com/octopress/blog/rails-best-practice-yu-refactor/"/>
     <updated>2012-03-23T16:17:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/23/rails-best-practice-yu-refactor</id>
+    <id>http://hechien.github.com/octopress/blog/rails-best-practice-yu-refactor</id>
     <content type="html"><![CDATA[<p><code>rails_best_practices</code>是一個很不錯的Gem套件，它匯集了一些調整Rails Performace的小技巧，並且透過指令 <code>bundle exec rails_best_practice .</code>的方式就能夠列出你的問題，跳轉可以看到我噴了哪些東西XD</p>
 
 <p>可以透過<code>gem rails_best_practices</code>來安裝，官方網站在 <a href="https://github.com/railsbp/rails_best_practices">https://github.com/railsbp/rails_best_practices</a></p>
@@ -629,9 +629,9 @@
   
   <entry>
     <title type="html"><![CDATA[Paperclip 上傳驗證]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng/"/>
+    <link href="http://hechien.github.com/octopress/blog/paperclip-shang-chuan-yan-zheng/"/>
     <updated>2012-03-23T11:44:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/23/paperclip-shang-chuan-yan-zheng</id>
+    <id>http://hechien.github.com/octopress/blog/paperclip-shang-chuan-yan-zheng</id>
     <content type="html"><![CDATA[<p>因為一些原因，需要驗證使用者是否有上傳照片，若有上傳照片才需要驗證檔案大小、檔案格式</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -661,9 +661,9 @@
   
   <entry>
     <title type="html"><![CDATA[compass-rails + anjlab-bootstrap-rails發生的小問題]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti/"/>
+    <link href="http://hechien.github.com/octopress/blog/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti/"/>
     <updated>2012-03-13T11:28:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/13/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti</id>
+    <id>http://hechien.github.com/octopress/blog/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti</id>
     <content type="html"><![CDATA[<h1>事情發生經過</h1>
 
 <p>那時跟著 <a href="http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast">http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast</a> 剛用Bootstrap建構好網站的頁面，也加上了navigation bar (就是上面黑黑的那條)，根據指示加上 <code>bootstrap_and_overrides.css</code>這支檔案用以讓<code>padding-top</code>可以從預設的<code>40px</code>改為<code>60px</code>，可是裝上<code>compass-rails</code>之後，我的世界開始變了樣 &#8230; (誤)
@@ -686,9 +686,9 @@
   
   <entry>
     <title type="html"><![CDATA[透過gem手動安裝anjlab的twitter bootstrap]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/13/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap/"/>
+    <link href="http://hechien.github.com/octopress/blog/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap/"/>
     <updated>2012-03-13T11:24:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/13/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap</id>
+    <id>http://hechien.github.com/octopress/blog/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap</id>
     <content type="html"><![CDATA[<p>因為一些原因要手動自己裝anjlab的anjlab-bootstrap-rails，所以特此記錄一下 &#8230;</p>
 
 <p>先Clone下來</p>
@@ -711,9 +711,9 @@
   
   <entry>
     <title type="html"><![CDATA[Devise開發小筆記]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/03/devisekai-fa-xiao-bi-ji/"/>
+    <link href="http://hechien.github.com/octopress/blog/devisekai-fa-xiao-bi-ji/"/>
     <updated>2012-03-03T01:14:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/03/devisekai-fa-xiao-bi-ji</id>
+    <id>http://hechien.github.com/octopress/blog/devisekai-fa-xiao-bi-ji</id>
     <content type="html"><![CDATA[<p>這篇很不幸的被我遺忘了 &#8230;. - -|||</p>
 
 <p>以後有機會再來寫</p>
@@ -722,9 +722,9 @@
   
   <entry>
     <title type="html"><![CDATA[Devise註冊後自訂轉向頁面]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/02/20/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian/"/>
+    <link href="http://hechien.github.com/octopress/blog/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian/"/>
     <updated>2012-02-20T16:54:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/02/20/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian</id>
+    <id>http://hechien.github.com/octopress/blog/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian</id>
     <content type="html"><![CDATA[<p>因為公司的網站在註冊會員之後需要根據不同的App來顯示不同的layout或畫面，因此註冊後要自訂一個轉向頁面，所以我們必須要自己override原本的RegistrationsController &#8230;</p>
 
 <!-- more -->
@@ -742,9 +742,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails based on Unicorn + Nginx on Ubuntu Linux @ Linode]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/02/03/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode/"/>
+    <link href="http://hechien.github.com/octopress/blog/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode/"/>
     <updated>2012-02-03T23:42:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/02/03/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode</id>
+    <id>http://hechien.github.com/octopress/blog/rails-based-on-unicorn-plus-nginx-on-ubuntu-linux-at-linode</id>
     <content type="html"><![CDATA[<p>這篇文章是從原本「赫謙隨筆(Posterous)」中轉過來的，所以內文是一樣的。</p>
 
 <!-- more -->
@@ -963,9 +963,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails的關連小筆記]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji/"/>
+    <link href="http://hechien.github.com/octopress/blog/railsde-guan-lian-xiao-bi-ji/"/>
     <updated>2012-02-02T16:04:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/02/02/railsde-guan-lian-xiao-bi-ji</id>
+    <id>http://hechien.github.com/octopress/blog/railsde-guan-lian-xiao-bi-ji</id>
     <content type="html"><![CDATA[<p>今天在<a href="http://rails-bestpractices.com">rails best practices</a>中看到一則<a href="http://rails-bestpractices.com/posts/80-active-record-query-interface-optimization">ActiveRecord Query Interface Optimization</a>，裡面提到在<code>has_many</code>與<code>belongs_to</code>的時候可以自訂<code>:select</code>來指定要撈出的欄位 &#8230; 所以請繼續閱讀</p>
 
 <!-- more -->
@@ -994,9 +994,9 @@
   
   <entry>
     <title type="html"><![CDATA[在iOS中透過Bonjour搜尋Domains以及服務]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2011/12/28/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu/"/>
+    <link href="http://hechien.github.com/octopress/blog/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu/"/>
     <updated>2011-12-28T16:16:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2011/12/28/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu</id>
+    <id>http://hechien.github.com/octopress/blog/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu</id>
     <content type="html"><![CDATA[<p><a href="http://zh.wikipedia.org/wiki/Bonjour">Bonjour</a>是蘋果的一個類似DNS的服務，適用於區域網路之中，所以在Mac OS X, iOS中都可以看到它的身影，且在一些印表機之中也看得到。</p>
 
 <p>今天我們就來嘗試用Bonjour來搜尋同一個區域網路底下有哪些服務吧。</p>
@@ -1052,9 +1052,9 @@
   
   <entry>
     <title type="html"><![CDATA[我的zsh prompt的設定]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding/"/>
+    <link href="http://hechien.github.com/octopress/blog/wo-de-zsh-promptde-she-ding/"/>
     <updated>2011-12-28T14:58:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2011/12/28/wo-de-zsh-promptde-she-ding</id>
+    <id>http://hechien.github.com/octopress/blog/wo-de-zsh-promptde-she-ding</id>
     <content type="html"><![CDATA[<p>暫且來做個註記 &#8230;</p>
 
 <figure class='code'><figcaption><span>我當前zsh的PS1 - .zshrc </span></figcaption>
@@ -1077,9 +1077,9 @@
   
   <entry>
     <title type="html"><![CDATA[書單與雜記]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2011/12/23/shu-dan-yu-za-ji/"/>
+    <link href="http://hechien.github.com/octopress/blog/shu-dan-yu-za-ji/"/>
     <updated>2011-12-23T16:34:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2011/12/23/shu-dan-yu-za-ji</id>
+    <id>http://hechien.github.com/octopress/blog/shu-dan-yu-za-ji</id>
     <content type="html"><![CDATA[<p>之前在FB的Note有做一個自己的書單跟雜記，裡面記錄了大量的技術文件、設計文件跟教學，不過有一天我發現它消失了，而且更慘的是我沒有備份啊囧 &#8230;</p>
 
 <p>所以沒辦法，我只好另起爐灶，剛好可以測試一下Octopress &#8230;</p>
@@ -1371,9 +1371,9 @@
   
   <entry>
     <title type="html"><![CDATA[開始了我的第一篇Octopress]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2011/12/23/kai-shi-liao-wo-de-di-%5B%3F%5D-pian-octopress/"/>
+    <link href="http://hechien.github.com/octopress/blog/kai-shi-liao-wo-de-di-%5B%3F%5D-pian-octopress/"/>
     <updated>2011-12-23T16:13:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2011/12/23/kai-shi-liao-wo-de-di-[?]-pian-octopress</id>
+    <id>http://hechien.github.com/octopress/blog/kai-shi-liao-wo-de-di-[?]-pian-octopress</id>
     <content type="html"><![CDATA[<h3>大家好</h3>
 
 <p>是的，很高興在這邊跟大家Say hello!</p>

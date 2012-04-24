@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nginx | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/nginx/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:43:40+08:00</updated>
+  <updated>2012-04-24T11:55:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Nginx Tunning]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning/"/>
+    <link href="http://hechien.github.com/octopress/blog/nginx-tunning/"/>
     <updated>2012-03-28T15:32:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012/03/28/nginx-tunning</id>
+    <id>http://hechien.github.com/octopress/blog/nginx-tunning</id>
     <content type="html"><![CDATA[<p>準備讓公司的系統上線了，在調整Nginx的效能 ...</p>
 
 <p>參考這篇 <a href="http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13">http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13</a> 然後看了一下，看到<code>worker_processes 16;</code>感覺好像太高，畢竟我們公司的Server才1G RAM ... 怕直接死掉XD</p>
