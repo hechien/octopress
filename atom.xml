@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:58:21+08:00</updated>
+  <updated>2012-04-25T11:14:20+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[AppleScript for Numbers example]]></title>
+    <link href="http://hechien.github.com/octopress/blog/applescript-for-numbers-example/"/>
+    <updated>2012-04-25T11:12:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/applescript-for-numbers-example</id>
+    <content type="html"><![CDATA[<p>剛好想到Excel等Office的套裝軟體都有VBA可以用，那Mac上的iWork呢？</p>
+
+<p>嗯 &#8230; 是的，就是超威的AppleScript來處理啦～</p>
+
+<p>底下是找到的Example:</p>
+
+<p>https://gist.github.com/2485918</p>
+
+<p>其實真的蠻屌的 &#8230;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[加上了Disqus留言系統囉]]></title>
@@ -1083,300 +1100,6 @@
 
 <p>改用zsh之後，發現很多東西都得重新習慣了 &#8230; 而且用octopress好像rake new_post會失效 &#8230; what the hell -_-
 只好改回bash新增文章了 &#8230; XD&#8221;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[書單與雜記]]></title>
-    <link href="http://hechien.github.com/octopress/blog/shu-dan-yu-za-ji/"/>
-    <updated>2011-12-23T16:34:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/shu-dan-yu-za-ji</id>
-    <content type="html"><![CDATA[<p>之前在FB的Note有做一個自己的書單跟雜記，裡面記錄了大量的技術文件、設計文件跟教學，不過有一天我發現它消失了，而且更慘的是我沒有備份啊囧 &#8230;</p>
-
-<p>所以沒辦法，我只好另起爐灶，剛好可以測試一下Octopress &#8230;</p>
-
-<!-- more -->
-
-
-<h2>Ruby / Rails</h2>
-
-<ul>
-<li><a href="http://rubysource.com/too-good-to-be-true-twitter-bootstrap-meets-formtastic-and-tabulous/">Too good be true! Twitter Bootstrap meets Formtastic and Tabulous</a></li>
-<li><a href="http://timelessrepo.com/block-helpers-in-rails3">Block Helpers in Rails 3</a></li>
-<li><a href="http://timelessrepo.com/bdd-with-rspec-and-steak">BDD with Rspect and Steak</a></li>
-<li><a href="http://timelessrepo.com/haters-gonna-hateoas">Haters gonna HATEOAS (About REST)</a></li>
-<li><a href="http://timelessrepo.com/refinements-in-ruby">Refinements in Ruby</a></li>
-<li><a href="http://timelessrepo.com/literate-programming.html">literate-programming.rb</a></li>
-<li><a href="http://timelessrepo.com/when-in-doubt">When in doubt, turn to <em>why (好像很久沒有</em>why的消息了)</a></li>
-<li><a href="http://ihower.tw/blog/archives/4797">如何設計出漂亮的Ruby APIs</a></li>
-<li><a href="http://ihower.tw/rails3/activerecord.html">ActiveRecord (ihower Rails bible)</a></li>
-<li><a href="http://ruby-china.org/topics/408">[牢騷帖] For the love of God, don&#8217;t use Rails until you&#8217;re familliar with Ruby!!!</a></li>
-<li><a href="http://blog.daviddollar.org/2011/05/06/introducing-foreman.html">Foreman</a></li>
-<li><a href="https://github.com/intridea-east/capistrano-bot">Capistrano-bot</a></li>
-<li><a href="http://cn.intridea.com/2011/12/integrate-hubot-with-hudson-ci/">集成Hubot &amp; Hubot CI</a></li>
-<li><a href="http://ruby-china.org/topics/527">集成Hubot &amp; Hubot CI (on ruby-china)</a></li>
-<li><a href="http://guides.rubyonrails.org/active_record_querying.html">ActiveRecord Query Interface</a></li>
-<li><a href="http://codequietly.com/blog/2010/06/rake-tasks-101">Rake Tasks 101</a></li>
-<li><a href="http://drnicwilliams.com/2009/03/30/closing-in-on-the-dream-one-click-to-deploy-rails-apps/">Closing in on the dream: &#8220;One click to deploy Rails apps&#8221;</a></li>
-<li><a href="http://m.onkey.org/active-record-batch-processing-in-parallel-processes">ActiveRecord batch processing in paralle processes</a></li>
-<li><a href="http://ihower.tw/blog/archives/5762">如何處理不同版本的 Gem 執行檔，以Rake 0.9.0 地雷為例</a></li>
-<li><a href="http://koans.heroku.com/">Ruby Konas Online - Learn Ruby</a></li>
-<li><a href="http://www.engineyard.com/blog/2011/the-resque-way/">The Resque Way</a></li>
-<li><a href="http://www.frederico-araujo.com/2011/07/30/installing-rails-on-os-x-lion-with-homebrew-rvm-and-mysql/">Installing Rails on OS X Lion with Homebrew, RVM and MySQL</a></li>
-<li><a href="http://ihower.tw/blog/archives/5460">Watchr不只是Continuous Testing</a></li>
-<li><a href="http://ihower.tw/blog/archives/5438">RSpec 演講投影片和示範影片</a></li>
-<li><a href="http://ihower.tw/blog/archives/5391">Git and Github 演講投影片</a></li>
-<li><a href="http://roamlog.info/archives/how-to-learn-ruby-on-rails.html">如何從0開始學Ruby on Rails (漫步版)</a></li>
-<li><a href="http://wp.xdite.net/?p=2559">Powerful的Rails速成後台：RailsAdmin</a></li>
-<li><a href="http://trevmex.com/post/5639010531/building-rails-apps-for-the-rich-client">Building Rails Apps for the Rich Client</a></li>
-<li><a href="http://blog.stoutdesign.com/2010/11/rails-3-respond_with-restful-resources-and-namespaces/">Rails 3, respond_with, RESTful resources and namespaces.</a></li>
-<li><a href="http://guides.rubyonrails.org/association_basics.html#polymorphic-associations">Polymorphic associations - Rails API</a></li>
-<li><a href="http://37signals.com/svn/posts/1872-nuts-bolts-configuration-management-with-chef">Nuts &amp; Bolts: Configuration management with Chef - 37Signals</a></li>
-<li><a href="http://cn.intridea.com/2011/07/omniauth-intro/">OmniAuth, 昨天今天明天</a></li>
-<li><a href="http://blog.firsthand.ca/2011/10/rails-is-not-your-application.html">Rails is not your application</a></li>
-<li><a href="http://blog.grassbrook.com/post/460040593/look-into-rails-3-boot-process-and-initialization-proces">研究 Rails 3 的 boot process 和 initialization process</a></li>
-<li><a href="http://ruby5.envylabs.com/">Ruby 5 - envylabs</a></li>
-<li><a href="http://adventuresincoding.com/2010/05/10-textmate-bundlesplugins-to-boost-your-ruby-on-rails-development-productivity">10 Textmate bundles/plugins to boost your Ruby on Rails development productivity</a></li>
-<li><a href="https://github.com/chloerei/ruby-coding-conventions/wiki">Ruby coding conventions</a></li>
-<li><a href="http://erp-book.heroku.com/basic-ruby-style-01">基本的Ruby Style - 01</a></li>
-<li><a href="http://blogs.helion-prime.com/2009/09/03/multi-domain-applications-in-ruby-on-rails.html">Multi-domain applications in Ruby on Rails</a></li>
-<li><a href="http://www.lukemelia.com/blog/archives/2010/01/17/redis-in-practice-whos-online/">Redis in Practice: Who&#8217;s online</a></li>
-<li><a href="http://www.getharvest.com/blog/2011/02/easy-rails-asset-handling-with-html5-and-s3/">Easy Rails Asset handling with HTML 5 &amp; S3</a></li>
-<li><a href="http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-asset-gem/">如何打包一個Asset Gem</a></li>
-<li><a href="http://www.slideshare.net/GreggPollack/rails-3-beautiful-code-3219240">Rails 3 beautiful code</a></li>
-<li><a href="http://asciicasts.com/episodes/238-mongoid">ASCII Casts: 238 - Mongoid</a></li>
-<li><a href="http://blog.xdite.net/posts/2011/10/09/10-ruby-developer-must-have-tools/">10個Ruby Web Developer應該熟悉的工具</a></li>
-<li><a href="http://huacnlee.com/blog/move-rails-project-from-linux-file-system-to-mongodb-gridfs">Rails項目，從文件系統轉移到Mongodb GridFS</a></li>
-<li><a href="http://ruby.railstutorial.org/">Rails Tutorial</a></li>
-<li><a href="http://huacnlee.com/blog/use-mail-view-gem-to-test-your-rails-mailer">用 mail_view 测试你的 Rails ActionMailer</a></li>
-<li><a href="http://www.ipragmatech.com/ruby-on-rails/minify-compress-synch-amazons3-capistrano">Minify, Compress and Synch your assets on Amazon S3 using Capistrano and Rails</a></li>
-<li><a href="http://rule52.com/2011/06/sass-and-sprockets-for-rails-31/">Sass and Sprockets for Rails 3.1</a></li>
-<li><a href="http://blog.xdite.net/posts/2011/10/18/asset-pipeline-version-control-assets/">Asset Pipeline 的重大意義：Version Control Your Asset Package</a></li>
-<li><a href="http://wp.xdite.net/?p=3137">升級到 Rails 3.1，專案所要做的前置準備工作</a></li>
-<li><a href="http://metaskills.net/2011/05/18/use-compass-sass-framework-files-with-the-rails-3.1-asset-pipeline/">Use Compass Sass Framework Files With The Rails 3.1 Asset Pipeline</a></li>
-<li><a href="https://github.com/bbatsov/ruby-style-guide">Ruby Style Guide</a></li>
-<li><a href="http://rails-bestpractices.com/posts/55-generate-polymorphic-url">Generate Polymorphic URL</a></li>
-<li><a href="http://blogger.godfat.org/2008/11/rails-polymorphic-association.html">Rails Polymorphic Association</a></li>
-<li><a href="http://cloud.github.com/downloads/intridea/grape/The%20Grapes%20of%20Rapid.pdf">The Grapes of Rapid.pdf</a></li>
-<li><a href="http://ihower.tw/blog/archives/1707">Rails Front-end 優化</a></li>
-<li><a href="http://itshouldbeuseful.wordpress.com/2011/02/02/rails-authlogic-and-single-sign-on/#comment-27">“Rails, Authlogic and Single Sign On” - first comment</a></li>
-<li><a href="http://wp.xdite.net/?p=1617">Scaling Rails Site: Reading Material # 2</a></li>
-<li><a href="http://blog.joshsoftware.com/2010/12/16/multiple-applications-with-devise-omniauth-and-single-sign-on/">Multiple applications with Devise, Omniauth and Single Sign On</a></li>
-<li><a href="http://intridea.com/2011/5/13/rails3-gems?blog=company">Rails 3: Fully Loaded</a></li>
-<li><a href="http://ruby-china.org/wiki/gems">Ruby China - 推荐 Gem 列表</a></li>
-<li><a href="http://stackoverflow.com/questions/4627703/using-devise-tokens-to-log-in-is-this-built-in">Using Devise tokens to log in, is this built in?</a></li>
-<li><a href="http://presentations.royvandewater.com/authentication-with-devise.html">Authentication with Devise</a></li>
-<li><a href="http://excid3.com/blog/sharing-a-devise-user-session-across-subdomains-with-rails-3/">Sharing A Devise User Session Across Subdomains with Rails 3</a></li>
-<li><a href="http://martinciu.com/2011/01/mounting-grape-api-inside-rails-application.html">Mounting Grape API inside rails application.</a></li>
-<li><a href="http://articles.slicehost.com/2008/1/29/capistrano-series-database-migrations">Capistrano series - database migrations</a></li>
-<li><a href="https://www.wheelhousecms.com/documentation/installation-and-deployment-guide/deploying-with-capistrano">Installation &amp; Deployment Guide: Deploying with Capistrano</a></li>
-<li><a href="http://capitate.rubyforge.org/recipes/deploy.html">deploy(capitate.rubyforge)</a></li>
-<li><a href="http://www.google.com.tw/url?sa=t&amp;rct=j&amp;q=deploy+update_code+bundle+install&amp;source=web&amp;cd=5&amp;ved=0CFIQFjAE&amp;url=http%3A%2F%2Fgavinmorrice.com%2Fblog%2Fposts%2F6-adding-bundle-install-to-your-capistrano-deploy-file&amp;ei=ciw7T-qyIbDImAWMqvmeCw&amp;usg=AFQjCNGCbpKSRbbVhK0skWViIB48yThE-g">Adding bundle install to your Capistrano Deploy file</a></li>
-<li><a href="http://blog.danielfischer.com/2011/04/18/quickstart-guide-to-using-compass-haml-sass-scss-with-rails-3/">Quickstart Guide to Using Compass, Haml, SASS, SCSS with Rails 3</a></li>
-<li><a href="http://thoughtrails.com/">Thought Rails</a></li>
-<li><a href="http://ihower.tw/blog/archives/1677">Capistrano 自動化 deploy Rails</a></li>
-<li><a href="https://moocode.com/posts/1-deploying-a-rails-3-1-application-to-production">Deploying a Rails 3.1 application to production</a></li>
-<li><a href="http://ihower.tw/blog/archives/5285">我的 Rails3 App Template (+JQuery+RSpec+Watchr)</a></li>
-<li><a href="http://www.hyperionreactor.net/blog/token-based-authentication-rails-3-and-rails-2">Token based authentication in Rails 3 (and Rails 2)</a></li>
-<li><a href="http://zyphmartin.com/blog/simple-auth-token-example-with-devise">SIMPLE AUTH TOKEN EXAMPLE WITH DEVISE</a></li>
-<li><a href="http://railsapps.github.com/tutorial-rails-mongoid-omniauth.html">Rails Tutorial for OmniAuth with Mongoid</a></li>
-<li><a href="http://blog.miaout17.net/2010/10/26/rails3-mongoid-devise-heroku-mongohq/">Rails3, Mongoid, Devise, Heroku, MongoHQ筆記</a></li>
-<li><a href="http://www.slideshare.net/jsmestad/mongodb-mongoid-with-rails">MongoDB &amp; Mongoid with Rails</a></li>
-<li><a href="http://liamkaufman.com/blog/2012/02/25/adding_real-time_to_rails_with_socket.IO_nodejs_and_backbonejs_with_demo/">Adding Real-Time to Rails With Socket.IO, Node.js and Backbone.js (With Demo)</a></li>
-<li><a href="http://tech.vonstark.co/post/20053649068/ruby-non-blocking-goliath">Ruby中超強悍的 Non-Blocking 的框架 : Goliath</a></li>
-<li><a href="http://www.simonecarletti.com/blog/2009/09/inside-ruby-on-rails-reading-source-code/">Understanding Ruby and Rails: Reading Source Code</a></li>
-<li><a href="http://www.simonecarletti.com/blog/2009/12/inside-ruby-on-rails-rescuable-and-rescue_from/">Understanding Ruby and Rails: Rescuable and rescue_from</a></li>
-<li><a href="http://www.simonecarletti.com/blog/2009/09/inside-ruby-on-rails-extract_options-from-arrays/">Understanding Ruby and Rails: extract_options! from Arrays</a></li>
-<li><a href="http://www.simonecarletti.com/blog/2009/12/inside-ruby-on-rails-delegate/">Understanding Ruby and Rails: Delegate</a></li>
-<li><a href="http://www.simonecarletti.com/blog/2010/04/inside-ruby-on-rails-serializing-ruby-objects-with-json/">Understanding Ruby and Rails: Serializing Ruby objects with JSON</a></li>
-<li><a href="http://pragprog.com/book/warv/the-rails-view">The Rails View: Create a Beautiful and Maintainable User Experience (想買這本書)</a></li>
-<li><a href="http://ruby-china.org/topics/93">Rails 3.1 Http Streaming 开启方法</a></li>
-</ul>
-
-
-<h2>Ruby 1.9</h2>
-
-<ul>
-<li><a href="http://www.oreillynet.com/ruby/blog/2007/06/on_the_horizon_ten_things_i_li.html">On The Horizon : Ten Things I like about Ruby 1.9</a></li>
-<li><a href="http://blog.rubybestpractices.com/posts/gregory/011-tap-that-hash.html">Should I Tap that Hash? (Ruby 1.9 Style)</a></li>
-<li><a href="http://www.igvita.com/2011/02/03/new-ruby-19-features-tips-tricks/">New Ruby 1.9 Features, Tips &amp; Tricks</a></li>
-</ul>
-
-
-<h2>Rails Plugins</h2>
-
-<ul>
-<li><a href="https://github.com/tsechingho/chosen-rails">chosen-rails</a></li>
-<li><a href="https://github.com/intridea/grape">grape</a> - 詳情參考 <a href="http://ruby-china.org/topics/781">http://ruby-china.org/topics/781</a></li>
-<li><a href="http://geokit.rubyforge.org/">Geokit</a></li>
-<li><a href="https://github.com/jlecour/geokit-rails3">Geokit-rails3</a></li>
-<li><a href="http://ruby-china.org/topics/1397">大家的rails项目里的读写分离怎么做的？</a></li>
-<li><a href="https://www.ruby-toolbox.com/categories/Active_Record_Sharding">Active Record Sharding</a></li>
-<li><a href="https://github.com/kovyrin/db-charmer">DB-Charmer</a></li>
-</ul>
-
-
-<h2>Objective-C</h2>
-
-<ul>
-<li><a href="http://zh.wikipedia.org/wiki/Core_Data">Core Data (Wiki)</a></li>
-<li><a href="http://www2.nxtbk.com/nextscript_support/English/2.0/download.html">NextScript</a></li>
-</ul>
-
-
-<h2>Web</h2>
-
-<ul>
-<li><a href="http://line25.com/tutorials/how-to-create-a-stylish-drop-cap-effect-with-css3">How to create a stylish drop cap effect in CSS 3</a></li>
-<li><a href="http://www.2ality.com/2011/11/janos.html">Web technology stacks - from LAMP to Janos</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html">Javascript继承机制的设计思想</a></li>
-<li><a href="http://blog.vjeux.com/2011/javascript/how-prototypal-inheritance-really-works.html">JavaScript - How Prototypal Inheritance really works?</a></li>
-<li><a href="http://cn.intridea.com/2011/12/integrate-jasmine-in-sprockets-to-autotest-javascript/">Sprockets中集成Jasmine自動化測試JavaScript</a></li>
-<li><a href="http://www.1stwebdesigner.com/css/jquery-plugins-2011/">50 New And Crazy Cool jQuery Plugins from year 2011</a></li>
-<li><a href="http://www.1stwebdesigner.com/design/web-designers-2011-new-years-resolution/">Web Designers&#8217; 2011: New Year&#8217;s Resolutions</a></li>
-<li><a href="http://www.1stwebdesigner.com/inspiration/50-gorgeous-flash-websites-you-definitely-should-see/">50 Gorgeous Flash websites you definitely should see</a></li>
-<li><a href="http://www.1stwebdesigner.com/">1st Web Designer</a></li>
-<li><a href="http://www.tellustek.com/web-design.html">TTC - 一間網頁設計公司</a></li>
-<li><a href="http://www.alistapart.com/articles/getting-started-with-sass/">Getting started with Sass</a></li>
-<li><a href="http://blogfreakz.com/web-design/best-web-design-mockup-tutorials-on-october-2009/">8 Best Web design mockup tutorials on October 2009</a></li>
-<li><a href="http://naldzgraphics.net/tutorials/44-must-learn-web-design-layout-tutorials-in-photoshop/">44 must learn web design layout tutorials in PhotoShop</a></li>
-<li><a href="http://blog.thedesigndrifter.com/?p=1173">PhotoShop vs HTML Web Design Mockups</a></li>
-<li><a href="http://www.pvmgarage.com/2010/04/touch-the-future-create-an-elegant-website-with-hmtl-5-and-css3/">Touch the future: Create an elegant website with HTML 5 and CSS 3</a></li>
-<li><a href="http://blog.miniasp.com/post/2008/12/13/CSS-Spriting-without-using-background-image.aspx">使用CSS Sprites設計網頁但不用background-image的技巧</a></li>
-<li><a href="https://sites.google.com/site/heavenhao/Home/webdesign/wang-ye-she-ji-ji-chu-jiao-cheng-yuan-chuang">网页设计教程</a></li>
-<li><a href="https://sites.google.com/site/heavenhao/Home/webdesign/css-sprites-ji-shu-shi-yong-xin-de">CSS sprites 技术心得</a></li>
-<li><a href="http://compass-style.org/help/tutorials/spriting/">Spriting with Compass</a></li>
-<li><a href="http://www.slideshare.net/tdreyno/simplifying-css-with-sass">Simplifying CSS with Sass</a></li>
-<li><a href="http://jackdempsey.me/2011/04/22/rails-3-1-sprockets-and-coffeescript.html">Rails 3.1: Understanding Sprockets and CoffeeScript</a></li>
-<li><a href="http://www.slideshare.net/hlb/sass-compass-7653212">Sass &amp; Compass / W3CTech Shanghai</a></li>
-<li><a href="http://www.modernizr.com/">Modernizr</a></li>
-<li><a href="http://tech.vonstark.co/post/5831037523/use-compass-to-edit-css">Von技術 - 使用Compass加快css development</a></li>
-<li><a href="http://hsinyu00.wordpress.com/2011/04/05/mobile-web-media-queries/">Mobile Web 前端技術筆記(二): Media Queries 與 CSS</a></li>
-<li><a href="http://blog.ce.cn/html/33/100933-13254.html">关于 display: inline 、block 、inline-block</a></li>
-<li><a href="http://wp.xdite.net/?p=3071">如何設計出正確語意的 HTML5</a></li>
-<li><a href="http://ccckmit.wikidot.com/h5:article">HTML 5 技術體系 &#8211; 語意標記 (article &amp; section)</a></li>
-<li><a href="http://www.qianduan.net/html5-differences-in-the-div-section-article.html">HTML5 中 div section article 的区别</a></li>
-<li><a href="http://zespia.tw/blog/2012/02/04/lab-html5-audio/">HTML5 Audio實驗</a></li>
-<li><a href="http://blog.visioncan.com/2011/sass-scss-your-css/">使用scss來加速寫css吧!</a></li>
-<li><a href="http://blog.xdite.net/posts/2012/01/29/css-tricks-summary/">[讀書筆記] CSS 基礎技巧懶人包</a></li>
-<li><a href="http://bbs.jquery.org.cn/forum.php">jQuery中文社群</a></li>
-<li><a href="http://ucdchina.com/snap/11427">响应式Web设计：50实例例与实践</a></li>
-<li><a href="http://pulipuli.blogspot.com/2011/06/bloggercss-sprites.html#postcata1329978285147_anchor18">Blogger範本應用CSS Sprites技術記事</a></li>
-<li><a href="http://pulipuli.blogspot.com/2010/10/csscssdoc.html">CSS寫作風格：CSSDOC介紹</a></li>
-<li><a href="http://www.iwms.net/n1919c40.aspx">css实现强制不换行/自动换行/强制换行</a></li>
-<li><a href="http://paulirish.com/2011/the-history-of-the-html5-shiv/">The Story of the HTML 5 Shiv</a></li>
-<li><a href="http://www.reset-info.com/2009/07/css-sprites.html">CSS圖片群組</a></li>
-<li><a href="http://html5boilerplate.com/">HTML 5 Boilerplate</a></li>
-<li><a href="http://www.alistapart.com/articles/responsive-web-design/">A list apart - Responsive Web Design</a></li>
-<li><a href="http://www.webdesignshock.com/responsive-design-problems/">11 Reasons Why Responsive Design Isn’t That Cool!</a></li>
-<li><a href="http://framework.newcreator.com/article/38">CSS Grid System vs. RWD</a></li>
-<li><a href="http://www.mrmu.com.tw/2011/10/11/writing-efficient-css-selectors/">如何撰寫有效率的CSS選擇器(CSS Selector)</a></li>
-<li><a href="http://coolshell.cn/articles/6840.html">CSS 布局:40个教程、技巧、例子和最佳实践</a></li>
-<li><a href="http://whiteball.tw/blog/mobile-web-performance-optimize/">行動網頁效能最佳化</a></li>
-</ul>
-
-
-<h2>Design</h2>
-
-<ul>
-<li><a href="http://searchouse.net/op/life?lid=178">公共藝術愛放電</a></li>
-<li><a href="http://www.egoitzmoreno.com/blog/applefibo.jpg">蘋果LOGO的黃金比例</a></li>
-<li><a href="http://www.wretch.cc/blog/mscraft">楊比比 37度半</a></li>
-<li><a href="http://www.1stwebdesigner.com/design/tools-identify-font/">5 tools to help you identify any Font</a></li>
-<li><a href="http://ss163500.blogspot.com/2011/10/30.html">30個新一代網頁界面的最佳範例</a></li>
-<li><a href="http://roamlog.info/archives/download-300-famous-fonts-for-free.html">300+優秀字體下載</a></li>
-<li><a href="http://www.1stwebdesigner.com/freebies/66-high-resolution-nature-desktop-backgrounds/">66 High resolution nature desktop backgrounds</a></li>
-<li><a href="http://www.1stwebdesigner.com/freebies/modern-design-trends-digital-art/">Modern design trends in digital art &amp; free brushes to copy them</a></li>
-<li><a href="http://www.looks.gd/design/sketchbooks-of-a-web-developer">Sketchbooks of a Web Developer</a></li>
-<li><a href="http://37signals.com/svn/posts/1061-why-we-skip-photoshop">Why we skip PhotoShop</a></li>
-<li><a href="http://blog.iworm.net/2009/02/24/%E4%B8%BA%E4%BD%951024768%E5%88%86%E8%BE%A8%E7%8E%87%E4%B8%8B%E7%BD%91%E9%A1%B5%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%B8%BA960px/">为何1024*768分辨率下网页的宽度为960px</a></li>
-<li><a href="https://sites.google.com/site/heavenhao/Home/webdesign/960px-xia-de-huang-jin-fen-ge">960px下的黄金分割</a></li>
-<li><a href="http://thenextweb.com/dd/2012/01/11/why-every-designer-should-start-with-paper-not-photoshop/">Why every designer should start with paper, not PhotoShop</a></li>
-<li><a href="http://whiteball.tw/blog/why-hsl/">為什麼用HSL色彩模型</a></li>
-<li><a href="http://www.raincreativelab.com/paperbrowser/">Paper Browser: It&#8217;s a browser, only in paper.</a></li>
-<li><a href="http://www.techbang.com.tw/posts/8175-simple-and-elegant-20-america-switch-interface-design">20個美型開關介面設計，每天都在用，原來可以這麼好看</a></li>
-<li><a href="http://thestrangeattractor.net/">看他們的分頁設計</a></li>
-<li><a href="http://dribbble.com/">Dribble</a></li>
-</ul>
-
-
-<h2>Server</h2>
-
-<ul>
-<li><a href="http://www.mysqlperformanceblog.com/">MySQL Performance Blog</a></li>
-<li><a href="http://www.joinfu.com/">The art of SQL</a></li>
-<li><a href="http://article.denniswave.com/6345">MySQL設定檔優化 - Cache</a></li>
-<li><a href="http://blog.itcert.org/archives/1156">MySQL優化全攻略 - 相關數據庫命令</a></li>
-<li><a href="http://phorum.study-area.org/index.php?topic=55728.0">有什麼方法可以學優化MySQL or httpd嗎？</a></li>
-<li><a href="http://tinyurl.com/73nlyhw">MySQL最佳化分析指令：EXPLAIN</a> - http://homeserver.com.tw/mysql/mysql最佳化分析指令explain/</li>
-<li><a href="http://isky000.com/database/mysql-perfornamce-tuning-cache-parameter">MySQL數據庫性能優化之緩存參數優化</a></li>
-<li><a href="http://tinyurl.com/6p9dtwm">MySQL數據庫性能優化專題</a> - http://isky000.com/tag/mysql数据库性能优化专题</li>
-<li><a href="http://www.mysqlperformanceblog.com/2006/09/29/what-to-tune-in-mysql-server-after-installation/">What to tune in MySQL Server after installation</a></li>
-<li><a href="http://tech.tomgoren.com/archives/245">Ruby on Rails served by unicorn with nginx for static files and reverse proxy on Ubuntu - detailed guide.</a></li>
-<li><a href="http://rainbows.rubyforge.org/">Rainbows! (Unicorn)</a></li>
-<li><a href="http://blog.xambr.com/2010/01/16/running-ramaze-with-unicorn-nginx-and-god/">Running Ramaze with Unicorn, Nginx and God</a></li>
-<li><a href="http://save-coco.blogspot.com/2010/03/mysql-joinexplain.html">MySQL Join的效率問題、子查詢以及Explain分析</a></li>
-<li><a href="http://www.cnitblog.com/aliyiyi08/archive/2008/09/09/48878.html">MySQL Explain詳解</a></li>
-<li><a href="http://twpug.net/docs/mysql323/manual_Performance.html">從MySQL得到最大的性能</a></li>
-<li><a href="http://article.denniswave.com/6337">MySQL索引分析和優化</a></li>
-<li><a href="http://article.denniswave.com/6320">透過分區(Partition)提昇MySQL性能(一)</a></li>
-<li><a href="http://article.denniswave.com/6342">透過分區(Partition)提昇MySQL性能(二)</a></li>
-<li><a href="http://www.infoq.com/cn/presentations/wsz-mysql-development">InfoQ: MySQL數據庫開發的三十六條軍規</a></li>
-<li><a href="http://cafemei.blogspot.com/2011/04/chef-solo-rvm-linux-rails.html">chef-solo + rvm - Rails 快速裝機</a></li>
-<li><a href="http://reality.hk/posts/2011/12/21/vagrant/">用 Vagrant 快速建立開發環境</a></li>
-<li><a href="http://ben6.blogspot.com/2011/11/vagrantvirtualbox-2-packagebox.html">Vagrant+virtualbox (2): 實戰封裝自制package.box</a></li>
-<li><a href="http://blog.gslin.org/archives/2011/10/28/2757/mixpanel-%E5%BE%9E-aws-%E6%90%AC%E5%88%B0-softlayer/">Mixpanel 從 AWS 搬到 Softlayer</a></li>
-<li><a href="http://blog.bradgessler.com/use-monit-with-rails-not-god">Use Monit with Rails, not God</a></li>
-<li><a href="http://ruby-china.org/topics/471">求 nginx+unicorn 部署rails 完整配置</a></li>
-<li><a href="http://ruby-china.org/topics/2282">数据库异地提速？</a></li>
-<li><a href="http://163.32.219.6/blog/u882061/cce-linux/2009/10/31/1237">只要十分鐘，快速優化 MySQL 資料庫</a></li>
-<li><a href="http://www.neo.com.tw/archives/1122">[MySQL] 使用 mysqldump 線上備份 InnoDB</a></li>
-<li><a href="http://www.wretch.cc/blog/Webbhyj/1149986">CentOS 5.5 + Cacti</a></li>
-</ul>
-
-
-<h2>Others</h2>
-
-<ul>
-<li><a href="http://timelessrepo.com/your-blog-is-a-project">Your blog is a project</a></li>
-<li><a href="http://heikezhi.com/2011/05/11/life-beyond-http-11-googles-spdy/">Google SPDY初探：HTTP 1.1之外的世界</a></li>
-<li><a href="http://www.kaiak.tw/2011/12/google.html">Google超讚的倫敦新總部</a></li>
-<li><a href="http://www.techbang.com.tw/posts/7941-facebook-new-workplace-exposure-was-shocked-to-see-the-roc-flag">Facebook矽谷新總部</a></li>
-<li><a href="http://nota.lukhnos.org/">http://nota.lukhnos.org/</a></li>
-<li><a href="http://tinyurl.com/73l358p">抽象滲漏法則 (The Joel on Software)</a> - http://local.joelonsoftware.com/wiki/The_Joel_on_Software_Translation_Project:抽象滲漏法則</li>
-<li><a href="http://www.booknest.net:8088/chapter/2724589.htm">[小說] 好萊塢製造 (有講到Apple)</a></li>
-<li><a href="http://tinyurl.com/6rgc3zm">有趣的賽局案例 - 雍正皇帝之九王奪嫡</a> - http://www.startuplive.cc/2011/12/06/有趣的賽局案例●雍正皇帝之九王奪嫡/</li>
-<li><a href="http://jade-design-ltd.blogspot.com/2011/12/macospc-macos-fmp.html">進銷存好幫手： 神機妙算</a></li>
-<li><a href="http://forum.inside.com.tw/viewthread.php?tid=1119&amp;page=1&amp;extra#pid2781">中國沒有一個所謂的&#8221;全民的互連網&#8221;</a></li>
-<li><a href="http://fred-zone.blogspot.com/2011/12/android-23x-javascript-interface.html">Android 問題百出之 2.3.x 的 JavaScript Interface</a></li>
-<li><a href="http://www.programmer.com.cn/1889/">快速排序法之父</a></li>
-<li><a href="http://tinyurl.com/7p7hfje">IT名人堂</a> - http://www.programmer.com.cn/category/it名人堂/page/1</li>
-<li><a href="http://automator.us/leopard/index.html">Automator in Leopard</a></li>
-<li><a href="http://www.dotblogs.com.tw/hatelove/archive/2010/04/14/namingruleguide.aspx">讀書心得 - Clean Code - Meaningful Names</a></li>
-<li><a href="http://heikezhi.com/2011/06/09/the-most-important-code-isnt-code/">代码中最重要的并不是代码</a></li>
-<li><a href="http://www.dns-sd.org/ServiceTypes.html">Bonjour Service Types: DNS SRV RFC 2782</a></li>
-<li><a href="http://www.linux-mag.com/id/1079/">Writing scripts for zsh</a></li>
-<li><a href="http://blog.getspool.com/2011/11/29/fast-easy-realtime-metrics-using-redis-bitmaps">Fast, easy, realtime metrics using Redis bitmaps</a></li>
-<li><a href="http://ihower.tw/blog/archives/3481">如何正確發送大量E-mail信件</a></li>
-<li><a href="https://www.destroyallsoftware.com/screencasts">Destroy all software: screencasts</a></li>
-<li><a href="http://tutsplus.com/">tuts+</a></li>
-<li><a href="http://webdesign.tutsplus.com/">Webdesign tuts+</a></li>
-<li><a href="http://rightgun.blogspot.com/2007/06/blog-post_8781.html">零股交易心得</a></li>
-<li><a href="http://zespia.tw/">Zespia - 好網站</a></li>
-<li><a href="http://blog.roodo.com/debbychen/archives/639937.html">早熟的黑客——Autrijus 之一</a></li>
-<li><a href="http://www.managertoday.com.tw/?p=1051">e-mail一行力–提點重點、先寫結果，用一句話說明主旨</a></li>
-<li><a href="http://www.managertoday.com.tw/?p=1980">收發6訣竅，不被e-mail中斷工作</a></li>
-<li><a href="http://www.vspeed.info/newhead/link/link_5.htm">曼陀羅思考法</a></li>
-<li><a href="http://www.inside.com.tw/2012/01/30/icook-cloud-service">「iCook 愛料理」如何善用雲端服務，加速網站產品開發</a></li>
-<li><a href="http://www.inside.com.tw/2009/11/29/cardinal-blue%E7%9A%84facebook%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E9%96%8B%E7%99%BC%E7%B6%93%E9%A9%97%E5%88%86%E4%BA%AB%EF%BC%9A%E4%BD%BF%E7%94%A8ruby-on-rails%E8%88%87heroku">Cardinal Blue的Facebook應用程式開發經驗分享：使用Ruby on Rails與Heroku</a></li>
-<li><a href="http://mrjamie.cc/2012/01/16/bootstrapping/">Bootstrapping ── 不求人的創業模式</a></li>
-<li><a href="http://darcyclarke.me/development/front-end-job-interview-questions/">Front-end Job Interview Questions</a></li>
-<li><a href="http://big5.sznews.com/health/content/2011-03/02/content_5390289.htm">對比︰古今中外最佳性愛次數_深圳新聞網</a></li>
-<li><a href="http://chomp.com/">Chomp</a></li>
-<li><a href="http://www.hksilicon.com/kb/articles/60067/20cheat-sheet">網站開發人員必備的 20 張速記片 (cheat sheet)</a></li>
-<li><a href="http://iphone4.tw/forums/showthread.php?t=80396">給Mac設計師的裝機手冊</a></li>
-</ul>
-
 ]]></content>
   </entry>
   

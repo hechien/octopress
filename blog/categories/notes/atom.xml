@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-24T11:58:21+08:00</updated>
+  <updated>2012-04-25T11:14:20+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[AppleScript for Numbers example]]></title>
+    <link href="http://hechien.github.com/octopress/blog/applescript-for-numbers-example/"/>
+    <updated>2012-04-25T11:12:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/applescript-for-numbers-example</id>
+    <content type="html"><![CDATA[<p>剛好想到Excel等Office的套裝軟體都有VBA可以用，那Mac上的iWork呢？</p>
+
+<p>嗯 ... 是的，就是超威的AppleScript來處理啦～</p>
+
+<p>底下是找到的Example:</p>
+
+<p>https://gist.github.com/2485918</p>
+
+<p>其實真的蠻屌的 ...</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[加上了Disqus留言系統囉]]></title>
@@ -77,22 +94,6 @@
 <p>https://gist.github.com/2470084</p>
 
 <p>參考資料都在裡面，真的感覺node.js很棒啊 ...</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails打索引技巧]]></title>
-    <link href="http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao/"/>
-    <updated>2012-04-24T09:36:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao</id>
-    <content type="html"><![CDATA[<p>做專案學到的一個技巧 ... 應該說，是很慘痛的學到一個技巧=_= ...</p>
-
-<p>我們都知道，Rails可以透過<code>rails g migration blahblah</code>來產生Migration file然後在裡面寫<code>add_index</code>來打索引，可是切記切記！！不要把索引寫在同一個表內 ... 當資料量大，而且其中一個index打失敗你就會哭了 ...</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Mysql2::Error: Specified key was too long; max key length is 1000 bytes: CREATE  INDEX &lt;code>index_products_on_url_identify_and_name&lt;/code> ON &lt;code>products&lt;/code> (&lt;code>url_identify&lt;/code>, &lt;code>name&lt;/code>)</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>慘痛T_T</p>
 ]]></content>
   </entry>
   

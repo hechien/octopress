@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: AppleScript | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/applescript/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-04-25T11:14:20+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[AppleScript for Numbers example]]></title>
+    <link href="http://hechien.github.com/octopress/blog/applescript-for-numbers-example/"/>
+    <updated>2012-04-25T11:12:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/applescript-for-numbers-example</id>
+    <content type="html"><![CDATA[<p>剛好想到Excel等Office的套裝軟體都有VBA可以用，那Mac上的iWork呢？</p>
+
+<p>嗯 ... 是的，就是超威的AppleScript來處理啦～</p>
+
+<p>底下是找到的Example:</p>
+
+<p>https://gist.github.com/2485918</p>
+
+<p>其實真的蠻屌的 ...</p>
+]]></content>
+  </entry>
+  
+</feed>
