@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-27T15:52:31+08:00</updated>
+  <updated>2012-04-27T15:54:30+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -65,7 +65,30 @@
 
 <p>底下是找到的Example:</p>
 
-<p>https://gist.github.com/2485918</p>
+<p><div><script src='https://gist.github.com/2485918.js?file='></script>
+<noscript><pre><code>-- Source: https://discussions.apple.com/thread/1857867?start=0&amp;tstart=0
+
+tell application &quot;Numbers&quot;
+  activate
+  tell document 1
+    tell sheet 1
+      set newtable to make new table with properties {name:&quot;Test Table 2&quot;}
+      tell newtable
+        set value of cell 3 of row 2 to count of rows
+        set background color of cell 3 of row 2 to {0, 65535, 0} as RGB color
+        remove row 1
+        set myRange to range &quot;B1:C2&quot;
+        
+        repeat with i from 1 to count of rows
+          set value of cell i of column 3 to i * 3
+        end repeat
+        
+        set selection range to range &quot;a1:c3&quot;
+      end tell
+    end tell
+  end tell
+end tell</code></pre></noscript></div>
+</p>
 
 <p>其實真的蠻屌的 ...</p>
 ]]></content>
