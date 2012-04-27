@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-25T11:14:20+08:00</updated>
+  <updated>2012-04-27T15:51:04+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用CoffeeScript實作Array#list]]></title>
+    <link href="http://hechien.github.com/octopress/blog/yong-coffeescriptshi-zuo-array-number-list/"/>
+    <updated>2012-04-27T15:21:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/yong-coffeescriptshi-zuo-array-number-list</id>
+    <content type="html"><![CDATA[<p>在寫專案的過程當中想要操作Array，可是在JavaScript中沒有<code>[1, 2, 3].last()</code>這種東西可以用，只好自己擴充啦～</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">Array</span><span class="o">::</span><span class="nv">last = </span><span class="o">-&gt;</span>
+</span><span class='line'>  <span class="err">@</span><span class="p">[</span><span class="err">@</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這樣就會回傳</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">last</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然後網路上的高見龍前輩在Slideshare的投影片 <a href="http://www.slideshare.net/aquarianboy/coffeescriptrubytuesday">http://www.slideshare.net/aquarianboy/coffeescriptrubytuesday</a> 中第160頁也有一些針對字串的擴充：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">repeat = </span><span class="nf">(n) -&gt;</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">join</span> <span class="err">@</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">downcase = </span><span class="o">-&gt;</span> <span class="nx">@toLowerCase</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">upcase = </span><span class="o">-&gt;</span> <span class="nx">@toUpperCase</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">find = </span><span class="nf">(str) -&gt;</span> <span class="nx">@indexOf</span> <span class="nx">str</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">has = </span><span class="nf">(str) -&gt;</span> <span class="p">(</span><span class="nx">@indexOf</span> <span class="nx">str</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其實蠻炫的XD</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AppleScript for Numbers example]]></title>
@@ -1075,31 +1139,6 @@
 <p>如此一來，我們可以在<code>moreComing</code>為false的時候更新我們的UI列表即可。</p>
 
 <p>之後，再來繼續撰寫怎樣搜尋服務。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[我的zsh prompt的設定]]></title>
-    <link href="http://hechien.github.com/octopress/blog/wo-de-zsh-promptde-she-ding/"/>
-    <updated>2011-12-28T14:58:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/wo-de-zsh-promptde-she-ding</id>
-    <content type="html"><![CDATA[<p>暫且來做個註記 &#8230;</p>
-
-<figure class='code'><figcaption><span>我當前zsh的PS1 - .zshrc </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git_branch() {
-</span><span class='line'>  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-</span><span class='line'>  echo "(${ref#refs/heads/})"
-</span><span class='line'>}
-</span><span class='line'>PS1="%~$(git_branch)%# "</span></code></pre></td></tr></table></div></figure>
-
-
-<p>改用zsh之後，發現很多東西都得重新習慣了 &#8230; 而且用octopress好像rake new_post會失效 &#8230; what the hell -_-
-只好改回bash新增文章了 &#8230; XD&#8221;</p>
 ]]></content>
   </entry>
   

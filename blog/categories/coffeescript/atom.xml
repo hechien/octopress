@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
-  <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
+  <title><![CDATA[Category: CoffeeScript | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/coffeescript/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
   <updated>2012-04-27T15:51:04+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
@@ -59,72 +59,6 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>其實蠻炫的XD</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AppleScript for Numbers example]]></title>
-    <link href="http://hechien.github.com/octopress/blog/applescript-for-numbers-example/"/>
-    <updated>2012-04-25T11:12:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/applescript-for-numbers-example</id>
-    <content type="html"><![CDATA[<p>剛好想到Excel等Office的套裝軟體都有VBA可以用，那Mac上的iWork呢？</p>
-
-<p>嗯 ... 是的，就是超威的AppleScript來處理啦～</p>
-
-<p>底下是找到的Example:</p>
-
-<p>https://gist.github.com/2485918</p>
-
-<p>其實真的蠻屌的 ...</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[加上了Disqus留言系統囉]]></title>
-    <link href="http://hechien.github.com/octopress/blog/jia-shang-liao-disqusliu-yan-xi-tong-luo/"/>
-    <updated>2012-04-24T11:56:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/jia-shang-liao-disqusliu-yan-xi-tong-luo</id>
-    <content type="html"><![CDATA[<p>根據這篇<a href="http://whiteball.tw/blog/before-you-deploy-octopress/">在 Octopress 佈署出去前要注意的小地方</a>中所提到的幾點我有一一在調整，除了404還沒弄好跟導覽列的部份以外其他都加上去了。</p>
-
-<p>所以現在我的RSS URL是Feedburner提供的、網址也不會有日期、Disqus也掛上了(而且好簡單喔！)、清單項目的縮排也弄好了 ... octopress真的超好用的>///&lt;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[RVM與cron]]></title>
-    <link href="http://hechien.github.com/octopress/blog/rvmyu-cron/"/>
-    <updated>2012-04-24T11:40:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/rvmyu-cron</id>
-    <content type="html"><![CDATA[<p>今天發生了一件事情，crontab設定的task不能正常的跑Ruby script，檢查一下原以為是Path的問題，不管怎樣設定Path都會沒辦法正常的load rubygems，後來找了一下後發現原來官方就有<a href="http://beginrescueend.com/integration/cron/">教學</a>了 ...</p>
-
-<p>總之，把cron內加上rvm ruby的路徑就可以了</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby Load Path設定]]></title>
-    <link href="http://hechien.github.com/octopress/blog/ruby-load-pathshe-ding/"/>
-    <updated>2012-04-24T11:33:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/ruby-load-pathshe-ding</id>
-    <content type="html"><![CDATA[<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;!/us</span><span class="n">r</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">ruby</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;encoding: utf-8&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="vg">$LOAD_PATH</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="s1">&#39;.&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;kdan_mobile&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>以上</p>
 ]]></content>
   </entry>
   

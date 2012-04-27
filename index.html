@@ -7,7 +7,11 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="AppleScript for Numbers Example 剛好想到Excel等Office的套裝軟體都有VBA可以用，那Mac上的iWork呢？ 嗯 &#8230; 是的，就是超威的AppleScript來處理啦～ 底下是找到的Example: https://gist.github. &hellip;">
+    <meta name="description" content="用CoffeeScript實作Array#list 在寫專案的過程當中想要操作Array，可是在JavaScript中沒有[1, 2, 3].last()這種東西可以用，只好自己擴充啦～ 1
+2
+Array::last = -&gt; @[@.length - 1] 這樣就會回傳 1
+2
+3 &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,6 +78,97 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/yong-coffeescriptshi-zuo-array-number-list/">用CoffeeScript實作Array#list</a></h1>
+    <div class="entry">
+        <p>在寫專案的過程當中想要操作Array，可是在JavaScript中沒有<code>[1, 2, 3].last()</code>這種東西可以用，只好自己擴充啦～</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">Array</span><span class="o">::</span><span class="nv">last = </span><span class="o">-&gt;</span>
+</span><span class='line'>  <span class="err">@</span><span class="p">[</span><span class="err">@</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這樣就會回傳</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">last</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然後網路上的高見龍前輩在Slideshare的投影片 <a href="http://www.slideshare.net/aquarianboy/coffeescriptrubytuesday">http://www.slideshare.net/aquarianboy/coffeescriptrubytuesday</a> 中第160頁也有一些針對字串的擴充：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">repeat = </span><span class="nf">(n) -&gt;</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">join</span> <span class="err">@</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">downcase = </span><span class="o">-&gt;</span> <span class="nx">@toLowerCase</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">upcase = </span><span class="o">-&gt;</span> <span class="nx">@toUpperCase</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">find = </span><span class="nf">(str) -&gt;</span> <span class="nx">@indexOf</span> <span class="nx">str</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">has = </span><span class="nf">(str) -&gt;</span> <span class="p">(</span><span class="nx">@indexOf</span> <span class="nx">str</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其實蠻炫的XD</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-27T15:21:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/array-list/'>Array#list</a>, <a class='category' href='/octopress/blog/categories/coffeescript/'>CoffeeScript</a>, <a class='category' href='/octopress/blog/categories/extend/'>extend</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -436,70 +531,6 @@
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/paperclip/'>paperclip</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/nginx-tunning/">Nginx Tunning</a></h1>
-    <div class="entry">
-        <p>準備讓公司的系統上線了，在調整Nginx的效能 &#8230;</p>
-
-<p>參考這篇 <a href="http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13">http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13</a> 然後看了一下，看到<code>worker_processes 16;</code>感覺好像太高，畢竟我們公司的Server才1G RAM &#8230; 怕直接死掉XD</p>
-
-<p>不過<code>nofile</code>的值我是設定<code>32768</code>，然後根據這篇 <a href="http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html">http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html</a> 設定了 <code>fs.file-max</code> 的值到<code>2390251</code></p>
-
-<p><code>worker_connections</code>的部份則是參考這篇 <a href="http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html">http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html</a></p>
-
-<p>不過若是可以，這篇也要參考一下 <a href="http://sudone.com/nginx/nginx_worker_processes.html">http://sudone.com/nginx/nginx_worker_processes.html</a></p>
-
-<p>最大連接數的計算公式是：<code>worker_processes * worker_connections / 4</code>，而worker_connections最好超過9000的話，我是直接上到10240，所以我的設定檔大概長這樣：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>worker_processes 8;
-</span><span class='line'>worker_rlimit_nofile 32768;
-</span><span class='line'>
-</span><span class='line'>events {
-</span><span class='line'>  worker_connections 10240;
-</span><span class='line'>  use epoll;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>上網查了一下，<code>epoll</code>似乎是Linux 2.6核心加入的功能，效能似乎不錯便加上去了。</p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-28T15:32:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/nginx/'>nginx</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/tunning/'>tunning</a>
   
 </div>
 
