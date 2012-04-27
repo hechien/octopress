@@ -102,35 +102,15 @@ Array::last = -&gt; @[@.length - 1] 這樣就會回傳 1
 <p>然後網路上的高見龍前輩在Slideshare的投影片 <a href="http://www.slideshare.net/aquarianboy/coffeescriptrubytuesday">http://www.slideshare.net/aquarianboy/coffeescriptrubytuesday</a> 中第160頁也有一些針對字串的擴充：</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">repeat = </span><span class="nf">(n) -&gt;</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">join</span> <span class="err">@</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">downcase = </span><span class="o">-&gt;</span> <span class="nx">@toLowerCase</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">upcase = </span><span class="o">-&gt;</span> <span class="nx">@toUpperCase</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">find = </span><span class="nf">(str) -&gt;</span> <span class="nx">@indexOf</span> <span class="nx">str</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">has = </span><span class="nf">(str) -&gt;</span> <span class="p">(</span><span class="nx">@indexOf</span> <span class="nx">str</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">downcase = </span><span class="o">-&gt;</span> <span class="nx">@toLowerCase</span><span class="p">()</span>
+</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">upcase = </span><span class="o">-&gt;</span> <span class="nx">@toUpperCase</span><span class="p">()</span>
+</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">find = </span><span class="nf">(str) -&gt;</span> <span class="nx">@indexOf</span> <span class="nx">str</span>
+</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">has = </span><span class="nf">(str) -&gt;</span> <span class="p">(</span><span class="nx">@indexOf</span> <span class="nx">str</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
