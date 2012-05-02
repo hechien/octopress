@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-04-27T15:54:30+08:00</updated>
+  <updated>2012-05-02T17:12:24+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SCSS小技巧：更結構化的寫margin、padding、font..etc]]></title>
+    <link href="http://hechien.github.com/octopress/blog/scssxiao-ji-qiao-%3Ageng-jie-gou-hua-de-xie-margin%2C-padding%2C-font-dot-etc/"/>
+    <updated>2012-05-02T17:08:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/scssxiao-ji-qiao-:geng-jie-gou-hua-de-xie-margin,-padding,-font-dot-etc</id>
+    <content type="html"><![CDATA[<p>之前忘記在哪邊看到一篇文章，裡面寫了一個SCSS(SASS)的小技巧，可是我當時沒有辦法把文章给加到閱讀列表中，只好憑印象來測，最後終於測出來了。</p>
+
+<p>我們常常可能寫以下的CSS code</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">margin-top</span><span class="o">:</span> <span class="nt">30px</span><span class="o">;</span>
+</span><span class='line'><span class="nt">margin-right</span><span class="o">:</span> <span class="nt">10px</span><span class="o">;</span>
+</span><span class='line'><span class="nt">font-size</span><span class="o">:</span> <span class="nt">24pt</span><span class="o">;</span>
+</span><span class='line'><span class="nt">font-family</span><span class="o">:</span> <span class="nt">Arial</span><span class="o">;</span>
+</span><span class='line'><span class="nt">padding-top</span><span class="o">:</span> <span class="nt">20px</span><span class="o">;</span>
+</span><span class='line'><span class="nt">padding-right</span><span class="o">:</span> <span class="nt">15px</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但其實這樣寫挺雜亂的，有了SCSS我們就應該要放下屠刀立地成佛啊！(誤</p>
+
+<p>請改成以下寫法(與上面做比對)：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="na">margin</span><span class="o">:</span><span class="p">{</span>
+</span><span class='line'>  <span class="na">top</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>  <span class="na">right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">font</span><span class="o">:</span><span class="p">{</span>
+</span><span class='line'>  <span class="na">size</span><span class="o">:</span> <span class="mi">24</span><span class="kt">pt</span><span class="p">;</span>
+</span><span class='line'>  <span class="na">family</span><span class="o">:</span> <span class="n">Arial</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">padding</span><span class="o">:</span><span class="p">{</span>
+</span><span class='line'>  <span class="na">top</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>  <span class="na">right</span><span class="o">:</span> <span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>怎麼樣？是不是很簡潔整齊呢？</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用CoffeeScript實作Array#list]]></title>
@@ -1084,64 +1147,6 @@ end tell</code></pre></noscript></div>
 
 <p>這樣子一來，就能夠用以下方式取得UDID了
 <code>Record.includes(:user_with_udid).last.udid</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在iOS中透過Bonjour搜尋Domains以及服務]]></title>
-    <link href="http://hechien.github.com/octopress/blog/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu/"/>
-    <updated>2011-12-28T16:16:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/zai-ioszhong-tou-guo-bonjoursou-xun-domainsyi-ji-fu-wu</id>
-    <content type="html"><![CDATA[<p><a href="http://zh.wikipedia.org/wiki/Bonjour">Bonjour</a>是蘋果的一個類似DNS的服務，適用於區域網路之中，所以在Mac OS X, iOS中都可以看到它的身影，且在一些印表機之中也看得到。</p>
-
-<p>今天我們就來嘗試用Bonjour來搜尋同一個區域網路底下有哪些服務吧。</p>
-
-<p>記得在.h檔中引入<code>&lt;Foundation/NSNetworkServices.h&gt;</code>，然後它需要一個delegate來代理整個回呼(Callback)的執行，所以必須要採用<code>NSNetServiceBrowserDelegate</code>這個Protocol。</p>
-
-<p>之後，我們可以透過實體化NSNetServiceBrowser來進行Domain的搜索：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'>  <span class="n">NSNetServiceBrowser</span> <span class="o">*</span><span class="n">browser</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSNetServiceBrowser</span> <span class="n">new</span><span class="p">];</span>
-</span><span class='line'>  <span class="p">[</span><span class="n">browser</span> <span class="nl">setDelegate:</span> <span class="n">self</span><span class="p">];</span>
-</span><span class='line'>  <span class="p">[</span><span class="n">browser</span> <span class="n">searchForRegistrationDomains</span><span class="p">];</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>之後我們要實作以下五個delegate methods:</p>
-
-<ul>
-<li>netServiceBrowserWillSearch: // 開始搜尋</li>
-<li>netServiceBrowserDidStopSearch: // 停止搜尋</li>
-<li>netServiceBrowser:didNotSearch: // 搜尋如果失敗</li>
-<li>netServiceBrowser:didFindDomain:moreComing: // 如果有找到的話</li>
-<li>netServiceBrowser:didRemoveDomain:moreComing: // 如果某個Domain消失的話</li>
-</ul>
-
-
-<p>舉個<code>netServiceBrowser:didFindDomain:moreComing:</code>的例子：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">netServiceBrowser:</span><span class="p">(</span><span class="n">NSNetServiceBrowser</span> <span class="o">*</span><span class="p">)</span><span class="n">browser</span>
-</span><span class='line'>            <span class="nl">didFindDomain:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">domainString</span>
-</span><span class='line'>               <span class="nl">moreComing:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">moreComing</span><span class="p">{</span>
-</span><span class='line'>  <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;[ADD] Domain String: %@&quot;</span><span class="p">,</span> <span class="n">domainString</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">moreComing</span><span class="p">){</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如此一來，我們可以在<code>moreComing</code>為false的時候更新我們的UI列表即可。</p>
-
-<p>之後，再來繼續撰寫怎樣搜尋服務。</p>
 ]]></content>
   </entry>
   

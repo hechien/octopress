@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tricks | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/tricks/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-05-02T17:12:24+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SCSS小技巧：更結構化的寫margin、padding、font..etc]]></title>
+    <link href="http://hechien.github.com/octopress/blog/scssxiao-ji-qiao-%3Ageng-jie-gou-hua-de-xie-margin%2C-padding%2C-font-dot-etc/"/>
+    <updated>2012-05-02T17:08:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/scssxiao-ji-qiao-:geng-jie-gou-hua-de-xie-margin,-padding,-font-dot-etc</id>
+    <content type="html"><![CDATA[<p>之前忘記在哪邊看到一篇文章，裡面寫了一個SCSS(SASS)的小技巧，可是我當時沒有辦法把文章给加到閱讀列表中，只好憑印象來測，最後終於測出來了。</p>
+
+<p>我們常常可能寫以下的CSS code</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">margin-top</span><span class="o">:</span> <span class="nt">30px</span><span class="o">;</span>
+</span><span class='line'><span class="nt">margin-right</span><span class="o">:</span> <span class="nt">10px</span><span class="o">;</span>
+</span><span class='line'><span class="nt">font-size</span><span class="o">:</span> <span class="nt">24pt</span><span class="o">;</span>
+</span><span class='line'><span class="nt">font-family</span><span class="o">:</span> <span class="nt">Arial</span><span class="o">;</span>
+</span><span class='line'><span class="nt">padding-top</span><span class="o">:</span> <span class="nt">20px</span><span class="o">;</span>
+</span><span class='line'><span class="nt">padding-right</span><span class="o">:</span> <span class="nt">15px</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>但其實這樣寫挺雜亂的，有了SCSS我們就應該要放下屠刀立地成佛啊！(誤</p>
+
+<p>請改成以下寫法(與上面做比對)：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="na">margin</span><span class="o">:</span><span class="p">{</span>
+</span><span class='line'>  <span class="na">top</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>  <span class="na">right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="na">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">&lt;p&gt;font</span><span class="o">:</span><span class="p">{</span>
+</span><span class='line'>  <span class="na">size</span><span class="o">:</span> <span class="mi">24</span><span class="kt">pt</span><span class="p">;</span>
+</span><span class='line'>  <span class="na">family</span><span class="o">:</span> <span class="n">Arial</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="na">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">&lt;p&gt;padding</span><span class="o">:</span><span class="p">{</span>
+</span><span class='line'>  <span class="na">top</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>  <span class="na">right</span><span class="o">:</span> <span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>怎麼樣？是不是很簡潔整齊呢？</p>
+]]></content>
+  </entry>
+  
+</feed>
