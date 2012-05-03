@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-02T17:12:24+08:00</updated>
+  <updated>2012-05-03T18:45:12+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[我沒有天份，只有努力]]></title>
+    <link href="http://hechien.github.com/octopress/blog/wo-mei-you-tian-fen-%2Czhi-you-nu-li/"/>
+    <updated>2012-05-02T23:16:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/wo-mei-you-tian-fen-,zhi-you-nu-li</id>
+    <content type="html"><![CDATA[<p>我對於規劃這種事情實在是不太在行</p>
+
+<p>我也很會去評估自身能力，決定到底該不該做一些事情</p>
+
+<p>但往往都會因為低估而退卻、高估而失敗</p>
+
+<p>所以我對於估計這種事情也是不太在行</p>
+
+<p>但我只知道一件事，那就是「現在不行，努力過後，以後可以」</p>
+
+<p>我今天早上看到Mr. Jamie寫的文章，標題很有趣，就叫做「<a href="http://mrjamie.cc/2012/04/20/talent/">天份是什麼，能吃嗎？</a>」</p>
+
+<p>我非常認同這篇文章，因為我自己就是過來人，但也有些許不認同這些文章 &#8230; 因為我也看過一句話：「成功是九十九分的努力，加上一分的天份；大家都在闡述那九十九分的努力有多重要，但卻忘記那一分的天份才是關鍵」。</p>
+
+<p>每個人都有天份，但天份不能拿來當做任何事情的藉口 &#8230;</p>
+
+<p>我曾經被某人嗆過，我有天份，但不要太囂張</p>
+
+<p>何其無辜，我花了十年的時間學會的東西，被人家認為是有天份，真是可笑 &#8230;</p>
+
+<p>記住，每個人都有天份，但關鍵點是在於努力</p>
+
+<p>不是說每個人努力就能成功，但努力過後，你可以更接近機會，而只有機會才會帶領你邁向成功。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[SCSS小技巧：更結構化的寫margin、padding、font..etc]]></title>
@@ -1116,37 +1147,6 @@ end tell</code></pre></noscript></div>
 <p>最近Github釋出了Hubot，我也還沒有時間去看呢 &#8230; 有人要分享怎樣做嗎XDDD</p>
 
 <p>之後我會再貼上我配置主機的方式，希望有人願意share心得一起交流</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails的關連小筆記]]></title>
-    <link href="http://hechien.github.com/octopress/blog/railsde-guan-lian-xiao-bi-ji/"/>
-    <updated>2012-02-02T16:04:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/railsde-guan-lian-xiao-bi-ji</id>
-    <content type="html"><![CDATA[<p>今天在<a href="http://rails-bestpractices.com">rails best practices</a>中看到一則<a href="http://rails-bestpractices.com/posts/80-active-record-query-interface-optimization">ActiveRecord Query Interface Optimization</a>，裡面提到在<code>has_many</code>與<code>belongs_to</code>的時候可以自訂<code>:select</code>來指定要撈出的欄位 &#8230; 所以請繼續閱讀</p>
-
-<!-- more -->
-
-
-<p>後來我發現這個方式很適合用在類似需要<code>Record.includes(:user)</code>的時候，因為<code>User</code>的欄位可能過多且資料量太大導致就算打了index也跑不快，所以用這種方式來撈可以加速 &#8230; 因此我便寫了</p>
-
-<figure class='code'><figcaption><span>record.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user</span><span class="p">,</span> <span class="nb">select</span><span class="p">:</span> <span class="ss">:id</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可是後來發現這樣會沒辦法在事後加上欄位，所以在需要特定欄位的時候必須另外寫一個自訂的關連</p>
-
-<figure class='code'><figcaption><span>record.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">belongs_to</span> <span class="ss">:user_with_udid</span><span class="p">,</span> <span class="p">{</span><span class="nb">select</span><span class="p">:</span> <span class="o">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:udid</span><span class="o">]</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="n">foreign_key</span><span class="p">:</span> <span class="ss">:user_id</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>這樣子一來，就能夠用以下方式取得UDID了
-<code>Record.includes(:user_with_udid).last.udid</code></p>
 ]]></content>
   </entry>
   
