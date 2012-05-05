@@ -123,11 +123,17 @@
         <lastmod>2012-05-02T23:19:41+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://hechien.github.com/octopress/blog/mysqlqi-dong-%2C-zhi-xing-chu-xian-errno-13de-wen-ti/
+        </loc>
+        <lastmod>2012-05-05T16:25:48+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://hechien.github.com/octopress/blog/archives/</loc>
-        <lastmod>2012-05-04T14:49:57+08:00</lastmod>
+        <lastmod>2012-05-05T16:25:48+08:00</lastmod>
     </url>
     <url>
         <loc>http://hechien.github.com/octopress/</loc>
-        <lastmod>2012-05-04T14:49:57+08:00</lastmod>
+        <lastmod>2012-05-05T16:25:48+08:00</lastmod>
     </url>
 </urlset>

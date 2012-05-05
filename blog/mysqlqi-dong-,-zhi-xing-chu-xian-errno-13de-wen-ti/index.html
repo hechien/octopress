@@ -1,0 +1,195 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>MySQL啟動、執行出現errno 13的問題 - 赫謙小便籤</title>
+    <meta name="author" content="赫謙">
+
+    
+    <meta name="description" content="MySQL啟動、執行出現errno 13的問題 剛剛朋友的MySQL Server忽然掛掉，沒辦法正常匯入 &#8230; 查了log後看到以下訊息： 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+120505 12:08:27 mysqld_safe Starting mysqld daemon &hellip;">
+    
+    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+
+    <link href="http://feeds.feedburner.com/hechienstickies" rel="alternate" title="赫謙小便籤" type="application/atom+xml">
+    <link rel="canonical" href="">
+    <link href="/octopress/favicon.png" rel="shortcut icon">
+    <link href="/octopress/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]><script src="/octopress/javascripts/html5.js"></script><![endif]-->
+    <script src="/octopress/javascripts/jquery.min.js"></script>
+    
+    
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-9528313-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+	<header class="inner"><h1 class="left"><a href="/octopress/">赫謙小便籤</a></h1>
+<nav class="menu left"><ul class="main">
+	<li><a href="/octopress/">Blog</a></li>
+	<li><a href="/octopress/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<div class="right">
+	<form class="search right" action="http://google.com/search" method="get">
+		<input class="left" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:hechien.github.com/octopress">
+	</form>
+	<div class="social right">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/HeChian" title="Twitter">Twitter</a>
+		
+		
+		<a class="rss" href="http://feeds.feedburner.com/hechienstickies" title="RSS">RSS</a>
+		
+	</div>
+</div>
+</header>
+	
+<div id="banner" class="inner">
+	<div class="container">
+		<ul class="feed"></ul>
+	</div>
+	<small><a href="http://twitter.com/HeChian">HeChian</a> @ <a href="http://twitter.com">Twitter</a></small>
+	<div class="loading">Loading...</div>
+</div>
+<script src="/octopress/javascripts/twitter.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('#banner').getTwitterFeed('HeChian', 5);
+	})(jQuery);
+</script>
+
+	<div id="content" class="inner"><article class="post">
+    <h1 class="title">MySQL啟動、執行出現errno 13的問題</h1>
+    <div class="entry"><p>剛剛朋友的MySQL Server忽然掛掉，沒辦法正常匯入 &#8230; 查了log後看到以下訊息：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>120505 12:08:27 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+</span><span class='line'>120505 12:08:27  InnoDB: Initializing buffer pool, size = 8.0M
+</span><span class='line'>120505 12:08:27  InnoDB: Completed initialization of buffer pool
+</span><span class='line'>120505 12:08:27  InnoDB: Operating system error number 13 in a file operation.
+</span><span class='line'>InnoDB: The error means mysqld does not have the access rights to
+</span><span class='line'>InnoDB: the directory.
+</span><span class='line'>InnoDB: File name ./ibdata1
+</span><span class='line'>InnoDB: File operation call: 'open'.
+</span><span class='line'>InnoDB: Cannot continue operation.
+</span><span class='line'>120505 12:08:27 mysqld_safe mysqld from pid file /var/run/mysqld/mysqld.pid ended</span></code></pre></td></tr></table></div></figure>
+
+
+<p>科科，炸了=_=</p>
+
+<p>上網找了一下看到這篇<a href="http://stackoverflow.com/questions/3907666/mysql-wont-start-ibdata1-corrupt-operating-system-error-number-13-permis">Mysql won&#8217;t start - ibdata1 corrupt? - operating system error number 13 - permissions issue</a></p>
+
+<p>讚，頭彩 &#8230; 馬上讀一下發現到這個指令： <code>perror 13</code>，輸入之後告訴我 Error code 13代表的是Permission denied，就覺得很奇怪 &#8230;</p>
+
+<p>跳到 <code>/var/lib/mysql</code> (MySQL根目錄，資料檔都放在這底下) 後，下 <code>ls -l</code>發現某些檔案的權限亂掉 &#8230; 所以用 <code>chown -R mysql *</code>來修復權限，至少把owner改為<code>mysql</code>就可以了。</p>
+
+<p>結束之後重新啟動，果然正常 &#8230; 開開心心匯入資料去</p>
+</div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-05T16:16:00+08:00" pubdate data-updated="true">May 5<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/errno13/'>errno13</a>, <a class='category' href='/octopress/blog/categories/mysql/'>mysql</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
+<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4eb4a0c47196e907"></script>
+</div>
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer class="inner">Copyright &copy; 2012 赫謙小便籤</footer>
+	<script src="/octopress/javascripts/jquery.easing.1.3.js"></script>
+<script src="/octopress/javascripts/jquery.fancybox.pack.js"></script>
+<script src="/octopress/javascripts/slash.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'hechienstickies';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hechien.github.com/octopress/blog/mysqlqi-dong-%2C-zhi-xing-chu-xian-errno-13de-wen-ti/';
+        var disqus_url = 'http://hechien.github.com/octopress/blog/mysqlqi-dong-%2C-zhi-xing-chu-xian-errno-13de-wen-ti/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+</html>

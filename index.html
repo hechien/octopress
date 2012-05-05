@@ -7,7 +7,17 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="我沒有天份，只有努力 我對於規劃這種事情實在是不太在行 我也很會去評估自身能力，決定到底該不該做一些事情 但往往都會因為低估而退卻、高估而失敗 所以我對於估計這種事情也是不太在行 但我只知道一件事，那就是「現在不行，努力過後，以後可以」 我今天早上看到Mr. Jamie寫的文章，標題很有趣， &hellip;">
+    <meta name="description" content="MySQL啟動、執行出現errno 13的問題 剛剛朋友的MySQL Server忽然掛掉，沒辦法正常匯入 &#8230; 查了log後看到以下訊息： 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+120505 12:08:27 mysqld_safe Starting mysqld daemon &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,6 +84,74 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/mysqlqi-dong-%2C-zhi-xing-chu-xian-errno-13de-wen-ti/">MySQL啟動、執行出現errno 13的問題</a></h1>
+    <div class="entry">
+        <p>剛剛朋友的MySQL Server忽然掛掉，沒辦法正常匯入 &#8230; 查了log後看到以下訊息：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>120505 12:08:27 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+</span><span class='line'>120505 12:08:27  InnoDB: Initializing buffer pool, size = 8.0M
+</span><span class='line'>120505 12:08:27  InnoDB: Completed initialization of buffer pool
+</span><span class='line'>120505 12:08:27  InnoDB: Operating system error number 13 in a file operation.
+</span><span class='line'>InnoDB: The error means mysqld does not have the access rights to
+</span><span class='line'>InnoDB: the directory.
+</span><span class='line'>InnoDB: File name ./ibdata1
+</span><span class='line'>InnoDB: File operation call: 'open'.
+</span><span class='line'>InnoDB: Cannot continue operation.
+</span><span class='line'>120505 12:08:27 mysqld_safe mysqld from pid file /var/run/mysqld/mysqld.pid ended</span></code></pre></td></tr></table></div></figure>
+
+
+<p>科科，炸了=_=</p>
+
+<p>上網找了一下看到這篇<a href="http://stackoverflow.com/questions/3907666/mysql-wont-start-ibdata1-corrupt-operating-system-error-number-13-permis">Mysql won&#8217;t start - ibdata1 corrupt? - operating system error number 13 - permissions issue</a></p>
+
+<p>讚，頭彩 &#8230; 馬上讀一下發現到這個指令： <code>perror 13</code>，輸入之後告訴我 Error code 13代表的是Permission denied，就覺得很奇怪 &#8230;</p>
+
+<p>跳到 <code>/var/lib/mysql</code> (MySQL根目錄，資料檔都放在這底下) 後，下 <code>ls -l</code>發現某些檔案的權限亂掉 &#8230; 所以用 <code>chown -R mysql *</code>來修復權限，至少把owner改為<code>mysql</code>就可以了。</p>
+
+<p>結束之後重新啟動，果然正常 &#8230; 開開心心匯入資料去</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-05T16:16:00+08:00" pubdate data-updated="true">May 5<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/errno13/'>errno13</a>, <a class='category' href='/octopress/blog/categories/mysql/'>mysql</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -561,43 +639,6 @@ end tell</code></pre></noscript></div>
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/index/'>index</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>, <a class='category' href='/octopress/blog/categories/trick/'>trick</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/middleman-plus-pow-plus-livereload-plus-haml/">Middleman + Pow + Livereload + HAML</a></h1>
-    <div class="entry">
-        <p>原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。</p>
-
-
-        
-        <a href="/octopress/blog/middleman-plus-pow-plus-livereload-plus-haml/" class="more-link">繼續閱讀 &rarr;</a>
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-12T15:14:00+08:00" pubdate data-updated="true">Apr 12<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/haml/'>haml</a>, <a class='category' href='/octopress/blog/categories/livereload/'>livereload</a>, <a class='category' href='/octopress/blog/categories/middleman/'>middleman</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/pow/'>pow</a>
   
 </div>
 

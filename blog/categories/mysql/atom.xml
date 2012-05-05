@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mysql | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/mysql/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-05-05T16:26:11+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL啟動、執行出現errno 13的問題]]></title>
+    <link href="http://hechien.github.com/octopress/blog/mysqlqi-dong-%2C-zhi-xing-chu-xian-errno-13de-wen-ti/"/>
+    <updated>2012-05-05T16:16:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/mysqlqi-dong-,-zhi-xing-chu-xian-errno-13de-wen-ti</id>
+    <content type="html"><![CDATA[<p>剛剛朋友的MySQL Server忽然掛掉，沒辦法正常匯入 ... 查了log後看到以下訊息：
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>120505 12:08:27 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+</span><span class='line'>120505 12:08:27  InnoDB: Initializing buffer pool, size = 8.0M
+</span><span class='line'>120505 12:08:27  InnoDB: Completed initialization of buffer pool
+</span><span class='line'>120505 12:08:27  InnoDB: Operating system error number 13 in a file operation.
+</span><span class='line'>InnoDB: The error means mysqld does not have the access rights to
+</span><span class='line'>InnoDB: the directory.
+</span><span class='line'>InnoDB: File name ./ibdata1
+</span><span class='line'>InnoDB: File operation call: 'open'.
+</span><span class='line'>InnoDB: Cannot continue operation.
+</span><span class='line'>120505 12:08:27 mysqld_safe mysqld from pid file /var/run/mysqld/mysqld.pid ended</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>科科，炸了=_=</p>
+
+<p>上網找了一下看到這篇<a href="http://stackoverflow.com/questions/3907666/mysql-wont-start-ibdata1-corrupt-operating-system-error-number-13-permis">Mysql won't start - ibdata1 corrupt? - operating system error number 13 - permissions issue</a></p>
+
+<p>讚，頭彩 ... 馬上讀一下發現到這個指令： <code>perror 13</code>，輸入之後告訴我 Error code 13代表的是Permission denied，就覺得很奇怪 ...</p>
+
+<p>跳到 <code>/var/lib/mysql</code> (MySQL根目錄，資料檔都放在這底下) 後，下 <code>ls -l</code>發現某些檔案的權限亂掉 ... 所以用 <code>chown -R mysql *</code>來修復權限，至少把owner改為<code>mysql</code>就可以了。</p>
+
+<p>結束之後重新啟動，果然正常 ... 開開心心匯入資料去</p>
+]]></content>
+  </entry>
+  
+</feed>
