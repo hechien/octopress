@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-05T16:26:11+08:00</updated>
+  <updated>2012-05-08T11:59:18+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[OmniAuth + Devise + OpenID]]></title>
+    <link href="http://hechien.github.com/octopress/blog/omniauth-plus-devise-plus-openid/"/>
+    <updated>2012-05-08T11:46:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/omniauth-plus-devise-plus-openid</id>
+    <content type="html"><![CDATA[<p>最近內部討論結果覺得有可能需要Support Open ID的登入機制，因此就去survey了一下Devise擴展Open ID的方式。因為Devise本身支援OmniAuth，所以就直接以<code>Devise OmniAuth OpenID</code>的方式搜尋了一下，便找到這篇：<a href="http://blog.xdite.net/posts/2011/12/05/omniauth-clean-auth-provider-4/">http://blog.xdite.net/posts/2011/12/05/omniauth-clean-auth-provider-4/</a></p>
+
+<p>其實這篇照做就可以了，只不過因為原始碼是從<a href="http://ruby-taiwan.org">http://ruby-taiwan.org</a>那邊來的，所以有一些code是不能用的 ... 需要自己稍微做調整一下</p>
+
+<p>這個實作版本是Rails 3.2.3、Devise 2.0.4、OmniAuth 1.0.3</p>
+
+<p>裡面的Code在<code>omniauth_callbacks.rb</code>中第9行左右有個問題，User必須要用includes把authorizations給引入進來，不然會噴 ... XD</p>
+
+<p>可能是因為原本的Code用MongoID當做Data source的關係，所以原本的Code內並沒有寫includes這一塊吧 ...</p>
+
+<p>然後要記得在<code>user.rb</code>實作<code>bind_service</code>，不然原本的code去bind使用者的部份會有問題 ...</p>
+
+<p>要把<code>omniauth_callbacks.rb</code>放在<code>app/models/user</code>底下、把<code>omniauth_callbacks_controller.rb</code>放在<code>app/controllers/users</code>底下，總之在model的資料夾是<code>user</code>而controller的資料夾是<code>users</code>就對了。</p>
+
+<p>大致上就這樣。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails打索引技巧]]></title>
@@ -483,30 +506,6 @@
 </span><span class='line'>
 </span><span class='line'><span class="s2">&lt;p&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[compass-rails + anjlab-bootstrap-rails發生的小問題]]></title>
-    <link href="http://hechien.github.com/octopress/blog/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti/"/>
-    <updated>2012-03-13T11:28:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/compass-rails-plus-anjlab-bootstrap-railsfa-sheng-de-xiao-wen-ti</id>
-    <content type="html"><![CDATA[<h1>事情發生經過</h1>
-
-<p>那時跟著 <a href="http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast">http://railscasts.com/episodes/328-twitter-bootstrap-basics?view=asciicast</a> 剛用Bootstrap建構好網站的頁面，也加上了navigation bar (就是上面黑黑的那條)，根據指示加上 <code>bootstrap_and_overrides.css</code>這支檔案用以讓<code>padding-top</code>可以從預設的<code>40px</code>改為<code>60px</code>，可是裝上<code>compass-rails</code>之後，我的世界開始變了樣 ... (誤)
-後來直接在<code>application.html.erb</code>內的<code>head</code>區塊中加上以下程式碼</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">body</span><span class="p">{</span>
-</span><span class='line'>  <span class="k">padding-top</span><span class="o">:</span> <span class="m">60px</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">padding-bottom</span><span class="o">:</span> <span class="m">40px</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>嗯，打完收工，一切搞定，萬事OK</p>
 ]]></content>
   </entry>
   

@@ -7,7 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="Middleman + Pow + Livereload + HAML 原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。 繼續閱讀 &rarr; Apr 12th, 2012 &hellip;">
+    <meta name="description" content="Rails打索引技巧 做專案學到的一個技巧 &#8230; 應該說，是很慘痛的學到一個技巧=_= &#8230; 我們都知道，Rails可以透過rails g migration blahblah來產生Migration file然後在裡面寫add_index來打索引，可是切記切記！！ &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,6 +74,50 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/railsda-suo-yin-ji-qiao/">Rails打索引技巧</a></h1>
+    <div class="entry">
+        <p>做專案學到的一個技巧 &#8230; 應該說，是很慘痛的學到一個技巧=_= &#8230;</p>
+
+<p>我們都知道，Rails可以透過<code>rails g migration blahblah</code>來產生Migration file然後在裡面寫<code>add_index</code>來打索引，可是切記切記！！不要把索引寫在同一個表內 &#8230; 當資料量大，而且其中一個index打失敗你就會哭了 &#8230;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Mysql2::Error: Specified key was too long; max key length is 1000 bytes: CREATE  INDEX `index_products_on_url_identify_and_name` ON `products` (`url_identify`, `name`)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>慘痛T_T</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-24T09:36:00+08:00" pubdate data-updated="true">Apr 24<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/index/'>index</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>, <a class='category' href='/octopress/blog/categories/trick/'>trick</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -490,43 +534,6 @@
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/draft/'>draft</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian/">Devise註冊後自訂轉向頁面</a></h1>
-    <div class="entry">
-        <p>因為公司的網站在註冊會員之後需要根據不同的App來顯示不同的layout或畫面，因此註冊後要自訂一個轉向頁面，所以我們必須要自己override原本的RegistrationsController &#8230;</p>
-
-
-        
-        <a href="/octopress/blog/devisezhu-ce-hou-zi-ding-zhuan-xiang-ye-mian/" class="more-link">繼續閱讀 &rarr;</a>
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-20T16:54:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/devise/'>devise</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
   
 </div>
 
