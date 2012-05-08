@@ -4,7 +4,7 @@
   <title><![CDATA[Category: omniauth | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/omniauth/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-08T11:59:18+08:00</updated>
+  <updated>2012-05-08T14:27:55+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -33,6 +33,8 @@
 <p>要把<code>omniauth_callbacks.rb</code>放在<code>app/models/user</code>底下、把<code>omniauth_callbacks_controller.rb</code>放在<code>app/controllers/users</code>底下，總之在model的資料夾是<code>user</code>而controller的資料夾是<code>users</code>就對了。</p>
 
 <p>大致上就這樣。</p>
+
+<p>喔對，很重要的一點就是 ... 現在網路上很多範例都會叫你去<code>config/initializers/omniauth.rb</code>內設定provider，這樣做的話一定會噴掉 ... 我在這邊花很多時間才搞定囧，請記住，<strong>不必</strong>寫在這個地方！</p>
 ]]></content>
   </entry>
   

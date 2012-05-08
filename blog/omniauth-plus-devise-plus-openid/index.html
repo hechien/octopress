@@ -90,6 +90,8 @@
 <p>要把<code>omniauth_callbacks.rb</code>放在<code>app/models/user</code>底下、把<code>omniauth_callbacks_controller.rb</code>放在<code>app/controllers/users</code>底下，總之在model的資料夾是<code>user</code>而controller的資料夾是<code>users</code>就對了。</p>
 
 <p>大致上就這樣。</p>
+
+<p>喔對，很重要的一點就是 &#8230; 現在網路上很多範例都會叫你去<code>config/initializers/omniauth.rb</code>內設定provider，這樣做的話一定會噴掉 &#8230; 我在這邊花很多時間才搞定囧，請記住，<strong>不必</strong>寫在這個地方！</p>
 </div>
     <div class="meta">
         <div class="date">
