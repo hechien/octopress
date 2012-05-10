@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Resize | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/resize/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-10T11:42:07+08:00</updated>
+  <updated>2012-05-10T11:43:27+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -19,6 +19,11 @@
     <updated>2012-05-10T11:36:00+08:00</updated>
     <id>http://hechien.github.com/octopress/blog/image-magick-resize-yu-fa</id>
     <content type="html"><![CDATA[<p>因為現在透過Paperclip這邊有一點小問題，所以先做一下小記錄</p>
+
+<!-- more -->
+
+
+<p>底下這個部分我再找時間整理成表格</p>
 
 <h2>語法 |  說明</h2>
 
