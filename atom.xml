@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-08T14:27:55+08:00</updated>
+  <updated>2012-05-10T11:42:07+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Image Magick Resize 語法]]></title>
+    <link href="http://hechien.github.com/octopress/blog/image-magick-resize-yu-fa/"/>
+    <updated>2012-05-10T11:36:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/image-magick-resize-yu-fa</id>
+    <content type="html"><![CDATA[<p>因為現在透過Paperclip這邊有一點小問題，所以先做一下小記錄</p>
+
+<h2>語法 |  說明</h2>
+
+<p>scale%  | Height and width both scaled by specified percentage.
+scale-x%xscale-y% | Height and width individually scaled by specified percentages. (Only one % symbol needed.)
+width | Width given, height automagically selected to preserve aspect ratio.
+xheight | Height given, width automagically selected to preserve aspect ratio.
+widthxheight |  Maximum values of height and width given, aspect ratio preserved.
+widthxheight^ | Minimum values of width and height given, aspect ratio preserved.
+widthxheight! | Width and height emphatically given, original aspect ratio ignored.
+widthxheight> | Shrinks images with dimension(s) larger than the corresponding width and/or height dimension(s).
+widthxheight&lt; | Enlarges images with dimension(s) smaller than the corresponding width and/or height dimension(s).
+area@ | Resize image to have specified area in pixels. Aspect ratio is preserved.</p>
+
+<p>大致上就是這樣吧。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OmniAuth + Devise + OpenID]]></title>
@@ -961,17 +985,6 @@ end tell</code></pre></noscript></div>
 
 
 <p>打完收工</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Devise開發小筆記]]></title>
-    <link href="http://hechien.github.com/octopress/blog/devisekai-fa-xiao-bi-ji/"/>
-    <updated>2012-03-03T01:14:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/devisekai-fa-xiao-bi-ji</id>
-    <content type="html"><![CDATA[<p>這篇很不幸的被我遺忘了 &#8230;. - -|||</p>
-
-<p>以後有機會再來寫</p>
 ]]></content>
   </entry>
   
