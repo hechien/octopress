@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-10T11:46:18+08:00</updated>
+  <updated>2012-05-12T12:03:45+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2012年的目標]]></title>
+    <link href="http://hechien.github.com/octopress/blog/2012nian-de-mu-biao/"/>
+    <updated>2012-05-12T11:42:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/2012nian-de-mu-biao</id>
+    <content type="html"><![CDATA[<p>希望自己在2012年可以做好這些事情</p>
+
+<p>討論內容在：<a href="https://www.facebook.com/hechien/posts/431153790229954">https://www.facebook.com/hechien/posts/431153790229954</a></p>
+
+<h2>一定要做的事</h2>
+
+<ol>
+<li>每天固定抄寫幾檔的最高、最低、開盤、收盤、昨收、交易量</li>
+<li>三年級下學期搞定專題 (不含 UI/UE)</li>
+<li>暑假把專題的UI/UE調好</li>
+<li>耶誕節前解決專題並且正式開始測試</li>
+<li>想好除資訊業外其他可以發展的領域</li>
+<li>撰寫好一本網頁設計的書</li>
+<li>撰寫好一本Ruby on Rails的書</li>
+<li>把<code>CoffeeScript</code>、<code>SCSS</code>、<code>Compass</code>、<code>Middleman</code>與CSS Frameworks練熟</li>
+<li>六月開始至少每個月三部Mac教學影片、一部Mac Podcast教學、一篇Mac教學文章</li>
+<li>至少今年辦兩場Mac聚會 (大小不拘)</li>
+</ol>
+
+
+<h2>逼自己去嘗試</h2>
+
+<ol>
+<li>每天誦三次心經</li>
+<li>每天讀ㄧ篇道德經</li>
+<li>每天一篇Rework的內容</li>
+<li>每個禮拜一篇以上與工作或技術無關的文章</li>
+<li>重新學好奇門遁甲與易經</li>
+</ol>
+
+
+<p>希望自己能夠好好的實踐這些事情。
+今天是2012/05/12，加油。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Image Magick Resize 語法]]></title>
@@ -967,31 +1008,6 @@ end tell</code></pre></noscript></div>
 
 
 <p>嗯，打完收工，一切搞定，萬事OK</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[透過gem手動安裝anjlab的twitter bootstrap]]></title>
-    <link href="http://hechien.github.com/octopress/blog/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap/"/>
-    <updated>2012-03-13T11:24:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/tou-guo-gemshou-dong-an-zhuang-anjlabde-twitter-bootstrap</id>
-    <content type="html"><![CDATA[<p>因為一些原因要手動自己裝anjlab的anjlab-bootstrap-rails，所以特此記錄一下 &#8230;</p>
-
-<p>先Clone下來</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git clone git://github.com/anjlab/bootstrap-rails.git</span></code></pre></td></tr></table></div></figure>
-
-
-<p>再進去該目錄後執行</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd bootstrap-rails
-</span><span class='line'>rake install</span></code></pre></td></tr></table></div></figure>
-
-
-<p>打完收工</p>
 ]]></content>
   </entry>
   
