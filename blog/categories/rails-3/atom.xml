@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rails 3 | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/rails-3/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-05-21T12:05:31+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 3 與 Subdomain 的初次邂逅]]></title>
+    <link href="http://hechien.github.com/octopress/blog/rails-3-yu-subdomain-de-chu-ci-xie-hou/"/>
+    <updated>2012-05-21T11:58:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/rails-3-yu-subdomain-de-chu-ci-xie-hou</id>
+    <content type="html"><![CDATA[<p>終於成功解決掉這個問題了 ... 在進行這個操作之前請先到 <code>/etc/hosts</code> 內手動新增對應：</p>
+
+<p><code>127.0.0.1 site1.product.local site3.product.local</code></p>
+
+<p>請務必寫上這樣，我一開始寫成 <code>site1.local</code> 時會一直發生找不到根目錄的問題，所以必須這樣寫。</p>
+
+<!-- more -->
+
+
+<p>然後要做的就是在 <code>config/rotues.rb</code> 內修改一下，加上 <code>constraints({subdomain: "site1"}) do ... end</code> 這樣，假設：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site1&quot;</span><span class="p">})</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;resources :users</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site2&quot;</span><span class="p">})</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;resources :users</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>即可</p>
+
+<p>但是必須注意的是，如果你原本是使用Namespace的話，就必須加上 <code>scope module: :xxx</code> 這個Block，如下：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site1&quot;</span><span class="p">})</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;scope module: &quot;site1&quot; do</span>
+</span><span class='line'><span class="sr">  resources :users</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site2&quot;</span><span class="p">})</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;scope module: &quot;site2&quot; do</span>
+</span><span class='line'><span class="sr">  resources :users</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>如此一來，原本是 <code>/site1/users</code> 會變成 <code>site1.product.local/users</code> 並且指定到 <code>app/controllers/site1/users_controller.rb</code> 了。</p>
+]]></content>
+  </entry>
+  
+</feed>

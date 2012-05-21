@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-19T15:43:36+08:00</updated>
+  <updated>2012-05-21T12:05:31+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 3 與 Subdomain 的初次邂逅]]></title>
+    <link href="http://hechien.github.com/octopress/blog/rails-3-yu-subdomain-de-chu-ci-xie-hou/"/>
+    <updated>2012-05-21T11:58:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/rails-3-yu-subdomain-de-chu-ci-xie-hou</id>
+    <content type="html"><![CDATA[<p>終於成功解決掉這個問題了 &#8230; 在進行這個操作之前請先到 <code>/etc/hosts</code> 內手動新增對應：</p>
+
+<p><code>127.0.0.1 site1.product.local site3.product.local</code></p>
+
+<p>請務必寫上這樣，我一開始寫成 <code>site1.local</code> 時會一直發生找不到根目錄的問題，所以必須這樣寫。</p>
+
+<!-- more -->
+
+
+<p>然後要做的就是在 <code>config/rotues.rb</code> 內修改一下，加上 <code>constraints({subdomain: "site1"}) do ... end</code> 這樣，假設：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site1&quot;</span><span class="p">})</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">resources</span> <span class="ss">:users</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site2&quot;</span><span class="p">})</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">resources</span> <span class="ss">:users</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>即可</p>
+
+<p>但是必須注意的是，如果你原本是使用Namespace的話，就必須加上 <code>scope module: :xxx</code> 這個Block，如下：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site1&quot;</span><span class="p">})</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">scope</span> <span class="n">module</span><span class="p">:</span> <span class="s2">&quot;site1&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">resources</span> <span class="ss">:users</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site2&quot;</span><span class="p">})</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">scope</span> <span class="n">module</span><span class="p">:</span> <span class="s2">&quot;site2&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">resources</span> <span class="ss">:users</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如此一來，原本是 <code>/site1/users</code> 會變成 <code>site1.product.local/users</code> 並且指定到 <code>app/controllers/site1/users_controller.rb</code> 了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[為什麼我用Mac？]]></title>
@@ -1025,38 +1091,6 @@ end tell</code></pre></noscript></div>
 
 <p>在<a href="http://rails-bestpractices.com">http://rails-bestpractices.com</a>中搜尋一下就可以找到相關的範例解法
 感謝<code>ihower</code>大大的<code>model association</code>啊XD!!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Paperclip 上傳驗證]]></title>
-    <link href="http://hechien.github.com/octopress/blog/paperclip-shang-chuan-yan-zheng/"/>
-    <updated>2012-03-23T11:44:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/paperclip-shang-chuan-yan-zheng</id>
-    <content type="html"><![CDATA[<p>因為一些原因，需要驗證使用者是否有上傳照片，若有上傳照片才需要驗證檔案大小、檔案格式</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># model.rb</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">validates_attachment_size</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">less_than</span><span class="p">:</span> <span class="mi">300</span><span class="o">.</span><span class="n">kilobytes</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span><span class="p">{</span><span class="o">|</span><span class="n">imports</span><span class="o">|</span> <span class="n">imports</span><span class="o">.</span><span class="n">avatar</span><span class="o">.</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">present?</span><span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">validates_attachment_content_type</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">content_type</span><span class="p">:</span> <span class="o">[</span><span class="s2">&quot;image/png&quot;</span><span class="p">,</span> <span class="s2">&quot;image/jpeg&quot;</span><span class="p">,</span> <span class="s2">&quot;image/jpg&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">:</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span><span class="p">{</span><span class="o">|</span><span class="n">imports</span><span class="o">|</span> <span class="n">imports</span><span class="o">.</span><span class="n">avatar</span><span class="o">.</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">present?</span><span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
