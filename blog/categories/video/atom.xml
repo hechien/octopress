@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: css3 | 赫謙小便籤]]></title>
-  <link href="http://hechien.github.com/octopress/blog/categories/css3/atom.xml" rel="self"/>
+  <title><![CDATA[Category: video | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/video/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
   <updated>2012-05-25T10:32:39+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
@@ -56,17 +56,6 @@
 </p>
 
 <p>先這樣吧XDDD</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[被Media Queries婊了一下]]></title>
-    <link href="http://hechien.github.com/octopress/blog/bei-media-queriesbiao-liao-%5B%3F%5D-xia/"/>
-    <updated>2012-04-05T18:28:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/bei-media-queriesbiao-liao-[?]-xia</id>
-    <content type="html"><![CDATA[<p>清明前一天，行銷同事告訴我某專案網站無法用IE 8開啟，到清明後一天才開始修正。一開始，找了老半天就是找不到任何錯誤，想說會不會是HTML 5的不支援問題導致的，可是開其他專案網站卻又都正常，後來發現到CSS中有用到Media Queries的部分，所以我拿掉之後IE 8就可以用了！</p>
-
-<p>特此記錄一下T<sup>T"</sup></p>
 ]]></content>
   </entry>
   

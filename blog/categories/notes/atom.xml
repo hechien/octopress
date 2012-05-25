@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-21T12:05:31+08:00</updated>
+  <updated>2012-05-25T10:32:39+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HTML5 Video 標籤初探]]></title>
+    <link href="http://hechien.github.com/octopress/blog/html5-video-transform-first-view/"/>
+    <updated>2012-05-25T10:29:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/html5-video-transform-first-view</id>
+    <content type="html"><![CDATA[<p><div><script src='https://gist.github.com/2785414.js?file='></script>
+<noscript><pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;script src=&quot;http://code.jquery.com/jquery-1.7.2.min.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+      video{
+        /*-webkit-transform: rotate3d(3, 4, 3, 45deg) sca;*/
+        /*-webkit-transform: rotate3d(40, 1, 30, 45deg);*/
+        margin: auto auto;
+        margin-top:200px;
+      }
+    &lt;/style&gt;
+    &lt;script&gt;
+      // References:
+      //   http://www.eleqtriq.com/2010/05/understanding-css-3d-transforms/
+      //   http://www.w3schools.com/css3/css3_3dtransforms.asp
+      $(function(){
+        var index = 0;
+        setInterval(function(){
+          if((index === 9) || (index === 27)) index+=1;
+          if (index === 37) index = 1;
+          $('video').css({
+            '-webkit-transform': 'rotateX('+(index*10)+'deg) rotateY('+(index*10)+'deg) rotateZ('+(index*10)+'deg)'
+          });
+          index++;
+        }, 100);
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;video class=&quot;persistentNativePlayer nativeEmbedPlayerPid&quot; poster=&quot;http://cdnbakmi.kaltura.com/p/243342/sp/24334200/thumbnail/entry_id/0_ntovmku5/version/100004/height/480&quot; id=&quot;pid_kaltura-video&quot; style=&quot;display: block; width: 480px; height: 271px; top: 0px; &quot; kwidgetid=&quot;_243342&quot; kuiconfid=&quot;5349042&quot; kentryid=&quot;0_ntovmku5&quot; src=&quot;http://cdnapi.kaltura.com/p/243342/sp/24334200/playManifest/entryId/0_ntovmku5/flavorIds/0_nvp2quz3,0_o0bikcqg/format/applehttp/protocol/http/a.m3u8?ks=NmRmYmMxOWIzNWUzMWE3Mzg1MmU5MzhjY2YzNjg2ZmQ3OGM2YTNkYXwyNDMzNDI7MjQzMzQyOzEzMzc5OTYwMTQ7MDsxMzM3OTA5NjE0LjIxNjY7MDt2aWV3Oio7Ow==&amp;amp;referrer=aHR0cDovL2h0bWw1dmlkZW8ub3JnLw==&quot; autoplay=&quot;autoplay&quot; loop=&quot;-1&quot;&gt;&lt;/video&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></noscript></div>
+</p>
+
+<p>先這樣吧XDDD</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails 3 與 Subdomain 的初次邂逅]]></title>
@@ -244,31 +290,6 @@ area@ | Resize image to have specified area in pixels. Aspect ratio is preserved
 <p>大致上就是這樣吧。</p>
 
 <p><a href="http://www.imagemagick.org/script/command-line-processing.php?ImageMagick=q63ko1qv7bq52429iuqfdgp4v2#geometry">參考網址</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OmniAuth + Devise + OpenID]]></title>
-    <link href="http://hechien.github.com/octopress/blog/omniauth-plus-devise-plus-openid/"/>
-    <updated>2012-05-08T11:46:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/omniauth-plus-devise-plus-openid</id>
-    <content type="html"><![CDATA[<p>最近內部討論結果覺得有可能需要Support Open ID的登入機制，因此就去survey了一下Devise擴展Open ID的方式。因為Devise本身支援OmniAuth，所以就直接以<code>Devise OmniAuth OpenID</code>的方式搜尋了一下，便找到這篇：<a href="http://blog.xdite.net/posts/2011/12/05/omniauth-clean-auth-provider-4/">http://blog.xdite.net/posts/2011/12/05/omniauth-clean-auth-provider-4/</a></p>
-
-<p>其實這篇照做就可以了，只不過因為原始碼是從<a href="http://ruby-taiwan.org">http://ruby-taiwan.org</a>那邊來的，所以有一些code是不能用的 ... 需要自己稍微做調整一下</p>
-
-<p>這個實作版本是Rails 3.2.3、Devise 2.0.4、OmniAuth 1.0.3</p>
-
-<p>裡面的Code在<code>omniauth_callbacks.rb</code>中第9行左右有個問題，User必須要用includes把authorizations給引入進來，不然會噴 ... XD</p>
-
-<p>可能是因為原本的Code用MongoID當做Data source的關係，所以原本的Code內並沒有寫includes這一塊吧 ...</p>
-
-<p>然後要記得在<code>user.rb</code>實作<code>bind_service</code>，不然原本的code去bind使用者的部份會有問題 ...</p>
-
-<p>要把<code>omniauth_callbacks.rb</code>放在<code>app/models/user</code>底下、把<code>omniauth_callbacks_controller.rb</code>放在<code>app/controllers/users</code>底下，總之在model的資料夾是<code>user</code>而controller的資料夾是<code>users</code>就對了。</p>
-
-<p>大致上就這樣。</p>
-
-<p>喔對，很重要的一點就是 ... 現在網路上很多範例都會叫你去<code>config/initializers/omniauth.rb</code>內設定provider，這樣做的話一定會噴掉 ... 我在這邊花很多時間才搞定囧，請記住，<strong>不必</strong>寫在這個地方！</p>
 ]]></content>
   </entry>
   
