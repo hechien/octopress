@@ -3,11 +3,11 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>jQuery toggleClass Dynamic Background - 赫謙小便籤</title>
+    <title>用jQuery的toggleClass來動態切換背景圖片 - 赫謙小便籤</title>
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="jQuery toggleClass Dynamic Background 公司的某個開發中網站要實作一個登入按鈕會閃爍的功能，這個按鈕有兩張圖片(我知道CSS Sprite，但即便我有Compass我也懶得弄 &#8230;)來做相互切換。 原本的作法我是用一個index去當counter用， &hellip;">
+    <meta name="description" content="用jQuery的toggleClass來動態切換背景圖片 公司的某個開發中網站要實作一個登入按鈕會閃爍的功能，這個按鈕有兩張圖片(我知道CSS Sprite，但即便我有Compass我也懶得弄 &#8230;)來做相互切換。 原本的作法我是用一個index去當counter用， &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,7 +74,7 @@
 </script>
 
 	<div id="content" class="inner"><article class="post">
-    <h1 class="title">jQuery toggleClass Dynamic Background</h1>
+    <h1 class="title">用jQuery的toggleClass來動態切換背景圖片</h1>
     <div class="entry"><p>公司的某個開發中網站要實作一個登入按鈕會閃爍的功能，這個按鈕有兩張圖片(我知道CSS Sprite，但即便我有Compass我也懶得弄 &#8230;)來做相互切換。</p>
 
 <p>原本的作法我是用一個index去當counter用，然後用<code>setInterval</code>的方式每秒用<code>$(obj).css({background: 'url()'})</code>的方式，但是這樣有一個問題就是會每次切換的時候都跟Server要圖片，這很麻煩真的 &#8230; 所以我就改成用指定class切換Background就好了。</p>
