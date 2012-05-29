@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-25T17:14:01+08:00</updated>
+  <updated>2012-05-29T18:27:16+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[jQuery toggleClass Dynamic Background]]></title>
+    <link href="http://hechien.github.com/octopress/blog/jquery-toggleclass-dynamic-background/"/>
+    <updated>2012-05-29T18:13:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/jquery-toggleclass-dynamic-background</id>
+    <content type="html"><![CDATA[<p>公司的某個開發中網站要實作一個登入按鈕會閃爍的功能，這個按鈕有兩張圖片(我知道CSS Sprite，但即便我有Compass我也懶得弄 &#8230;)來做相互切換。</p>
+
+<p>原本的作法我是用一個index去當counter用，然後用<code>setInterval</code>的方式每秒用<code>$(obj).css({background: 'url()'})</code>的方式，但是這樣有一個問題就是會每次切換的時候都跟Server要圖片，這很麻煩真的 &#8230; 所以我就改成用指定class切換Background就好了。</p>
+
+<!-- more -->
+
+
+
+
+<figure class='code'><figcaption><span>application.css </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'>  <span class="nc">.login</span><span class="p">{</span>
+</span><span class='line'>    <span class="na">background-image</span><span class="o">:</span> <span class="sx">url(/assets/common/login_2.png)</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">&amp;</span><span class="nc">.star</span><span class="p">{</span>
+</span><span class='line'>      <span class="na">background-image</span><span class="o">:</span> <span class="sx">url(/assets/common/login_1.png)</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在登入的部份寫成這樣，然後Script寫成：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'>  <span class="nx">setInterval</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.login&#39;</span><span class="p">).</span><span class="nx">toggleClass</span><span class="p">(</span><span class="s1">&#39;star&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">,</span><span class="mi">1000</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>是的，搞定。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[HTML5 Video 標籤初探]]></title>
@@ -688,43 +735,6 @@ end tell</code></pre></noscript></div>
 <p><code>has_attached_file :image, {styles: {large: "", medium: "", thumb: ""}, default_url: "/path/to/missing/image/missing_:style.jpg"}</code></p>
 
 <p>如此一來，如果<code>medium</code>沒有東西的話，它會自動帶出<code>missing_medium.jpg</code>來。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Nginx Tunning]]></title>
-    <link href="http://hechien.github.com/octopress/blog/nginx-tunning/"/>
-    <updated>2012-03-28T15:32:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/nginx-tunning</id>
-    <content type="html"><![CDATA[<p>準備讓公司的系統上線了，在調整Nginx的效能 &#8230;</p>
-
-<p>參考這篇 <a href="http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13">http://v1nc3ntlaw.github.com/rubyconf-tw-2011-rails-sa/#13</a> 然後看了一下，看到<code>worker_processes 16;</code>感覺好像太高，畢竟我們公司的Server才1G RAM &#8230; 怕直接死掉XD</p>
-
-<p>不過<code>nofile</code>的值我是設定<code>32768</code>，然後根據這篇 <a href="http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html">http://www.cnblogs.com/skyaspnet/archive/2010/09/02/1815749.html</a> 設定了 <code>fs.file-max</code> 的值到<code>2390251</code></p>
-
-<p><code>worker_connections</code>的部份則是參考這篇 <a href="http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html">http://hi.baidu.com/ugo5/blog/item/f4fb6037322059aed1a2d31b.html</a></p>
-
-<p>不過若是可以，這篇也要參考一下 <a href="http://sudone.com/nginx/nginx_worker_processes.html">http://sudone.com/nginx/nginx_worker_processes.html</a></p>
-
-<p>最大連接數的計算公式是：<code>worker_processes * worker_connections / 4</code>，而worker_connections最好超過9000的話，我是直接上到10240，所以我的設定檔大概長這樣：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>worker_processes 8;
-</span><span class='line'>worker_rlimit_nofile 32768;
-</span><span class='line'>
-</span><span class='line'>events {
-</span><span class='line'>  worker_connections 10240;
-</span><span class='line'>  use epoll;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>上網查了一下，<code>epoll</code>似乎是Linux 2.6核心加入的功能，效能似乎不錯便加上去了。</p>
 ]]></content>
   </entry>
   

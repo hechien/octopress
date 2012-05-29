@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: toggleClass | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/toggleclass/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-05-29T18:27:16+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[jQuery toggleClass Dynamic Background]]></title>
+    <link href="http://hechien.github.com/octopress/blog/jquery-toggleclass-dynamic-background/"/>
+    <updated>2012-05-29T18:13:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/jquery-toggleclass-dynamic-background</id>
+    <content type="html"><![CDATA[<p>公司的某個開發中網站要實作一個登入按鈕會閃爍的功能，這個按鈕有兩張圖片(我知道CSS Sprite，但即便我有Compass我也懶得弄 ...)來做相互切換。</p>
+
+<p>原本的作法我是用一個index去當counter用，然後用<code>setInterval</code>的方式每秒用<code>$(obj).css({background: 'url()'})</code>的方式，但是這樣有一個問題就是會每次切換的時候都跟Server要圖片，這很麻煩真的 ... 所以我就改成用指定class切換Background就好了。</p>
+
+<!-- more -->
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>application.css </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'>  <span class="nc">.login</span><span class="p">{</span><span class="na">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">&lt;pre&gt;&lt;code&gt;background-image</span><span class="o">:</span> <span class="sx">url(/assets/common/login_2.png)</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">&amp;</span><span class="nt">amp</span><span class="o">;</span><span class="nc">.star</span><span class="p">{</span>
+</span><span class='line'>  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url(/assets/common/login_1.png)</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="nt">code</span><span class="o">&gt;&lt;/</span><span class="nt">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>在登入的部份寫成這樣，然後Script寫成：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'>  <span class="nx">setInterval</span> <span class="o">-&gt;&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.login&#39;</span><span class="p">).</span><span class="nx">toggleClass</span><span class="p">(</span><span class="s1">&#39;star&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">,</span><span class="mi">1000</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>是的，搞定。</p>
+]]></content>
+  </entry>
+  
+</feed>
