@@ -7,7 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="用jQuery的toggleClass來動態切換背景圖片 公司的某個開發中網站要實作一個登入按鈕會閃爍的功能，這個按鈕有兩張圖片(我知道CSS Sprite，但即便我有Compass我也懶得弄 &#8230;)來做相互切換。 原本的作法我是用一個index去當counter用， &hellip;">
+    <meta name="description" content="用Subdomain時自定Devise的Mailer Template 這問題其實也是忽然間被雷到 &#8230; 在這樣做之前要先去修改 config/initializers/devise.rb，設定自定的Mailer，然後我們還要自己手動產生一個Mailer。 繼續閱讀 &rarr; &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,6 +74,43 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/custom-devise-mailer-template-with-subdomain/">用Subdomain時自定Devise的Mailer Template</a></h1>
+    <div class="entry">
+        <p>這問題其實也是忽然間被雷到 &#8230; 在這樣做之前要先去修改 <code>config/initializers/devise.rb</code>，設定自定的Mailer，然後我們還要自己手動產生一個Mailer。</p>
+
+
+        
+        <a href="/octopress/blog/custom-devise-mailer-template-with-subdomain/" class="more-link">繼續閱讀 &rarr;</a>
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-05T17:03:00+08:00" pubdate data-updated="true">Jun 5<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/devise/'>devise</a>, <a class='category' href='/octopress/blog/categories/mailer-template/'>mailer template</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -542,96 +579,6 @@
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/murmur/'>murmur</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/scssxiao-ji-qiao-%3Ageng-jie-gou-hua-de-xie-margin%2C-padding%2C-font-dot-etc/">SCSS小技巧：更結構化的寫margin、padding、font..etc</a></h1>
-    <div class="entry">
-        <p>之前忘記在哪邊看到一篇文章，裡面寫了一個SCSS(SASS)的小技巧，可是我當時沒有辦法把文章给加到閱讀列表中，只好憑印象來測，最後終於測出來了。</p>
-
-<p>我們常常可能寫以下的CSS code</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">margin-top</span><span class="o">:</span> <span class="nt">30px</span><span class="o">;</span>
-</span><span class='line'><span class="nt">margin-right</span><span class="o">:</span> <span class="nt">10px</span><span class="o">;</span>
-</span><span class='line'><span class="nt">font-size</span><span class="o">:</span> <span class="nt">24pt</span><span class="o">;</span>
-</span><span class='line'><span class="nt">font-family</span><span class="o">:</span> <span class="nt">Arial</span><span class="o">;</span>
-</span><span class='line'><span class="nt">padding-top</span><span class="o">:</span> <span class="nt">20px</span><span class="o">;</span>
-</span><span class='line'><span class="nt">padding-right</span><span class="o">:</span> <span class="nt">15px</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>但其實這樣寫挺雜亂的，有了SCSS我們就應該要放下屠刀立地成佛啊！(誤</p>
-
-<p>請改成以下寫法(與上面做比對)：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="na">margin</span><span class="o">:</span><span class="p">{</span>
-</span><span class='line'>  <span class="na">top</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
-</span><span class='line'>  <span class="na">right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">font</span><span class="o">:</span><span class="p">{</span>
-</span><span class='line'>  <span class="na">size</span><span class="o">:</span> <span class="mi">24</span><span class="kt">pt</span><span class="p">;</span>
-</span><span class='line'>  <span class="na">family</span><span class="o">:</span> <span class="n">Arial</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">padding</span><span class="o">:</span><span class="p">{</span>
-</span><span class='line'>  <span class="na">top</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
-</span><span class='line'>  <span class="na">right</span><span class="o">:</span> <span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>怎麼樣？是不是很簡潔整齊呢？</p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-02T17:08:00+08:00" pubdate data-updated="true">May 2<span>nd</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/scss/'>scss</a>, <a class='category' href='/octopress/blog/categories/tricks/'>tricks</a>
   
 </div>
 

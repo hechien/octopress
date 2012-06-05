@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-31T13:23:28+08:00</updated>
+  <updated>2012-06-05T18:33:45+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用Subdomain時自定Devise的Mailer Template]]></title>
+    <link href="http://hechien.github.com/octopress/blog/custom-devise-mailer-template-with-subdomain/"/>
+    <updated>2012-06-05T17:03:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/custom-devise-mailer-template-with-subdomain</id>
+    <content type="html"><![CDATA[<p>這問題其實也是忽然間被雷到 &#8230; 在這樣做之前要先去修改 <code>config/initializers/devise.rb</code>，設定自定的Mailer，然後我們還要自己手動產生一個Mailer。</p>
+
+<!-- more -->
+
+
+<p>我原本的作法是用Namespace來寫整個站，所以View的分類就是已經有分好資料夾了，我直接貼code可以嗎XD</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="sx">%w&#39;confirmation_instructions reset_password_instructions unlock_instructions&#39;</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">method</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">define_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">method</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">record</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">send_mail_with_record_and_action</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="nb">method</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">send_mail_with_record_and_action</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">initialize_from_record</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">headers</span> <span class="o">=</span> <span class="n">headers_for</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">headers</span><span class="o">[</span><span class="ss">:template_path</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">record</span><span class="o">.</span><span class="n">from_app</span><span class="si">}</span><span class="s2">/mailer&quot;</span>
+</span><span class='line'>    <span class="n">mail</span> <span class="n">headers</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>由於devise有<code>confirmation_instructions</code>、<code>reset_password_instructions</code>、<code>unlock_instructions</code>三個，而我只是要導到不同的app目錄去，所以就這樣子refactor，讓headers中的<code>template_path</code>可以是自訂的目錄。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用jQuery的toggleClass來動態切換背景圖片]]></title>
@@ -720,21 +767,6 @@ end tell</code></pre></noscript></div>
     <content type="html"><![CDATA[<p>清明前一天，行銷同事告訴我某專案網站無法用IE 8開啟，到清明後一天才開始修正。一開始，找了老半天就是找不到任何錯誤，想說會不會是HTML 5的不支援問題導致的，可是開其他專案網站卻又都正常，後來發現到CSS中有用到Media Queries的部分，所以我拿掉之後IE 8就可以用了！</p>
 
 <p>特此記錄一下T<sup>T&#8221;</sup></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Paperclip的default_url style]]></title>
-    <link href="http://hechien.github.com/octopress/blog/paperclipde-default-url-style/"/>
-    <updated>2012-03-29T15:59:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/paperclipde-default-url-style</id>
-    <content type="html"><![CDATA[<p>用Paperclip的話一定會有用到特定尺寸的，可是當特定尺寸沒有上傳圖片的話要顯示特定尺寸的預設圖片該怎麼搞？</p>
-
-<p>嗯，我現在有三種尺寸：<code>large, medium, thumb</code>，但我只要在<code>default_url</code>設定時加上<code>:style</code>就好，例如：</p>
-
-<p><code>has_attached_file :image, {styles: {large: "", medium: "", thumb: ""}, default_url: "/path/to/missing/image/missing_:style.jpg"}</code></p>
-
-<p>如此一來，如果<code>medium</code>沒有東西的話，它會自動帶出<code>missing_medium.jpg</code>來。</p>
 ]]></content>
   </entry>
   

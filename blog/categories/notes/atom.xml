@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-31T13:23:28+08:00</updated>
+  <updated>2012-06-05T18:33:45+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用Subdomain時自定Devise的Mailer Template]]></title>
+    <link href="http://hechien.github.com/octopress/blog/custom-devise-mailer-template-with-subdomain/"/>
+    <updated>2012-06-05T17:03:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/custom-devise-mailer-template-with-subdomain</id>
+    <content type="html"><![CDATA[<p>這問題其實也是忽然間被雷到 ... 在這樣做之前要先去修改 <code>config/initializers/devise.rb</code>，設定自定的Mailer，然後我們還要自己手動產生一個Mailer。</p>
+
+<!-- more -->
+
+
+<p>我原本的作法是用Namespace來寫整個站，所以View的分類就是已經有分好資料夾了，我直接貼code可以嗎XD</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="sx">%w&#39;confirmation_instructions reset_password_instructions unlock_instructions&#39;</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">method</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;define_method &quot;</span><span class="si">#{</span><span class="nb">method</span><span class="si">}</span><span class="sr">&quot; do |record|</span>
+</span><span class='line'><span class="sr">  send_mail_with_record_and_action(record, method.to_s)</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="kp">private</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def send_mail_with_record_and_action(record, action)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">initialize_from_record</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</span><span class='line'><span class="n">headers</span> <span class="o">=</span> <span class="n">headers_for</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
+</span><span class='line'><span class="n">headers</span><span class="o">[</span><span class="ss">:template_path</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">record</span><span class="o">.</span><span class="n">from_app</span><span class="si">}</span><span class="s2">/mailer&quot;</span>
+</span><span class='line'><span class="n">mail</span> <span class="n">headers</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>由於devise有<code>confirmation_instructions</code>、<code>reset_password_instructions</code>、<code>unlock_instructions</code>三個，而我只是要導到不同的app目錄去，所以就這樣子refactor，讓headers中的<code>template_path</code>可以是自訂的目錄。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用jQuery的toggleClass來動態切換背景圖片]]></title>
@@ -273,47 +331,6 @@
 <p>Mac OS X在Leopard之後也內建了Ruby，甚至直接包了一個RubyCocoa.framework可以用(但這部份我沒有研究)。有很多好用的工具也都是在Mac上面有，像是Textmate(不過我最近愛上Sublime Text 2，這個則是Windows、Linux都有)，對於一個網站開發者、網頁設計師而言，真的可以從中學到很多設計的技巧、用到很多很不錯的設計工具。</p>
 
 <p>為什麼我用Mac？因為近朱者赤近墨者黑，要不然孟母也不用三遷了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[2012年的目標]]></title>
-    <link href="http://hechien.github.com/octopress/blog/2012nian-de-mu-biao/"/>
-    <updated>2012-05-12T11:42:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/2012nian-de-mu-biao</id>
-    <content type="html"><![CDATA[<p>希望自己在2012年可以做好這些事情</p>
-
-<p>討論內容在：<a href="https://www.facebook.com/hechien/posts/431153790229954">https://www.facebook.com/hechien/posts/431153790229954</a></p>
-
-<h2>一定要做的事</h2>
-
-<ol>
-<li>每天固定抄寫幾檔的最高、最低、開盤、收盤、昨收、交易量</li>
-<li>三年級下學期搞定專題 (不含 UI/UE)</li>
-<li>暑假把專題的UI/UE調好</li>
-<li>耶誕節前解決專題並且正式開始測試</li>
-<li>想好除資訊業外其他可以發展的領域</li>
-<li>撰寫好一本網頁設計的書</li>
-<li>撰寫好一本Ruby on Rails的書</li>
-<li>把<code>CoffeeScript</code>、<code>SCSS</code>、<code>Compass</code>、<code>Middleman</code>與CSS Frameworks練熟</li>
-<li>六月開始至少每個月三部Mac教學影片、一部Mac Podcast教學、一篇Mac教學文章</li>
-<li>至少今年辦兩場Mac聚會 (大小不拘)</li>
-</ol>
-
-
-<h2>逼自己去嘗試</h2>
-
-<ol>
-<li>每天誦三次心經</li>
-<li>每天讀ㄧ篇道德經</li>
-<li>每天一篇Rework的內容</li>
-<li>每個禮拜一篇以上與工作或技術無關的文章</li>
-<li>重新學好奇門遁甲與易經</li>
-</ol>
-
-
-<p>希望自己能夠好好的實踐這些事情。
-今天是2012/05/12，加油。</p>
 ]]></content>
   </entry>
   

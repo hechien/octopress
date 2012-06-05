@@ -7,11 +7,12 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="用CoffeeScript實作Array#list 在寫專案的過程當中想要操作Array，可是在JavaScript中沒有[1, 2, 3].last()這種東西可以用，只好自己擴充啦～ 1
+    <meta name="description" content="SCSS小技巧：更結構化的寫margin、padding、font..etc 之前忘記在哪邊看到一篇文章，裡面寫了一個SCSS(SASS)的小技巧，可是我當時沒有辦法把文章给加到閱讀列表中，只好憑印象來測，最後終於測出來了。 我們常常可能寫以下的CSS code 1
 2
-Array::last = -&gt; @[@.length - 1] 這樣就會回傳 1
-2
-3 &hellip;">
+3
+4
+5
+6 &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -78,6 +79,96 @@ Array::last = -&gt; @[@.length - 1] 這樣就會回傳 1
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/scssxiao-ji-qiao-%3Ageng-jie-gou-hua-de-xie-margin%2C-padding%2C-font-dot-etc/">SCSS小技巧：更結構化的寫margin、padding、font..etc</a></h1>
+    <div class="entry">
+        <p>之前忘記在哪邊看到一篇文章，裡面寫了一個SCSS(SASS)的小技巧，可是我當時沒有辦法把文章给加到閱讀列表中，只好憑印象來測，最後終於測出來了。</p>
+
+<p>我們常常可能寫以下的CSS code</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">margin-top</span><span class="o">:</span> <span class="nt">30px</span><span class="o">;</span>
+</span><span class='line'><span class="nt">margin-right</span><span class="o">:</span> <span class="nt">10px</span><span class="o">;</span>
+</span><span class='line'><span class="nt">font-size</span><span class="o">:</span> <span class="nt">24pt</span><span class="o">;</span>
+</span><span class='line'><span class="nt">font-family</span><span class="o">:</span> <span class="nt">Arial</span><span class="o">;</span>
+</span><span class='line'><span class="nt">padding-top</span><span class="o">:</span> <span class="nt">20px</span><span class="o">;</span>
+</span><span class='line'><span class="nt">padding-right</span><span class="o">:</span> <span class="nt">15px</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但其實這樣寫挺雜亂的，有了SCSS我們就應該要放下屠刀立地成佛啊！(誤</p>
+
+<p>請改成以下寫法(與上面做比對)：</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="na">margin</span><span class="o">:</span><span class="p">{</span>
+</span><span class='line'>  <span class="na">top</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>  <span class="na">right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">font</span><span class="o">:</span><span class="p">{</span>
+</span><span class='line'>  <span class="na">size</span><span class="o">:</span> <span class="mi">24</span><span class="kt">pt</span><span class="p">;</span>
+</span><span class='line'>  <span class="na">family</span><span class="o">:</span> <span class="n">Arial</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">padding</span><span class="o">:</span><span class="p">{</span>
+</span><span class='line'>  <span class="na">top</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'>  <span class="na">right</span><span class="o">:</span> <span class="mi">15</span><span class="kt">px</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>怎麼樣？是不是很簡潔整齊呢？</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-02T17:08:00+08:00" pubdate data-updated="true">May 2<span>nd</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/scss/'>scss</a>, <a class='category' href='/octopress/blog/categories/tricks/'>tricks</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -492,48 +583,6 @@ end tell</code></pre></noscript></div>
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/css3/'>css3</a>, <a class='category' href='/octopress/blog/categories/media-queries/'>media queries</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/paperclipde-default-url-style/">Paperclip的default_url Style</a></h1>
-    <div class="entry">
-        <p>用Paperclip的話一定會有用到特定尺寸的，可是當特定尺寸沒有上傳圖片的話要顯示特定尺寸的預設圖片該怎麼搞？</p>
-
-<p>嗯，我現在有三種尺寸：<code>large, medium, thumb</code>，但我只要在<code>default_url</code>設定時加上<code>:style</code>就好，例如：</p>
-
-<p><code>has_attached_file :image, {styles: {large: "", medium: "", thumb: ""}, default_url: "/path/to/missing/image/missing_:style.jpg"}</code></p>
-
-<p>如此一來，如果<code>medium</code>沒有東西的話，它會自動帶出<code>missing_medium.jpg</code>來。</p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-29T15:59:00+08:00" pubdate data-updated="true">Mar 29<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/paperclip/'>paperclip</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
   
 </div>
 

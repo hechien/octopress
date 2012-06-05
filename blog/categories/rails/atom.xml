@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-05-31T13:23:28+08:00</updated>
+  <updated>2012-06-05T18:33:45+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用Subdomain時自定Devise的Mailer Template]]></title>
+    <link href="http://hechien.github.com/octopress/blog/custom-devise-mailer-template-with-subdomain/"/>
+    <updated>2012-06-05T17:03:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/custom-devise-mailer-template-with-subdomain</id>
+    <content type="html"><![CDATA[<p>這問題其實也是忽然間被雷到 ... 在這樣做之前要先去修改 <code>config/initializers/devise.rb</code>，設定自定的Mailer，然後我們還要自己手動產生一個Mailer。</p>
+
+<!-- more -->
+
+
+<p>我原本的作法是用Namespace來寫整個站，所以View的分類就是已經有分好資料夾了，我直接貼code可以嗎XD</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="sx">%w&#39;confirmation_instructions reset_password_instructions unlock_instructions&#39;</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">method</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;define_method &quot;</span><span class="si">#{</span><span class="nb">method</span><span class="si">}</span><span class="sr">&quot; do |record|</span>
+</span><span class='line'><span class="sr">  send_mail_with_record_and_action(record, method.to_s)</span>
+</span><span class='line'><span class="sr">end</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="kp">private</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  def send_mail_with_record_and_action(record, action)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">initialize_from_record</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</span><span class='line'><span class="n">headers</span> <span class="o">=</span> <span class="n">headers_for</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
+</span><span class='line'><span class="n">headers</span><span class="o">[</span><span class="ss">:template_path</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">record</span><span class="o">.</span><span class="n">from_app</span><span class="si">}</span><span class="s2">/mailer&quot;</span>
+</span><span class='line'><span class="n">mail</span> <span class="n">headers</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>由於devise有<code>confirmation_instructions</code>、<code>reset_password_instructions</code>、<code>unlock_instructions</code>三個，而我只是要導到不同的app目錄去，所以就這樣子refactor，讓headers中的<code>template_path</code>可以是自訂的目錄。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OmniAuth + Devise + OpenID]]></title>
@@ -469,45 +527,6 @@
 
 <p>在<a href="http://rails-bestpractices.com">http://rails-bestpractices.com</a>中搜尋一下就可以找到相關的範例解法
 感謝<code>ihower</code>大大的<code>model association</code>啊XD!!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Paperclip 上傳驗證]]></title>
-    <link href="http://hechien.github.com/octopress/blog/paperclip-shang-chuan-yan-zheng/"/>
-    <updated>2012-03-23T11:44:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/paperclip-shang-chuan-yan-zheng</id>
-    <content type="html"><![CDATA[<p>因為一些原因，需要驗證使用者是否有上傳照片，若有上傳照片才需要驗證檔案大小、檔案格式</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;model.rb&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">validates_attachment_size</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">less_than</span><span class="p">:</span> <span class="mi">300</span><span class="o">.</span><span class="n">kilobytes</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span><span class="p">{</span><span class="o">|</span><span class="n">imports</span><span class="o">|</span> <span class="n">imports</span><span class="o">.</span><span class="n">avatar</span><span class="o">.</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">present?</span><span class="p">}</span>
-</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;validates_attachment_content_type :avatar, {</span>
-</span><span class='line'><span class="sr">  content_type: [&quot;image/</span><span class="n">png</span><span class="s2">&quot;, &quot;</span><span class="n">image</span><span class="o">/</span><span class="n">jpeg</span><span class="s2">&quot;, &quot;</span><span class="n">image</span><span class="o">/</span><span class="n">jpg</span><span class="s2">&quot;],</span>
-</span><span class='line'><span class="s2">  if: Proc.new{|imports| imports.avatar.uploaded_file.present?}</span>
-</span><span class='line'><span class="s2">}&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s2">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   
