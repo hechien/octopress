@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-06-05T18:33:45+08:00</updated>
+  <updated>2012-06-18T10:29:42+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,97 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to implement drag and drop upload with Rails and Paperclip]]></title>
+    <link href="http://hechien.github.com/octopress/blog/how-to-implement-drag-and-drop-upload-with-rails-and-paperclip/"/>
+    <updated>2012-06-18T10:28:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/how-to-implement-drag-and-drop-upload-with-rails-and-paperclip</id>
+    <content type="html"><![CDATA[<p>終於搞出來了 &#8230; 我的媽呀，基礎知識全部忘掉就是了 &#8230; 丟臉</p>
+
+<p>Okay &#8230; 記錄一下實作，不過怎樣用Rails建立Paperclip上傳機制這部份我就不多說了</p>
+
+<p>主要是這段JavaScript code</p>
+
+<div><script src='https://gist.github.com/2937600.js?file=uploader.js'></script>
+<noscript><pre><code>      $(document).bind('drop', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        upload(e.originalEvent.dataTransfer.files);
+      }).bind('dragenter dragover', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+      });
+
+      var upload = function(files){
+        if(typeof(FormData) != 'undefined'){
+          var form = new FormData();
+          form.append('path', '/');
+          for(i = 0; i &lt; files.length; i++){
+            form.append('assets[][asset]', files[i]);
+          }
+
+          $.ajax({
+            url: '/assets/upload_by_drag_and_drop',
+            data: form,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function(data){
+              console.log(data);
+            }
+          });
+        }
+      }</code></pre></noscript></div>
+
+
+<p>還有這段Rails code</p>
+
+<div><script src='https://gist.github.com/2937600.js?file=upload_by_drag_and_drop.rb'></script>
+<noscript><pre><code>assets = params[:assets]
+assets.each do |asset|
+  Asset.create(asset)
+end</code></pre></noscript></div>
+
+
+<p>是的，就只有這樣，哈</p>
+
+<p>正在想著把這個部分再用jQuery封裝得好看一點 &#8230;</p>
+
+<p>其實很簡單，就是JavaScript吃到drop event的時候，把收集到的檔案資訊整理起來，用FormData封裝，然後送到後台去這樣。</p>
+
+<p>因為用到XMLHttpRequest，所以乾脆用jQuery來跑好了</p>
+
+<p>註：drop事件、FormData似乎都是HTML 5後才有support的功能，而且不是每個Browser都有Support，所以記得還是得實作傳統的上傳機制 &#8230;</p>
+
+<p>UPDATED: 2012/06/16 02:25 &#8211;</p>
+
+<p>已經更改成用jQuery的ajax來上傳了，這樣就省得再用XMLHttpRequest了</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在Rails中如何重新設定counter_cache的值？]]></title>
+    <link href="http://hechien.github.com/octopress/blog/how-to-reset-counter-cache-in-rails-3/"/>
+    <updated>2012-06-18T10:25:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/how-to-reset-counter-cache-in-rails-3</id>
+    <content type="html"><![CDATA[<p>Rails中有一個<code>counter_cache</code>可以用，這東西的用途就是破壞正規化的(XD) &#8230;</p>
+
+<p>一般來說，當我們要計算關連的資料有幾筆的話，我們會用 <code>SELECT COUNT(id) FROM</code>comments<code>WHERE</code>post_id<code>= 1</code> 這種方式來計算，可是如果當request 量一大且資料量也大的時候這樣子其實超級麻煩的，所以可以透過<code>counter_cache</code>來直接cache住關連的資料筆數。</p>
+
+<p>但是有時候可能因為某些原因導致沒有正確記錄到cache值，這時候我們就可以用<code>reset_counters</code>來自動重新整理這些值 &#8230;</p>
+
+<p>也許你會覺得奇怪，為什麼不要直接把值寫入<code>comments_count</code>這種欄位內就好呢？那是因為 &#8230;. 這個值是readonly的囧！</p>
+
+<p>為了保護欄位值的正確只好這樣做，所以我們只好用<code>reset_counters</code>來處理這個部分了。</p>
+
+<p>使用的方式是 <code>Model.reset_counters(id, association_name)</code></p>
+
+<p>若以上面的例子來說的話，就是 <code>Post.reset_counters(1, :comments)</code></p>
+
+<p>如何？很簡單吧？</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用Subdomain時自定Devise的Mailer Template]]></title>
@@ -685,88 +776,6 @@ end tell</code></pre></noscript></div>
 
 
 <p>慘痛T_T</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Middleman + Pow + Livereload + HAML]]></title>
-    <link href="http://hechien.github.com/octopress/blog/middleman-plus-pow-plus-livereload-plus-haml/"/>
-    <updated>2012-04-12T15:14:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/middleman-plus-pow-plus-livereload-plus-haml</id>
-    <content type="html"><![CDATA[<p>原本今天要教同事怎樣寫HAML &amp; SCSS的，後來覺得HAML還要自己手動轉實在太麻煩，所以就講Middleman + guard-livereload了。</p>
-
-<!-- more -->
-
-
-<p>首先要先安裝middleman：<code>gem i middleman</code></p>
-
-<p>安裝好之後建立Project：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mkdir ~/Documents/playgroud/middleman
-</span><span class='line'><span class="nb">cd</span> ~/Documents/playground/middleman
-</span><span class='line'>middleman init . --bundler --rack
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在Gemfile中加入：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;guard-livereload&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>執行<code>bundle install</code>後，透過<code>bundle exec guard init livereload</code>產生Guardfile，然後修改Guardfile</p>
-
-<figure class='code'><figcaption><span>Guardfile </span><a href='https://gist.github.com/1221542'>link</a></figcaption> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># More info at https://github.com/guard/guard#readme</span>
-</span><span class='line'><span class="c1"># XDite&#39;s guardflie: https://gist.github.com/1221542</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">guard</span> <span class="s1">&#39;livereload&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{source/.+\.(erb|haml|md)}</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{source/helpers/.+\.rb}</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(public/|source/assets).+\.(css|js|html)}</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(source/.+\.css)\.s[ac]ss}</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{(source/.+\.js)\.coffee}</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span> <span class="n">m</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">watch</span><span class="p">(</span><span class="sr">%r{config/locales/.+\.yml}</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改好後存檔離開，執行 <code>bundle exec guard</code></p>
-
-<p>安裝powder： <code>gem i powder</code></p>
-
-<p>如果沒有安裝pow的話就：<code>powder install</code></p>
-
-<p>然後建立好Link：<code>powder link</code>，這樣應該會建立<code>http://middleman.dev</code>的網址給你使用</p>
-
-<p>安裝瀏覽器外掛(Chrome)： <a href="https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei">https://chrome.google.com/webstore/detail/jnihajbhpnppcggbcgedagnkighmdlei</a></p>
-
-<p>一切就緒後，瀏覽器上應該會出現一個 LR 的圖示，按下去吧 &#8230;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[被Media Queries婊了一下]]></title>
-    <link href="http://hechien.github.com/octopress/blog/bei-media-queriesbiao-liao-%5B%3F%5D-xia/"/>
-    <updated>2012-04-05T18:28:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/bei-media-queriesbiao-liao-[?]-xia</id>
-    <content type="html"><![CDATA[<p>清明前一天，行銷同事告訴我某專案網站無法用IE 8開啟，到清明後一天才開始修正。一開始，找了老半天就是找不到任何錯誤，想說會不會是HTML 5的不支援問題導致的，可是開其他專案網站卻又都正常，後來發現到CSS中有用到Media Queries的部分，所以我拿掉之後IE 8就可以用了！</p>
-
-<p>特此記錄一下T<sup>T&#8221;</sup></p>
 ]]></content>
   </entry>
   

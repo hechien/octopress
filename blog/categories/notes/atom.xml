@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-06-05T18:33:45+08:00</updated>
+  <updated>2012-06-18T10:29:42+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,97 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to implement drag and drop upload with Rails and Paperclip]]></title>
+    <link href="http://hechien.github.com/octopress/blog/how-to-implement-drag-and-drop-upload-with-rails-and-paperclip/"/>
+    <updated>2012-06-18T10:28:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/how-to-implement-drag-and-drop-upload-with-rails-and-paperclip</id>
+    <content type="html"><![CDATA[<p>終於搞出來了 ... 我的媽呀，基礎知識全部忘掉就是了 ... 丟臉</p>
+
+<p>Okay ... 記錄一下實作，不過怎樣用Rails建立Paperclip上傳機制這部份我就不多說了</p>
+
+<p>主要是這段JavaScript code</p>
+
+<p><div><script src='https://gist.github.com/2937600.js?file=uploader.js'></script>
+<noscript><pre><code>      $(document).bind('drop', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        upload(e.originalEvent.dataTransfer.files);
+      }).bind('dragenter dragover', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+      });
+
+      var upload = function(files){
+        if(typeof(FormData) != 'undefined'){
+          var form = new FormData();
+          form.append('path', '/');
+          for(i = 0; i &lt; files.length; i++){
+            form.append('assets[][asset]', files[i]);
+          }
+
+          $.ajax({
+            url: '/assets/upload_by_drag_and_drop',
+            data: form,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function(data){
+              console.log(data);
+            }
+          });
+        }
+      }</code></pre></noscript></div>
+</p>
+
+<p>還有這段Rails code</p>
+
+<p><div><script src='https://gist.github.com/2937600.js?file=upload_by_drag_and_drop.rb'></script>
+<noscript><pre><code>assets = params[:assets]
+assets.each do |asset|
+  Asset.create(asset)
+end</code></pre></noscript></div>
+</p>
+
+<p>是的，就只有這樣，哈</p>
+
+<p>正在想著把這個部分再用jQuery封裝得好看一點 ...</p>
+
+<p>其實很簡單，就是JavaScript吃到drop event的時候，把收集到的檔案資訊整理起來，用FormData封裝，然後送到後台去這樣。</p>
+
+<p>因為用到XMLHttpRequest，所以乾脆用jQuery來跑好了</p>
+
+<p>註：drop事件、FormData似乎都是HTML 5後才有support的功能，而且不是每個Browser都有Support，所以記得還是得實作傳統的上傳機制 ...</p>
+
+<p>UPDATED: 2012/06/16 02:25 --</p>
+
+<p>已經更改成用jQuery的ajax來上傳了，這樣就省得再用XMLHttpRequest了</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在Rails中如何重新設定counter_cache的值？]]></title>
+    <link href="http://hechien.github.com/octopress/blog/how-to-reset-counter-cache-in-rails-3/"/>
+    <updated>2012-06-18T10:25:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/how-to-reset-counter-cache-in-rails-3</id>
+    <content type="html"><![CDATA[<p>Rails中有一個<code>counter_cache</code>可以用，這東西的用途就是破壞正規化的(XD) ...</p>
+
+<p>一般來說，當我們要計算關連的資料有幾筆的話，我們會用 <code>SELECT COUNT(id) FROM</code>comments<code>WHERE</code>post_id<code>= 1</code> 這種方式來計算，可是如果當request 量一大且資料量也大的時候這樣子其實超級麻煩的，所以可以透過<code>counter_cache</code>來直接cache住關連的資料筆數。</p>
+
+<p>但是有時候可能因為某些原因導致沒有正確記錄到cache值，這時候我們就可以用<code>reset_counters</code>來自動重新整理這些值 ...</p>
+
+<p>也許你會覺得奇怪，為什麼不要直接把值寫入<code>comments_count</code>這種欄位內就好呢？那是因為 .... 這個值是readonly的囧！</p>
+
+<p>為了保護欄位值的正確只好這樣做，所以我們只好用<code>reset_counters</code>來處理這個部分了。</p>
+
+<p>使用的方式是 <code>Model.reset_counters(id, association_name)</code></p>
+
+<p>若以上面的例子來說的話，就是 <code>Post.reset_counters(1, :comments)</code></p>
+
+<p>如何？很簡單吧？</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用Subdomain時自定Devise的Mailer Template]]></title>
@@ -169,168 +260,6 @@
 </p>
 
 <p>可以在這邊看到範例：<a href="http://hechien.host22.com/html5video.html">http://hechien.host22.com/html5video.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails 3 與 Subdomain 的初次邂逅]]></title>
-    <link href="http://hechien.github.com/octopress/blog/rails-3-yu-subdomain-de-chu-ci-xie-hou/"/>
-    <updated>2012-05-21T11:58:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/rails-3-yu-subdomain-de-chu-ci-xie-hou</id>
-    <content type="html"><![CDATA[<p>終於成功解決掉這個問題了 ... 在進行這個操作之前請先到 <code>/etc/hosts</code> 內手動新增對應：</p>
-
-<p><code>127.0.0.1 site1.product.local site3.product.local</code></p>
-
-<p>請務必寫上這樣，我一開始寫成 <code>site1.local</code> 時會一直發生找不到根目錄的問題，所以必須這樣寫。</p>
-
-<!-- more -->
-
-
-<p>然後要做的就是在 <code>config/rotues.rb</code> 內修改一下，加上 <code>constraints({subdomain: "site1"}) do ... end</code> 這樣，假設：</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site1&quot;</span><span class="p">})</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;resources :users</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site2&quot;</span><span class="p">})</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;resources :users</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>即可</p>
-
-<p>但是必須注意的是，如果你原本是使用Namespace的話，就必須加上 <code>scope module: :xxx</code> 這個Block，如下：</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site1&quot;</span><span class="p">})</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;scope module: &quot;site1&quot; do</span>
-</span><span class='line'><span class="sr">  resources :users</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">constraints</span><span class="p">({</span><span class="n">subdomain</span><span class="p">:</span> <span class="s2">&quot;site2&quot;</span><span class="p">})</span> <span class="k">do</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;scope module: &quot;site2&quot; do</span>
-</span><span class='line'><span class="sr">  resources :users</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>如此一來，原本是 <code>/site1/users</code> 會變成 <code>site1.product.local/users</code> 並且指定到 <code>app/controllers/site1/users_controller.rb</code> 了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[為什麼我用Mac？]]></title>
-    <link href="http://hechien.github.com/octopress/blog/why-i-use-the-mac/"/>
-    <updated>2012-05-19T15:42:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/why-i-use-the-mac</id>
-    <content type="html"><![CDATA[<p>這是很有趣的問題，不是嗎？</p>
-
-<p>我是一名軟體工程師、網站開發人員、網頁設計師、學生、兒子 … etc (但其中並沒有包含<strong>男朋友</strong>這個身分...)，總之，我有著很多的身分，但我為什麼不選擇大多數人用的PC，裡面裝著Windows或Linux？</p>
-
-<!-- more -->
-
-
-<p>國小升上三年級的暑假吧，學校開了電腦課，那個暑假我拿到一本DOS指令的書，那年可能是1997年。那是屏東縣潮州鎮的一所學校，我不知道為什麼，Windows 95已經在1995年發售的情況下，學校還在用DOS，但它真的奠定了我的基礎：「注音的第一聲要按空白鍵」。</p>
-
-<blockquote><p>我的人生是從微軟開始的，從它的MS-DOS、Windows 95、Windows 98、Windows ME、Windows 2000、Windows XP、Windows 2003 Server .net、Windows Vista、Windows 7我全部都接觸過，其中Windows 98、Windows XP我玩得最盛。</p></blockquote>
-
-<p>四年級時學校終於開始上電腦課(等我六年級的時候，五年級也開始有電腦課了)，那個時候學校電腦也還是MS-DOS，要把磁片放進去然後輸入指令，叫出小作家或者其他遊戲來玩，在那個時候對我來說是很神奇的事情(現在依舊覺得神奇，為什麼還不用Windows 95)。猶記得每次開機後畫面上都會出現 <code>C:\&gt;</code>，老師說：「這個代表已經成功開機了」，然而有一天出現了<code>E:\&gt;</code>還<code>F:\&gt;</code>，老師這時表示：「我們學校現在已經牽了網路」，但其實我在那個時候還不懂網路到底是什麼。</p>
-
-<p>1998年吧，高雄NOVA(現在倒了)似乎有辦了活動，而那次我媽有帶我過去走走，那似乎是我第一次走進所謂的資訊商場，裡面有很多人在逛在看，擺著一堆電腦螢幕、主機 … etc，剛好我站在INTEL的宣傳活動前面，PG(Promoter Girl)拿著麥克風喊說：「舉手搶答～ 請問現在最快的CPU是什麼？」(其實問題是不是這樣我忘記了，那也不是很重要)，在那當下一堆人舉手，結果那個<strong>姐姐</strong>(拜託，我當時才小四<del>，好險小三才當過一年而已</del>)直接把麥克風督到我嘴邊(請不要亂幻想)要我說答案，我只好很害羞的說：「Intel」 …. 嗯，當時是因為不知道Intel是什麼而害羞，至於現在....</p>
-
-<p>是的，最後我拿到獎品 => Intel 的撲克牌一副 <del>(但我比較想要那個PG的電話)</del></p>
-
-<p>而一位參加者大哥則是把他手上的袋子送給我，裡面好像是一些教學光碟、雜誌之類的，這讓我知道了什麼叫做純愛手札(誤)。</p>
-
-<p>準備升上國一了，跟媽媽去大亞電腦那邊問一些電腦的事情，最後確認學校會上電腦課(因為有電腦教室)所以才點頭買下我第一台電腦，那台是 Intel Pentium III 733 Mhz，剛買進來的時候只有64 MB RAM，40G的硬碟，後來進去國一的時候我用Front Page做網頁，當時覺得Dreamweaver很難用、覺得Flash好難 … 之後玩Access覺得資料庫很枯燥乏味。我國二學Visual Basic，寫了不少程式來玩，我在國中的時候完全就是微軟的支持者，Macintosh是只存在於我電腦字典裡面的一個名詞而已，而Apple頂多出現在台視新聞後面那個五顏六色的蘋果Logo，除此之外我根本不知道他們在幹什麼。</p>
-
-<p>國三，我接觸到了Linux。我在順發買了一本書，那本裡面送的是Red Hat Linux 7.3 + CLE 1.0，我照著書把系統安裝起來、中文化後，發現到網路不能用，我只好想辦法去燦坤另外買一張NIC來用，自己根據驅動光碟內的純文字說明檔來自己編譯Driver。</p>
-
-<blockquote><p>那個時候整個文件都英文，在沒有網路的情況之下我只能夠一邊看單字一面猜一面拿字典來翻，雖然很苦，但我發現這讓我的英文閱讀能力好了不少</p>
-
-<p>那時候的指令大概就是 <code>cd</code> 到Driver目錄，然後下 <code>./configure; make; make install</code> 而已，但沒想到那張卡是當年出了名的惡魔卡 …. D-Link的!!!</p></blockquote>
-
-<p>後來到了高中，我用Linux學著架站，也同時學著用PWS(這個一定沒多少人用過)、IIS來架站，並且學ASP(王國榮的書都很不錯，強烈推薦)來撰寫網頁程式，在那個時候我也還是不知道什麼是蘋果、什麼是Mac。</p>
-
-<p>高中後來讀不下去轉去五專，我在五專自修PHP，而且在那個時候我玩Linux玩得最盛，總在推廣Linux的好處，也讓我媽的電腦從Windows變成Linux，用起來也真的沒問題 … 我參加過Ubuntu Linux Install Festval、也曾經很不成熟的想要成立PTLug，但在那當時Linux是我的全部、Open Source是我的最愛，讓大家都用Ubuntu Linux是我的夢想我的目標，十分厭惡Windows那種所謂只愛錢的公司 … 直到2006年。</p>
-
-<p>2006年，我開始正式接觸到<code>Ruby on Rails</code>，他們的screencast是用Textmate開發，用那個軟體開發起來真的是神速啊，之後我就對這個介面留上了心，也開始在Linux上裝上類似Mac的介面。</p>
-
-<blockquote><p>當時的Linux還有一個很炫的特效，那個特效是可以用立體的方式切換桌面等，我已經忘記那個名字了，那段時間我真的很著迷這種沒有意義的東西。</p></blockquote>
-
-<p>之後，我發現到Linux還是沒辦法完全模擬出我真正想要的感覺，在2007年左右我得到一份工作時我便跟該公司要求一台Mac，我用那台Mac開發網站、做作業報告 … etc。在那半年的時間裡面(我只待了半年，因為壓力實在太大，而且又重考統測)我只感覺到Mac真的只是比較好用，但其實也還好，所以把電腦退回公司後我繼續用Linux當主力系統，後來我發現我完全沒辦法習慣Linux的介面以及操作方式，後來就另外貸款買了一台Mac，那年是2008年，我現在正用這台Mac打這篇文章。</p>
-
-<blockquote><p>Ubuntu Linux 曾經發生過一件事情讓我很不能夠接受，也成為我當時的疙瘩。</p>
-
-<p>有一次我在更新系統之後發現我不能執行gdm，整個X Server啟動不起來，後來用純文字模式上IRC問別人到底怎麼回事，用w3m搜尋才知道原來這次版本中有一個開發者不小心搞爛了顯示的Driver才發生這種事情，隨後就打了Patch重新送上線，更新過後才正常…</p>
-
-<p>這種事情其實真的很嚴重，如果只是單純使用純文字模式的話倒是沒啥影響，但是對於使用者來說這個可真的是罪該萬死的，也因此Linux就失去了我的信任。不是因為Linux不好，而是因為Linux在當時還是搞不懂使用者要的是什麼。</p></blockquote>
-
-<p>2009年我到台南工作，因為工作是要寫iOS的App所以也一定只能用Mac，但是在這之前我還是不知道Mac到底好在哪裡，我一樣不喜歡用iTunes、覺得iPhoto麻煩 … 可是在開發軟體的過程當中我慢慢的發現到一個重點：我開始看其他的軟體介面不爽了</p>
-
-<p>我在2005年的時候曾經寫了一個程式叫做「Ruby執行檔製作精靈」(這支程式後來還被Toget選上精選軟體)，那個可以讓Windows上寫的Ruby Script轉成執行檔，但是操作的介面非常複雜，可是我在當時卻覺得它非常容易使用。有看到重點了嗎？對，我開始在思考使用者介面的事情，而且是不知不覺間開始有這種意識：「我怎麼做出了一個難用的垃圾出來？」。後來，我的朋友阿白(以前叫ZenixD)他也買了一台Mac，買了之後沒多久他告訴我一句話：「用了Mac之後我的靈感一直來」我才發現到，我之所以那段時間不想要再用Linux、Windows的原因很簡單，就是那真的太難用了！</p>
-
-<p>開始真正理解到設計的重要之後，我一直在思考自己做的東西到底能不能夠更加精簡、更加好用，我開始知道什麼叫做使用者介面(UI)以及使用者體驗(UE)，這兩者不是其他公司一昧的模仿就能夠模仿出一套精神的，必須要模仿之後還要加上自己的研究跟想法才真的可以做出完美的東西。已經一個東西擺在前面給你抄了，你卻還抄得十分鱉腳的話，那真的被人家罵抄襲也是活該了 …</p>
-
-<p>所以，我開始思考自己做的東西到底哪邊還能再修改，而觀察的對象就是Mac的設計，不論是硬體還是軟體還是整個操作流程，我發現我越思考越觀察就越覺得過去玩到的東西都真的太不貼近人性，所以我也就越來越排斥那些我曾經接觸過的東西。我再說一次，不是那些東西不好，而是那些東西太過自以為是，自以為使用者什麼都想要自己手動設定，把全世界的使用者都當成工程師那樣，把選項做得十分複雜、把警告訊息弄得十分嚴重、把操作介面用得十分雜亂，到頭來大家都只知道電腦要根據所謂「固定的步驟」去使用，而完全忘記電腦應該要「直覺」的去使用才對。</p>
-
-<p>我在Mac上看到了這種直覺。Safari是Mac上的預設瀏覽器，它的核心是Webkit，這個東西很有趣的一個重點在於它的上傳檔案方式。我們都知道，在IE、Firefox裡面上傳檔案必須要按下「瀏覽」按鈕，然後在一層一層資料夾中找出你要的檔案之後選擇，這樣才算完全的選擇檔案。但Safari(包含Google Chrome)並不是這樣而已，你可以直接把檔案「拖」到那個「瀏覽」按鈕上面後放開，這樣就能夠瞬間選擇你要的檔案，你沒辦法打開你的檔案總管後把檔案拖到IE或Firefox的瀏覽按鈕上，你必須自己慢慢找出來，如果今天它只放在桌面那就只是小事，如果它放在十幾二十層的目錄裡面時，你會哭死。</p>
-
-<p>另外一個直覺的舉例也同樣拿這個檔案上傳當例子，剛剛我們提到按下瀏覽的時候會出現選擇檔案的視窗，在Windows底下是可以把檔案拖進去的，如此一來Windows會很「自作聰明」的把檔案<strong>移動</strong>到那個目錄底下，然後選擇；但是在Mac底下卻完全不是這麼一回事！Mac會知道你拖進去的檔案到底在哪裡，然後自動切換到那個目錄並且選擇該檔案。我的天，這種小功能是多麼的貼心啊？你完全不需要擔心它會被<strong>移動</strong>到哪裡去，能夠快速簡單的指定檔案的所在位置，這個就是最基本的「直覺操作」啊！</p>
-
-<p>網路上有許多這類的例子，像是國外的麥當勞有提供免費的無線上網(Wi-Fi)，所以他們印出了一份教學的DM，有人發現到Windows需要這樣做：<code>開始 =&gt; 控制台 =&gt; 網路 =&gt; 無線網路</code> … 對不起，我不想打下去了</p>
-
-<p>然而Mac只有三個步驟： <code>點選電腦右上角的無線圖示 =&gt; 選擇麥當勞的網路 =&gt; 開心上網</code>，這讓我想起這個廣告 <a href="http://www.youtube.com/watch?v=6uXJlX50Lj8">http://www.youtube.com/watch?v=6uXJlX50Lj8</a></p>
-
-<p>所以為什麼我用Mac？因為我越來越想知道我還能夠替使用者處理掉多少使用者不需要真的去關心的事情，就從Mac的身上學習。2011年中，我買了一台Macbook Air，它沒有光碟機、它輕巧、它沒有太多我不需要的插孔(左邊插槽分別是電源、USB跟耳麥孔、右邊則是影像輸出、USB跟SD卡槽)，我外出只需要帶一個電源線就夠了，頂多多一個SD卡，真的很方便。</p>
-
-<p>Macbook的電源變壓器上也有貼心的點，它能夠張開兩邊的東西用來當做捲線器，而且插頭的部份可以拔掉換成延長線或者是其他國家的接口，這些都是我很少有機會看到的設計(有啦，我記得最近某些公司抄很大 ….)。這是蘋果用心的地方，他們或許做的不是很完美，但是卻也很盡心盡力的在完善自己的產品。</p>
-
-<p>Mac OS X在Leopard之後也內建了Ruby，甚至直接包了一個RubyCocoa.framework可以用(但這部份我沒有研究)。有很多好用的工具也都是在Mac上面有，像是Textmate(不過我最近愛上Sublime Text 2，這個則是Windows、Linux都有)，對於一個網站開發者、網頁設計師而言，真的可以從中學到很多設計的技巧、用到很多很不錯的設計工具。</p>
-
-<p>為什麼我用Mac？因為近朱者赤近墨者黑，要不然孟母也不用三遷了。</p>
 ]]></content>
   </entry>
   

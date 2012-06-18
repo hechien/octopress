@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: counter_cache | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/counter-cache/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-06-18T10:29:42+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[在Rails中如何重新設定counter_cache的值？]]></title>
+    <link href="http://hechien.github.com/octopress/blog/how-to-reset-counter-cache-in-rails-3/"/>
+    <updated>2012-06-18T10:25:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/how-to-reset-counter-cache-in-rails-3</id>
+    <content type="html"><![CDATA[<p>Rails中有一個<code>counter_cache</code>可以用，這東西的用途就是破壞正規化的(XD) ...</p>
+
+<p>一般來說，當我們要計算關連的資料有幾筆的話，我們會用 <code>SELECT COUNT(id) FROM</code>comments<code>WHERE</code>post_id<code>= 1</code> 這種方式來計算，可是如果當request 量一大且資料量也大的時候這樣子其實超級麻煩的，所以可以透過<code>counter_cache</code>來直接cache住關連的資料筆數。</p>
+
+<p>但是有時候可能因為某些原因導致沒有正確記錄到cache值，這時候我們就可以用<code>reset_counters</code>來自動重新整理這些值 ...</p>
+
+<p>也許你會覺得奇怪，為什麼不要直接把值寫入<code>comments_count</code>這種欄位內就好呢？那是因為 .... 這個值是readonly的囧！</p>
+
+<p>為了保護欄位值的正確只好這樣做，所以我們只好用<code>reset_counters</code>來處理這個部分了。</p>
+
+<p>使用的方式是 <code>Model.reset_counters(id, association_name)</code></p>
+
+<p>若以上面的例子來說的話，就是 <code>Post.reset_counters(1, :comments)</code></p>
+
+<p>如何？很簡單吧？</p>
+]]></content>
+  </entry>
+  
+</feed>

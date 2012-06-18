@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: file upload | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/file-upload/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-06-18T10:29:42+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to implement drag and drop upload with Rails and Paperclip]]></title>
+    <link href="http://hechien.github.com/octopress/blog/how-to-implement-drag-and-drop-upload-with-rails-and-paperclip/"/>
+    <updated>2012-06-18T10:28:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/how-to-implement-drag-and-drop-upload-with-rails-and-paperclip</id>
+    <content type="html"><![CDATA[<p>終於搞出來了 ... 我的媽呀，基礎知識全部忘掉就是了 ... 丟臉</p>
+
+<p>Okay ... 記錄一下實作，不過怎樣用Rails建立Paperclip上傳機制這部份我就不多說了</p>
+
+<p>主要是這段JavaScript code</p>
+
+<p><div><script src='https://gist.github.com/2937600.js?file=uploader.js'></script>
+<noscript><pre><code>      $(document).bind('drop', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        upload(e.originalEvent.dataTransfer.files);
+      }).bind('dragenter dragover', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+      });
+
+      var upload = function(files){
+        if(typeof(FormData) != 'undefined'){
+          var form = new FormData();
+          form.append('path', '/');
+          for(i = 0; i &lt; files.length; i++){
+            form.append('assets[][asset]', files[i]);
+          }
+
+          $.ajax({
+            url: '/assets/upload_by_drag_and_drop',
+            data: form,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function(data){
+              console.log(data);
+            }
+          });
+        }
+      }</code></pre></noscript></div>
+</p>
+
+<p>還有這段Rails code</p>
+
+<p><div><script src='https://gist.github.com/2937600.js?file=upload_by_drag_and_drop.rb'></script>
+<noscript><pre><code>assets = params[:assets]
+assets.each do |asset|
+  Asset.create(asset)
+end</code></pre></noscript></div>
+</p>
+
+<p>是的，就只有這樣，哈</p>
+
+<p>正在想著把這個部分再用jQuery封裝得好看一點 ...</p>
+
+<p>其實很簡單，就是JavaScript吃到drop event的時候，把收集到的檔案資訊整理起來，用FormData封裝，然後送到後台去這樣。</p>
+
+<p>因為用到XMLHttpRequest，所以乾脆用jQuery來跑好了</p>
+
+<p>註：drop事件、FormData似乎都是HTML 5後才有support的功能，而且不是每個Browser都有Support，所以記得還是得實作傳統的上傳機制 ...</p>
+
+<p>UPDATED: 2012/06/16 02:25 --</p>
+
+<p>已經更改成用jQuery的ajax來上傳了，這樣就省得再用XMLHttpRequest了</p>
+]]></content>
+  </entry>
+  
+</feed>
