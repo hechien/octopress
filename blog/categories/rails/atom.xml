@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-06-19T14:30:36+08:00</updated>
+  <updated>2012-06-19T14:34:29+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[How to implement drag and drop upload with Rails and Paperclip]]></title>
+    <title type="html"><![CDATA[實作Drag and Drop上傳方式，傳到Rails + Paperclip]]></title>
     <link href="http://hechien.github.com/octopress/blog/how-to-implement-drag-and-drop-upload-with-rails-and-paperclip/"/>
     <updated>2012-06-18T10:28:00+08:00</updated>
     <id>http://hechien.github.com/octopress/blog/how-to-implement-drag-and-drop-upload-with-rails-and-paperclip</id>

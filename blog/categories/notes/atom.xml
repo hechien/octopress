@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-06-19T14:30:36+08:00</updated>
+  <updated>2012-06-19T14:34:29+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -24,20 +24,35 @@
 
 <p>我的作法是，先到 <code>config/routes.rb</code> 去硬刻一個route給Facebook這種不會把Querystring跟著弄回來的Providers用，所以如下</p>
 
-<p>Liquid error: bad URI(is not URI?): https://raw.github.com/gist//2952624 routes.rb</p>
+<p><div><script src='https://gist.github.com/2952624.js?file=routes.rb'></script>
+<noscript><pre><code>devise_controllers = {
+  omniauth_callbacks: &quot;users/omniauth_callbacks&quot;
+}
+devise_scope :user do
+  get 'logout' =&gt; 'devise/sessions#destroy'
+  get '/users/auth/:provider/callback/:url_identify' =&gt; 'users/omniauth_callbacks#passthru'
+end
+devise_for :users, {controllers: devise_controllers}</code></pre></noscript></div>
+</p>
 
 <p>然後在App端這邊發送Request的時候就必須從 <code>http://host/users/auth/facebook?url_identify=xxx</code> 改成 <code>http://host/users/auth/facebook/callback/xxx</code> 了。</p>
 
 <p>然後在 <code>omniauth_callbacks_controller.rb</code> 中手動加入 <code>passthru</code> 這個 action</p>
 
-<p>Liquid error: bad URI(is not URI?): https://raw.github.com/gist//2952624 omniauth_callbacks_controller.rb</p>
+<p><div><script src='https://gist.github.com/2952624.js?file=omniauth_callbacks_controller.rb'></script>
+<noscript><pre><code>def passthru
+  session[:url_identify] = nil
+  session[:url_identify] = params[:url_identify].to_s
+  redirect_to &quot;/users/auth/#{params[:provider]}&quot;
+end</code></pre></noscript></div>
+</p>
 
 <p>這樣子在指定的provider action中就能正常吃到url_identify了。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[How to implement drag and drop upload with Rails and Paperclip]]></title>
+    <title type="html"><![CDATA[實作Drag and Drop上傳方式，傳到Rails + Paperclip]]></title>
     <link href="http://hechien.github.com/octopress/blog/how-to-implement-drag-and-drop-upload-with-rails-and-paperclip/"/>
     <updated>2012-06-18T10:28:00+08:00</updated>
     <id>http://hechien.github.com/octopress/blog/how-to-implement-drag-and-drop-upload-with-rails-and-paperclip</id>
