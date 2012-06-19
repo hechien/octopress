@@ -4,7 +4,7 @@
   <title><![CDATA[Category: devise | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/devise/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-06-19T14:34:29+08:00</updated>
+  <updated>2012-06-19T14:35:50+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -20,7 +20,7 @@
     <id>http://hechien.github.com/octopress/blog/facebook-oauth-custom-callback-with-devise-and-omniauth</id>
     <content type="html"><![CDATA[<p>在測試OAuth登入的時候，新浪與Twitter都會原封不動的把原本傳過去的網址(包含Querystring)一起傳回到Callback網址上，可是Facebook不管怎樣就是辦不到，害我沒辦法讓Mobile Safari收到Callback後Redirect到指定的App去。</p>
 
-<p>原本以為是Omniauth中我有參數沒設到，或者是Facebook設定不對，但是一直trace code卻什麼都沒發現，只好轉而求其次，用別的方式去硬幹這部份。</p>
+<p>原本以為是Omniauth中我有參數沒設到，或者是Facebook設定不對，但是一直trace code卻什麼都沒發現，只好退而求其次，用別的方式去硬幹這部份。</p>
 
 <p>我的作法是，先到 <code>config/routes.rb</code> 去硬刻一個route給Facebook這種不會把Querystring跟著弄回來的Providers用，所以如下</p>
 
