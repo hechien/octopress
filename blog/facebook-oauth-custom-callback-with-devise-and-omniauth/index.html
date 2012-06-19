@@ -3,11 +3,11 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Category: omniauth - 赫謙小便籤</title>
+    <title>用Devise與Omniauth實作Facebook自定callback回傳 - 赫謙小便籤</title>
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="Category: omniauth">
+    <meta name="description" content="用Devise與Omniauth實作Facebook自定callback回傳 在測試OAuth登入的時候，新浪與Twitter都會原封不動的把原本傳過去的網址(包含Querystring)一起傳回到Callback網址上，可是Facebook不管怎樣就是辦不到，害我沒辦法讓Mobile &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -73,19 +73,39 @@
 	})(jQuery);
 </script>
 
-	<div id="content" class="inner">
-<section class="archive">
-	
-	
-		
-		<h1 class="archive-title">2012</h1>
-	
-	<article class="archive">
-		
-<h1 class="title"><a href="/octopress/blog/facebook-oauth-custom-callback-with-devise-and-omniauth/">用Devise與Omniauth實作Facebook自定callback回傳</a></h1>
-<div class="meta">
-	<span class="date">Jun 19</span>
-	<span class="tags">
+	<div id="content" class="inner"><article class="post">
+    <h1 class="title">用Devise與Omniauth實作Facebook自定callback回傳</h1>
+    <div class="entry"><p>在測試OAuth登入的時候，新浪與Twitter都會原封不動的把原本傳過去的網址(包含Querystring)一起傳回到Callback網址上，可是Facebook不管怎樣就是辦不到，害我沒辦法讓Mobile Safari收到Callback後Redirect到指定的App去。</p>
+
+<p>原本以為是Omniauth中我有參數沒設到，或者是Facebook設定不對，但是一直trace code卻什麼都沒發現，只好轉而求其次，用別的方式去硬幹這部份。</p>
+
+<p>我的作法是，先到 <code>config/routes.rb</code> 去硬刻一個route給Facebook這種不會把Querystring跟著弄回來的Providers用，所以如下</p>
+
+<p>Liquid error: bad URI(is not URI?): https://raw.github.com/gist//2952624 routes.rb</p>
+
+<p>然後在App端這邊發送Request的時候就必須從 <code>http://host/users/auth/facebook?url_identify=xxx</code> 改成 <code>http://host/users/auth/facebook/callback/xxx</code> 了。</p>
+
+<p>然後在 <code>omniauth_callbacks_controller.rb</code> 中手動加入 <code>passthru</code> 這個 action</p>
+
+<p>Liquid error: bad URI(is not URI?): https://raw.github.com/gist//2952624 omniauth_callbacks_controller.rb</p>
+
+<p>這樣子在指定的provider action中就能正常吃到url_identify了。</p>
+</div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-19T14:21:00+08:00" pubdate data-updated="true">Jun 19<span>th</span>, 2012</time></div>
+        <div class="tags">
 
 <div class="cat">
   
@@ -93,38 +113,31 @@
   
 </div>
 
-</span>
-    
-    <span class="comments"><a href="#disqus_thread">Comments</a></span>
-    
 </div>
-	</article>
-</section>
-
-<section class="archive">
+        
+    </div>
+</article>
+<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
 	
 	
-	<article class="archive">
-		
-<h1 class="title"><a href="/octopress/blog/omniauth-plus-devise-plus-openid/">OmniAuth + Devise + OpenID</a></h1>
-<div class="meta">
-	<span class="date">May  8</span>
-	<span class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/open-id/'>Open ID</a>, <a class='category' href='/octopress/blog/categories/devise/'>devise</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/omniauth/'>omniauth</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
-  
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4eb4a0c47196e907"></script>
 </div>
 
-</span>
-    
-    <span class="comments"><a href="#disqus_thread">Comments</a></span>
-    
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-	</article>
 </section>
-
 </div>
 	<footer class="inner">Copyright &copy; 2012 赫謙小便籤</footer>
 	<script src="/octopress/javascripts/jquery.easing.1.3.js"></script>
@@ -136,7 +149,10 @@
       var disqus_shortname = 'hechienstickies';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hechien.github.com/octopress/blog/facebook-oauth-custom-callback-with-devise-and-omniauth/';
+        var disqus_url = 'http://hechien.github.com/octopress/blog/facebook-oauth-custom-callback-with-devise-and-omniauth/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

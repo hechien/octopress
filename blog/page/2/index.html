@@ -7,17 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="MySQL啟動、執行出現errno 13的問題 剛剛朋友的MySQL Server忽然掛掉，沒辦法正常匯入 &#8230; 查了log後看到以下訊息： 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-120505 12:08:27 mysqld_safe Starting mysqld daemon &hellip;">
+    <meta name="description" content="OmniAuth + Devise + OpenID 最近內部討論結果覺得有可能需要Support Open ID的登入機制，因此就去survey了一下Devise擴展Open ID的方式。因為Devise本身支援OmniAuth，所以就直接以Devise OmniAuth &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -84,6 +74,58 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/omniauth-plus-devise-plus-openid/">OmniAuth + Devise + OpenID</a></h1>
+    <div class="entry">
+        <p>最近內部討論結果覺得有可能需要Support Open ID的登入機制，因此就去survey了一下Devise擴展Open ID的方式。因為Devise本身支援OmniAuth，所以就直接以<code>Devise OmniAuth OpenID</code>的方式搜尋了一下，便找到這篇：<a href="http://blog.xdite.net/posts/2011/12/05/omniauth-clean-auth-provider-4/">http://blog.xdite.net/posts/2011/12/05/omniauth-clean-auth-provider-4/</a></p>
+
+<p>其實這篇照做就可以了，只不過因為原始碼是從<a href="http://ruby-taiwan.org">http://ruby-taiwan.org</a>那邊來的，所以有一些code是不能用的 &#8230; 需要自己稍微做調整一下</p>
+
+<p>這個實作版本是Rails 3.2.3、Devise 2.0.4、OmniAuth 1.0.3</p>
+
+<p>裡面的Code在<code>omniauth_callbacks.rb</code>中第9行左右有個問題，User必須要用includes把authorizations給引入進來，不然會噴 &#8230; XD</p>
+
+<p>可能是因為原本的Code用MongoID當做Data source的關係，所以原本的Code內並沒有寫includes這一塊吧 &#8230;</p>
+
+<p>然後要記得在<code>user.rb</code>實作<code>bind_service</code>，不然原本的code去bind使用者的部份會有問題 &#8230;</p>
+
+<p>要把<code>omniauth_callbacks.rb</code>放在<code>app/models/user</code>底下、把<code>omniauth_callbacks_controller.rb</code>放在<code>app/controllers/users</code>底下，總之在model的資料夾是<code>user</code>而controller的資料夾是<code>users</code>就對了。</p>
+
+<p>大致上就這樣。</p>
+
+<p>喔對，很重要的一點就是 &#8230; 現在網路上很多範例都會叫你去<code>config/initializers/omniauth.rb</code>內設定provider，這樣做的話一定會噴掉 &#8230; 我在這邊花很多時間才搞定囧，請記住，<strong>不必</strong>寫在這個地方！</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-08T11:46:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/open-id/'>Open ID</a>, <a class='category' href='/octopress/blog/categories/devise/'>devise</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/omniauth/'>omniauth</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -595,50 +637,6 @@ end tell</code></pre></noscript></div>
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/tcp-server/'>TCP Server</a>, <a class='category' href='/octopress/blog/categories/node-js/'>node.js</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/railsda-suo-yin-ji-qiao/">Rails打索引技巧</a></h1>
-    <div class="entry">
-        <p>做專案學到的一個技巧 &#8230; 應該說，是很慘痛的學到一個技巧=_= &#8230;</p>
-
-<p>我們都知道，Rails可以透過<code>rails g migration blahblah</code>來產生Migration file然後在裡面寫<code>add_index</code>來打索引，可是切記切記！！不要把索引寫在同一個表內 &#8230; 當資料量大，而且其中一個index打失敗你就會哭了 &#8230;</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Mysql2::Error: Specified key was too long; max key length is 1000 bytes: CREATE  INDEX `index_products_on_url_identify_and_name` ON `products` (`url_identify`, `name`)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>慘痛T_T</p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-24T09:36:00+08:00" pubdate data-updated="true">Apr 24<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/index/'>index</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>, <a class='category' href='/octopress/blog/categories/trick/'>trick</a>
   
 </div>
 

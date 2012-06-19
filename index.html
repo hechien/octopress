@@ -7,7 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="How to Implement Drag and Drop Upload With Rails and Paperclip 終於搞出來了 &#8230; 我的媽呀，基礎知識全部忘掉就是了 &#8230; 丟臉 Okay &#8230; 記錄一下實作， &hellip;">
+    <meta name="description" content="用Devise與Omniauth實作Facebook自定callback回傳 在測試OAuth登入的時候，新浪與Twitter都會原封不動的把原本傳過去的網址(包含Querystring)一起傳回到Callback網址上，可是Facebook不管怎樣就是辦不到，害我沒辦法讓Mobile &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,6 +74,56 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/facebook-oauth-custom-callback-with-devise-and-omniauth/">用Devise與Omniauth實作Facebook自定callback回傳</a></h1>
+    <div class="entry">
+        <p>在測試OAuth登入的時候，新浪與Twitter都會原封不動的把原本傳過去的網址(包含Querystring)一起傳回到Callback網址上，可是Facebook不管怎樣就是辦不到，害我沒辦法讓Mobile Safari收到Callback後Redirect到指定的App去。</p>
+
+<p>原本以為是Omniauth中我有參數沒設到，或者是Facebook設定不對，但是一直trace code卻什麼都沒發現，只好轉而求其次，用別的方式去硬幹這部份。</p>
+
+<p>我的作法是，先到 <code>config/routes.rb</code> 去硬刻一個route給Facebook這種不會把Querystring跟著弄回來的Providers用，所以如下</p>
+
+<p>Liquid error: bad URI(is not URI?): https://raw.github.com/gist//2952624 routes.rb</p>
+
+<p>然後在App端這邊發送Request的時候就必須從 <code>http://host/users/auth/facebook?url_identify=xxx</code> 改成 <code>http://host/users/auth/facebook/callback/xxx</code> 了。</p>
+
+<p>然後在 <code>omniauth_callbacks_controller.rb</code> 中手動加入 <code>passthru</code> 這個 action</p>
+
+<p>Liquid error: bad URI(is not URI?): https://raw.github.com/gist//2952624 omniauth_callbacks_controller.rb</p>
+
+<p>這樣子在指定的provider action中就能正常吃到url_identify了。</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-19T14:21:00+08:00" pubdate data-updated="true">Jun 19<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/devise/'>devise</a>, <a class='category' href='/octopress/blog/categories/facebook/'>facebook</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/omniauth/'>omniauth</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -546,58 +596,6 @@ end</code></pre></noscript></div>
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/image-magick/'>Image Magick</a>, <a class='category' href='/octopress/blog/categories/resize/'>Resize</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/omniauth-plus-devise-plus-openid/">OmniAuth + Devise + OpenID</a></h1>
-    <div class="entry">
-        <p>最近內部討論結果覺得有可能需要Support Open ID的登入機制，因此就去survey了一下Devise擴展Open ID的方式。因為Devise本身支援OmniAuth，所以就直接以<code>Devise OmniAuth OpenID</code>的方式搜尋了一下，便找到這篇：<a href="http://blog.xdite.net/posts/2011/12/05/omniauth-clean-auth-provider-4/">http://blog.xdite.net/posts/2011/12/05/omniauth-clean-auth-provider-4/</a></p>
-
-<p>其實這篇照做就可以了，只不過因為原始碼是從<a href="http://ruby-taiwan.org">http://ruby-taiwan.org</a>那邊來的，所以有一些code是不能用的 &#8230; 需要自己稍微做調整一下</p>
-
-<p>這個實作版本是Rails 3.2.3、Devise 2.0.4、OmniAuth 1.0.3</p>
-
-<p>裡面的Code在<code>omniauth_callbacks.rb</code>中第9行左右有個問題，User必須要用includes把authorizations給引入進來，不然會噴 &#8230; XD</p>
-
-<p>可能是因為原本的Code用MongoID當做Data source的關係，所以原本的Code內並沒有寫includes這一塊吧 &#8230;</p>
-
-<p>然後要記得在<code>user.rb</code>實作<code>bind_service</code>，不然原本的code去bind使用者的部份會有問題 &#8230;</p>
-
-<p>要把<code>omniauth_callbacks.rb</code>放在<code>app/models/user</code>底下、把<code>omniauth_callbacks_controller.rb</code>放在<code>app/controllers/users</code>底下，總之在model的資料夾是<code>user</code>而controller的資料夾是<code>users</code>就對了。</p>
-
-<p>大致上就這樣。</p>
-
-<p>喔對，很重要的一點就是 &#8230; 現在網路上很多範例都會叫你去<code>config/initializers/omniauth.rb</code>內設定provider，這樣做的話一定會噴掉 &#8230; 我在這邊花很多時間才搞定囧，請記住，<strong>不必</strong>寫在這個地方！</p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-08T11:46:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/open-id/'>Open ID</a>, <a class='category' href='/octopress/blog/categories/devise/'>devise</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/omniauth/'>omniauth</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
   
 </div>
 

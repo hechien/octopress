@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: facebook | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/facebook/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-06-19T14:30:36+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[用Devise與Omniauth實作Facebook自定callback回傳]]></title>
+    <link href="http://hechien.github.com/octopress/blog/facebook-oauth-custom-callback-with-devise-and-omniauth/"/>
+    <updated>2012-06-19T14:21:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/facebook-oauth-custom-callback-with-devise-and-omniauth</id>
+    <content type="html"><![CDATA[<p>在測試OAuth登入的時候，新浪與Twitter都會原封不動的把原本傳過去的網址(包含Querystring)一起傳回到Callback網址上，可是Facebook不管怎樣就是辦不到，害我沒辦法讓Mobile Safari收到Callback後Redirect到指定的App去。</p>
+
+<p>原本以為是Omniauth中我有參數沒設到，或者是Facebook設定不對，但是一直trace code卻什麼都沒發現，只好轉而求其次，用別的方式去硬幹這部份。</p>
+
+<p>我的作法是，先到 <code>config/routes.rb</code> 去硬刻一個route給Facebook這種不會把Querystring跟著弄回來的Providers用，所以如下</p>
+
+<p>Liquid error: bad URI(is not URI?): https://raw.github.com/gist//2952624 routes.rb</p>
+
+<p>然後在App端這邊發送Request的時候就必須從 <code>http://host/users/auth/facebook?url_identify=xxx</code> 改成 <code>http://host/users/auth/facebook/callback/xxx</code> 了。</p>
+
+<p>然後在 <code>omniauth_callbacks_controller.rb</code> 中手動加入 <code>passthru</code> 這個 action</p>
+
+<p>Liquid error: bad URI(is not URI?): https://raw.github.com/gist//2952624 omniauth_callbacks_controller.rb</p>
+
+<p>這樣子在指定的provider action中就能正常吃到url_identify了。</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-06-18T10:34:46+08:00</updated>
+  <updated>2012-06-19T14:30:36+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用Devise與Omniauth實作Facebook自定callback回傳]]></title>
+    <link href="http://hechien.github.com/octopress/blog/facebook-oauth-custom-callback-with-devise-and-omniauth/"/>
+    <updated>2012-06-19T14:21:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/facebook-oauth-custom-callback-with-devise-and-omniauth</id>
+    <content type="html"><![CDATA[<p>在測試OAuth登入的時候，新浪與Twitter都會原封不動的把原本傳過去的網址(包含Querystring)一起傳回到Callback網址上，可是Facebook不管怎樣就是辦不到，害我沒辦法讓Mobile Safari收到Callback後Redirect到指定的App去。</p>
+
+<p>原本以為是Omniauth中我有參數沒設到，或者是Facebook設定不對，但是一直trace code卻什麼都沒發現，只好轉而求其次，用別的方式去硬幹這部份。</p>
+
+<p>我的作法是，先到 <code>config/routes.rb</code> 去硬刻一個route給Facebook這種不會把Querystring跟著弄回來的Providers用，所以如下</p>
+
+<p>Liquid error: bad URI(is not URI?): https://raw.github.com/gist//2952624 routes.rb</p>
+
+<p>然後在App端這邊發送Request的時候就必須從 <code>http://host/users/auth/facebook?url_identify=xxx</code> 改成 <code>http://host/users/auth/facebook/callback/xxx</code> 了。</p>
+
+<p>然後在 <code>omniauth_callbacks_controller.rb</code> 中手動加入 <code>passthru</code> 這個 action</p>
+
+<p>Liquid error: bad URI(is not URI?): https://raw.github.com/gist//2952624 omniauth_callbacks_controller.rb</p>
+
+<p>這樣子在指定的provider action中就能正常吃到url_identify了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to implement drag and drop upload with Rails and Paperclip]]></title>
@@ -214,52 +237,6 @@ end</code></pre></noscript></div>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>是的，搞定。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[HTML5 Video 標籤初探]]></title>
-    <link href="http://hechien.github.com/octopress/blog/html5-video-transform-first-view/"/>
-    <updated>2012-05-25T10:29:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/html5-video-transform-first-view</id>
-    <content type="html"><![CDATA[<p><div><script src='https://gist.github.com/2785414.js?file='></script>
-<noscript><pre><code>&lt;!doctype html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;script src=&quot;http://code.jquery.com/jquery-1.7.2.min.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-    &lt;style&gt;
-      video{
-        /*-webkit-transform: rotate3d(3, 4, 3, 45deg) sca;*/
-        /*-webkit-transform: rotate3d(40, 1, 30, 45deg);*/
-        margin: auto auto;
-        margin-top:200px;
-      }
-    &lt;/style&gt;
-    &lt;script&gt;
-      // References:
-      //   http://www.eleqtriq.com/2010/05/understanding-css-3d-transforms/
-      //   http://www.w3schools.com/css3/css3_3dtransforms.asp
-      $(function(){
-        var index = 0;
-        setInterval(function(){
-          if((index === 9) || (index === 27)) index+=1;
-          if (index === 37) index = 1;
-          $('video').css({
-            '-webkit-transform': 'rotateX('+(index*10)+'deg) rotateY('+(index*10)+'deg) rotateZ('+(index*10)+'deg)'
-          });
-          index++;
-        }, 100);
-      });
-    &lt;/script&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;video class=&quot;persistentNativePlayer nativeEmbedPlayerPid&quot; poster=&quot;http://cdnbakmi.kaltura.com/p/243342/sp/24334200/thumbnail/entry_id/0_ntovmku5/version/100004/height/480&quot; id=&quot;pid_kaltura-video&quot; style=&quot;display: block; width: 480px; height: 271px; top: 0px; &quot; kwidgetid=&quot;_243342&quot; kuiconfid=&quot;5349042&quot; kentryid=&quot;0_ntovmku5&quot; src=&quot;http://cdnapi.kaltura.com/p/243342/sp/24334200/playManifest/entryId/0_ntovmku5/flavorIds/0_nvp2quz3,0_o0bikcqg/format/applehttp/protocol/http/a.m3u8?ks=NmRmYmMxOWIzNWUzMWE3Mzg1MmU5MzhjY2YzNjg2ZmQ3OGM2YTNkYXwyNDMzNDI7MjQzMzQyOzEzMzc5OTYwMTQ7MDsxMzM3OTA5NjE0LjIxNjY7MDt2aWV3Oio7Ow==&amp;amp;referrer=aHR0cDovL2h0bWw1dmlkZW8ub3JnLw==&quot; autoplay=&quot;autoplay&quot; loop=&quot;-1&quot;&gt;&lt;/video&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre></noscript></div>
-</p>
-
-<p>可以在這邊看到範例：<a href="http://hechien.host22.com/html5video.html">http://hechien.host22.com/html5video.html</a></p>
 ]]></content>
   </entry>
   
