@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rails3 | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/rails3/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-07-03T16:04:30+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 3與Ajax的邂逅]]></title>
+    <link href="http://hechien.github.com/octopress/blog/rails3-meets-ajax/"/>
+    <updated>2012-07-03T16:01:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/rails3-meets-ajax</id>
+    <content type="html"><![CDATA[<p>昨天晚上花了一點點時間寫了<a href="http://murmur-coder.herokuapp.com">Murmur Coder</a>，後來加上了Ajax的功能讓發出表單內容後可以不需要重新整理頁面就能夠根據response去顯示畫面。</p>
+
+<p>其實Ajax這種話題應該是已經被講到爛了才對，不過我還是做一下註記好了，畢竟這種方式很Cool ... Rails 把這些東西包在<code>rails.js</code>內了，所以我們可以很簡單的就去實作Ajax的功能。</p>
+
+<p>最近這幾年比較流行的JavaScript寫法似乎是Obtrusive JavaScript，所以我在這邊會簡單的聊一下。</p>
+
+<p>在以往常見的JavaScript寫法，是把一些Event會發生的事件直接寫在HTML Tag上，例如：</p>
+
+<p><code>&lt;p onclick="alert('Hello, world');"&gt;Click me&lt;/p&gt;</code></p>
+
+<p>直接把<code>onclick</code>寫在<code>p</code>標籤內，這種inline的寫法就有點像是直接把CSS寫在<code>style</code>屬性內一樣噁心。之後好像Prototype、jQuery之類的JavaScript framework出來了，因為能夠透過CSS Selector的方式去抓DOM，所以就能夠變成是：</p>
+
+<pre><code>    &lt;p&gt;Click me&lt;/p&gt;
+    &lt;script&gt;$('p').click(function(){alert("Hello, world");})&lt;/script&gt;
+</code></pre>
+
+<p>這種把HTML與JavaScript分離的作法就叫做Obtrusive JavaScript，讓JavaScript隱藏在某個角落內，使HTML、JavaScript能夠各司其職。</p>
+
+<p>回到我們的主題，就因為Obtrusive JavaScript的概念，所以Rails在整合Ajax的時候十分容易。</p>
+
+<p>我們來看看如何修改<code>form_for</code>吧 ... 假設原本是 <code>form_for @murmur do |form|</code> 的話，就變成是： <code>form_for(@murmur, remote: true) do |form|</code> ... 剩下的Rails已經幫你搞定了</p>
+
+<p>不過開始測試時會發現：「那我要怎樣處理Callback？」、「錯誤咧？怎麼辦啊？」</p>
+
+<p>嘖嘖，這個時候就是交給<code>rails.js</code>來處理囉 ... <code>rails.js</code> 中提供了四個Callback function：</p>
+
+<ul>
+<li><code>ajax:beforeSend</code>: 用於在送出之前的狀態</li>
+<li><code>ajax:success</code>: 用在執行成功的狀態，基本上Response status code為200, 201等都會進來這邊</li>
+<li><code>ajax:complete</code>：不論結果，只要Request執行結束就會跑來這邊，適合重設表單等工作</li>
+<li><code>ajax:error</code>：當遇到錯誤的時候會顯示這邊，像是Status code為4xx, 5xx時就會跑來這邊了</li>
+</ul>
+
+
+<p>因為我是直接寫CoffeeScript的，所以我就直接貼CoffeeScript code</p>
+
+<p>{ gist: 3018510 murmurs.js.coffee }</p>
+
+<p>簡單的說，就是<code>bind</code>住那四個callbacks就好。只不過在Controller中要記住的就是，如果response content type不是HTML的話，可能會進不了success，這點要注意一下 ....</p>
+]]></content>
+  </entry>
+  
+</feed>

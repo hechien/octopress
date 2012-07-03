@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-06-30T09:42:00+08:00</updated>
+  <updated>2012-07-03T16:04:30+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 3與Ajax的邂逅]]></title>
+    <link href="http://hechien.github.com/octopress/blog/rails3-meets-ajax/"/>
+    <updated>2012-07-03T16:01:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/rails3-meets-ajax</id>
+    <content type="html"><![CDATA[<p>昨天晚上花了一點點時間寫了<a href="http://murmur-coder.herokuapp.com">Murmur Coder</a>，後來加上了Ajax的功能讓發出表單內容後可以不需要重新整理頁面就能夠根據response去顯示畫面。</p>
+
+<p>其實Ajax這種話題應該是已經被講到爛了才對，不過我還是做一下註記好了，畢竟這種方式很Cool ... Rails 把這些東西包在<code>rails.js</code>內了，所以我們可以很簡單的就去實作Ajax的功能。</p>
+
+<p>最近這幾年比較流行的JavaScript寫法似乎是Obtrusive JavaScript，所以我在這邊會簡單的聊一下。</p>
+
+<p>在以往常見的JavaScript寫法，是把一些Event會發生的事件直接寫在HTML Tag上，例如：</p>
+
+<p><code>&lt;p onclick="alert('Hello, world');"&gt;Click me&lt;/p&gt;</code></p>
+
+<p>直接把<code>onclick</code>寫在<code>p</code>標籤內，這種inline的寫法就有點像是直接把CSS寫在<code>style</code>屬性內一樣噁心。之後好像Prototype、jQuery之類的JavaScript framework出來了，因為能夠透過CSS Selector的方式去抓DOM，所以就能夠變成是：</p>
+
+<pre><code>    &lt;p&gt;Click me&lt;/p&gt;
+    &lt;script&gt;$('p').click(function(){alert("Hello, world");})&lt;/script&gt;
+</code></pre>
+
+<p>這種把HTML與JavaScript分離的作法就叫做Obtrusive JavaScript，讓JavaScript隱藏在某個角落內，使HTML、JavaScript能夠各司其職。</p>
+
+<p>回到我們的主題，就因為Obtrusive JavaScript的概念，所以Rails在整合Ajax的時候十分容易。</p>
+
+<p>我們來看看如何修改<code>form_for</code>吧 ... 假設原本是 <code>form_for @murmur do |form|</code> 的話，就變成是： <code>form_for(@murmur, remote: true) do |form|</code> ... 剩下的Rails已經幫你搞定了</p>
+
+<p>不過開始測試時會發現：「那我要怎樣處理Callback？」、「錯誤咧？怎麼辦啊？」</p>
+
+<p>嘖嘖，這個時候就是交給<code>rails.js</code>來處理囉 ... <code>rails.js</code> 中提供了四個Callback function：</p>
+
+<ul>
+<li><code>ajax:beforeSend</code>: 用於在送出之前的狀態</li>
+<li><code>ajax:success</code>: 用在執行成功的狀態，基本上Response status code為200, 201等都會進來這邊</li>
+<li><code>ajax:complete</code>：不論結果，只要Request執行結束就會跑來這邊，適合重設表單等工作</li>
+<li><code>ajax:error</code>：當遇到錯誤的時候會顯示這邊，像是Status code為4xx, 5xx時就會跑來這邊了</li>
+</ul>
+
+
+<p>因為我是直接寫CoffeeScript的，所以我就直接貼CoffeeScript code</p>
+
+<p>{ gist: 3018510 murmurs.js.coffee }</p>
+
+<p>簡單的說，就是<code>bind</code>住那四個callbacks就好。只不過在Controller中要記住的就是，如果response content type不是HTML的話，可能會進不了success，這點要注意一下 ....</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用Devise與Omniauth實作Facebook自定callback回傳]]></title>
@@ -197,61 +244,6 @@ end</code></pre></noscript></div>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>由於devise有<code>confirmation_instructions</code>、<code>reset_password_instructions</code>、<code>unlock_instructions</code>三個，而我只是要導到不同的app目錄去，所以就這樣子refactor，讓headers中的<code>template_path</code>可以是自訂的目錄。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用jQuery的toggleClass來動態切換背景圖片]]></title>
-    <link href="http://hechien.github.com/octopress/blog/jquery-toggleclass-dynamic-background/"/>
-    <updated>2012-05-29T18:13:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/jquery-toggleclass-dynamic-background</id>
-    <content type="html"><![CDATA[<p>公司的某個開發中網站要實作一個登入按鈕會閃爍的功能，這個按鈕有兩張圖片(我知道CSS Sprite，但即便我有Compass我也懶得弄 ...)來做相互切換。</p>
-
-<p>原本的作法我是用一個index去當counter用，然後用<code>setInterval</code>的方式每秒用<code>$(obj).css({background: 'url()'})</code>的方式，但是這樣有一個問題就是會每次切換的時候都跟Server要圖片，這很麻煩真的 ... 所以我就改成用指定class切換Background就好了。</p>
-
-<!-- more -->
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>application.css </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='scss'><span class='line'>  <span class="nc">.login</span><span class="p">{</span><span class="na">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="na">&lt;pre&gt;&lt;code&gt;background-image</span><span class="o">:</span> <span class="sx">url(/assets/common/login_2.png)</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">&amp;</span><span class="nt">amp</span><span class="o">;</span><span class="nc">.star</span><span class="p">{</span>
-</span><span class='line'>  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url(/assets/common/login_1.png)</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="nt">code</span><span class="o">&gt;&lt;/</span><span class="nt">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span>  <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>在登入的部份寫成這樣，然後Script寫成：</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'>  <span class="nx">setInterval</span> <span class="o">-&gt;&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.login&#39;</span><span class="p">).</span><span class="nx">toggleClass</span><span class="p">(</span><span class="s1">&#39;star&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">,</span><span class="mi">1000</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>是的，搞定。</p>
 ]]></content>
   </entry>
   
