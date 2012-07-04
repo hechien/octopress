@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ajax | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/ajax/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-07-04T10:09:59+08:00</updated>
+  <updated>2012-07-04T10:12:32+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -54,7 +54,39 @@
 
 <p>因為我是直接寫CoffeeScript的，所以我就直接貼CoffeeScript code</p>
 
-<p>{ gist 3018510 murmurs.js.coffee }</p>
+<p><div><script src='https://gist.github.com/3018510.js?file=murmurs.js.coffee'></script>
+<noscript><pre><code>$ -&gt;
+  submit_button = $('form#new_murmur input[name=&quot;commit&quot;]')
+  submit_button_origin_value = submit_button.val()
+
+  $('form#new_murmur')
+  .bind 'ajax:beforeSend', (e, xhr, settings) -&gt;
+    submit_button.val(&quot;正在送啦&quot;)
+
+  .bind 'ajax:success', (e, data, status, xhr) -&gt;
+    $(this).get(0).reset()
+    $(&quot;#murmurs-list&quot;).html(xhr.responseText)
+
+  .bind 'ajax:complete', (e, xhr, status) -&gt;
+    submit_button.val(submit_button_origin_value)
+
+  .bind 'ajax:error', (e, xhr, status, error) -&gt;
+    form = $(this)
+    [errors, errorText] = [null, null]
+    try
+      errors = $.parseJSON xhr.responseText
+    catch err
+      errors = {message: &quot;可能 ... 主機被我的貓拿來當玩具玩了吧？&quot;}
+
+    errorText = &quot;呃，是有一些錯誤啦 ... \n&lt;ul&gt;&quot;
+
+    for error in errors
+      errorText += &quot;&lt;li&gt;#{error}: #{errors[error]}&lt;/li&gt;&quot;
+
+    errorText += &quot;&lt;/ul&gt;&quot;
+
+    form.find('div.error_explanation').html(errorText)</code></pre></noscript></div>
+</p>
 
 <p>簡單的說，就是<code>bind</code>住那四個callbacks就好。只不過在Controller中要記住的就是，如果response content type不是HTML的話，可能會進不了success，這點要注意一下 ....</p>
 ]]></content>
