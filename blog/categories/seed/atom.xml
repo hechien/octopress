@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: seed | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/seed/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-07-13T10:17:39+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[用FactoryGirl建立假資料]]></title>
+    <link href="http://hechien.github.com/octopress/blog/factory-girl-with-db-seeds-for-fake-data/"/>
+    <updated>2012-07-13T10:14:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/factory-girl-with-db-seeds-for-fake-data</id>
+    <content type="html"><![CDATA[<h1>用FactoryGirl建立假資料</h1>
+
+<h2>安裝FactoryGirl</h2>
+
+<p>先在 <code>Gemfile</code> 內寫：</p>
+
+<pre><code>    gem 'rspec-rails'
+    gem 'factory_girl_rails'
+</code></pre>
+
+<p>執行 <code>bundle install</code></p>
+
+<p>上面這種方式會順便把<code>RSpec</code>給裝起來，反正沒壞處</p>
+
+<p>接著打開 <code>config/application.rb</code></p>
+
+<p>加入</p>
+
+<pre><code>    config.generators do |g|
+      g.test_framework :rspec, :fixture =&gt; true, :views =&gt; false, :fixture_replacement =&gt; :factory_girl
+      g.fixture_replacement :factory_girl, :dir =&gt; "spec/factories"
+    end
+</code></pre>
+
+<p>這樣做的話會在建立Model的時候一併建立相關檔案。</p>
+
+<h2>第一步</h2>
+
+<p>假設我們建立 <code>Post</code> model</p>
+
+<p><code>rails g model Post title:string content:string author:string state:string; rake db:migrate</code></p>
+
+<p>現在可以開始建立測試資料了，打開 <code>spec/factories/posts.rb</code></p>
+
+<p>我們先新增一個正常的資料結構</p>
+
+<pre><code>    FactoryGirl.define do
+      factory :post do
+        title "MyString"
+        content "MyString"
+        author "HeChien"
+        state "public"
+      end
+    end
+</code></pre>
+
+<p>這樣子，我們就可以在<code>rails console</code>內透過<code>FactoryGirl.create :post</code>來建立一筆Post資料了</p>
+
+<h3>怎麼了？你忘了？說好的，亂數呢？</h3>
+
+<p>誰跟你說好了=_= ... 不過要亂數的話 ...</p>
+
+<p>假設我們要讓<code>title</code>變亂數，那就把<code>title</code>改為</p>
+
+<pre><code>    title "MyString" # 原本是這樣
+    sequence(:title) { |n| "Title -- #{n}" } # 改成這樣
+</code></pre>
+
+<p>如此一來就會產生<code>"Title -- 1"</code>、<code>"Title -- 2"</code>之類的資料了</p>
+
+<p>但是有的時候我們想要產生客製化的資料，譬如像是又亂數標題又是<code>state</code>為<code>closed</code>的文章的話要怎辦？</p>
+
+<p>那就看下一節啊</p>
+
+<h2>第二步 - 不同狀態不同內容</h2>
+
+<p>同樣都是定義在<code>Post</code>中，我們可能需要不一樣的狀態、內容，所以我們可以這樣做</p>
+
+<pre><code>    # 1. title為亂數，content為亂數，發佈為published，author為亂數，叫做 :random_life
+    # 2. title為"Hello, world"，content為"XD"，發佈為closed，author為預設，叫做 :posted_by_hechien
+    # 改成以下這樣
+
+    FactoryGirl.define do
+      factory :post do
+        title "MyString"
+        content "MyString"
+        author "HeChien"
+        state "public"
+
+        factory :random_life do
+          sequence(:title) { |n| "Title -- #{n}" }
+          sequence(:content) { |n| "Randome #{n} Content" }
+          state "published"
+          sequence(:author) { |n| "Author: #{n}" }
+        end
+
+        factory :posted_by_hechien do
+          title "Hello, world"
+          content "XD"
+          state "closed"
+        end
+      end
+    end
+</code></pre>
+
+<p>如此一來，我們就可以用</p>
+
+<p><code>FactoryGirl.create :random_life</code> 來產生幾乎都亂數的資料，以及用 <code>FactoryGirl.create :posted_by_hechien</code> 來產生與我本人有關的資料XD</p>
+
+<h2>第三步 - Relationship :"></h2>
+
+<p>臉紅個屁！</p>
+
+<p>總是會需要建立關連的，譬如說<code>Post</code>與<code>Comment</code>。</p>
+
+<pre><code>    FactoryGirl.define do
+      factory :comment do
+        post do
+          FactoryGirl.create :post
+        end
+        author "MyString"
+        content "MyString"
+      end
+    end
+</code></pre>
+
+<p>好了，你已經知道怎麼做了 (誤</p>
+
+<h2>與 <code>db/seeds.rb</code> 邂逅</h2>
+
+<pre><code>    100.times { FactoryGirl.create :random_life }
+    10.times  { FactoryGirl.create :posted_by_hechien }
+    20.times  { FactoryGirl.create :post }
+</code></pre>
+
+<p><code>rake db:seed</code> 打完收工</p>
+
+<p>但事實上，假資料要用這個建立 => <a href="https://github.com/ryanb/populator">https://github.com/ryanb/populator</a></p>
+]]></content>
+  </entry>
+  
+</feed>

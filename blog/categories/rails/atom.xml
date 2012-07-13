@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-07-04T10:14:27+08:00</updated>
+  <updated>2012-07-13T10:17:39+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,179 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[N+1 Queries]]></title>
+    <link href="http://hechien.github.com/octopress/blog/n-plus-1-queries/"/>
+    <updated>2012-07-13T10:16:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/n-plus-1-queries</id>
+    <content type="html"><![CDATA[<h1>什麼是 N+1 Query</h1>
+
+<p>在Rails中有個ActiveRecord，它可以很容易產生資料庫關連、操作的東西。</p>
+
+<p>但是關連這種東西一用不好就有可能造成災難，看看範例。</p>
+
+<h1>範例？</h1>
+
+<p>我有一個<code>CrashLog</code> model belongs_to <code>Product</code>，然後在<code>CrashLog</code>內用Delegate對應到<code>Product</code>的<code>name</code></p>
+
+<pre><code>    # crash_log.rb
+    delegate :name, to: :product, prefix: true
+</code></pre>
+
+<p>如此一來可以用<code>c = CrashLog.first; c.product_name</code>來直接存取到<code>product.name</code></p>
+
+<p>可是當你用迴圈的時候就有可能遇到 N+1 Query。</p>
+
+<p>譬如說我在首頁上面寫的是 <code>@crash_logs = CrashLog.all</code></p>
+
+<p>結果SQL跑出上百筆類似以下的東西：</p>
+
+<p>https://gist.github.com/3102285#file_n_plus_1.sql</p>
+
+<p>但是如果當我改成 <code>@crash_logs = CrashLog.includes :product</code> 就會變成另外一種結果</p>
+
+<p>https://gist.github.com/3102285#file_not_n_plus_1.sql</p>
+
+<p>怎麼樣？很恐怖吧！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用FactoryGirl建立假資料]]></title>
+    <link href="http://hechien.github.com/octopress/blog/factory-girl-with-db-seeds-for-fake-data/"/>
+    <updated>2012-07-13T10:14:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/factory-girl-with-db-seeds-for-fake-data</id>
+    <content type="html"><![CDATA[<h1>用FactoryGirl建立假資料</h1>
+
+<h2>安裝FactoryGirl</h2>
+
+<p>先在 <code>Gemfile</code> 內寫：</p>
+
+<pre><code>    gem 'rspec-rails'
+    gem 'factory_girl_rails'
+</code></pre>
+
+<p>執行 <code>bundle install</code></p>
+
+<p>上面這種方式會順便把<code>RSpec</code>給裝起來，反正沒壞處</p>
+
+<p>接著打開 <code>config/application.rb</code></p>
+
+<p>加入</p>
+
+<pre><code>    config.generators do |g|
+      g.test_framework :rspec, :fixture =&gt; true, :views =&gt; false, :fixture_replacement =&gt; :factory_girl
+      g.fixture_replacement :factory_girl, :dir =&gt; "spec/factories"
+    end
+</code></pre>
+
+<p>這樣做的話會在建立Model的時候一併建立相關檔案。</p>
+
+<h2>第一步</h2>
+
+<p>假設我們建立 <code>Post</code> model</p>
+
+<p><code>rails g model Post title:string content:string author:string state:string; rake db:migrate</code></p>
+
+<p>現在可以開始建立測試資料了，打開 <code>spec/factories/posts.rb</code></p>
+
+<p>我們先新增一個正常的資料結構</p>
+
+<pre><code>    FactoryGirl.define do
+      factory :post do
+        title "MyString"
+        content "MyString"
+        author "HeChien"
+        state "public"
+      end
+    end
+</code></pre>
+
+<p>這樣子，我們就可以在<code>rails console</code>內透過<code>FactoryGirl.create :post</code>來建立一筆Post資料了</p>
+
+<h3>怎麼了？你忘了？說好的，亂數呢？</h3>
+
+<p>誰跟你說好了=_= ... 不過要亂數的話 ...</p>
+
+<p>假設我們要讓<code>title</code>變亂數，那就把<code>title</code>改為</p>
+
+<pre><code>    title "MyString" # 原本是這樣
+    sequence(:title) { |n| "Title -- #{n}" } # 改成這樣
+</code></pre>
+
+<p>如此一來就會產生<code>"Title -- 1"</code>、<code>"Title -- 2"</code>之類的資料了</p>
+
+<p>但是有的時候我們想要產生客製化的資料，譬如像是又亂數標題又是<code>state</code>為<code>closed</code>的文章的話要怎辦？</p>
+
+<p>那就看下一節啊</p>
+
+<h2>第二步 - 不同狀態不同內容</h2>
+
+<p>同樣都是定義在<code>Post</code>中，我們可能需要不一樣的狀態、內容，所以我們可以這樣做</p>
+
+<pre><code>    # 1. title為亂數，content為亂數，發佈為published，author為亂數，叫做 :random_life
+    # 2. title為"Hello, world"，content為"XD"，發佈為closed，author為預設，叫做 :posted_by_hechien
+    # 改成以下這樣
+
+    FactoryGirl.define do
+      factory :post do
+        title "MyString"
+        content "MyString"
+        author "HeChien"
+        state "public"
+
+        factory :random_life do
+          sequence(:title) { |n| "Title -- #{n}" }
+          sequence(:content) { |n| "Randome #{n} Content" }
+          state "published"
+          sequence(:author) { |n| "Author: #{n}" }
+        end
+
+        factory :posted_by_hechien do
+          title "Hello, world"
+          content "XD"
+          state "closed"
+        end
+      end
+    end
+</code></pre>
+
+<p>如此一來，我們就可以用</p>
+
+<p><code>FactoryGirl.create :random_life</code> 來產生幾乎都亂數的資料，以及用 <code>FactoryGirl.create :posted_by_hechien</code> 來產生與我本人有關的資料XD</p>
+
+<h2>第三步 - Relationship :"></h2>
+
+<p>臉紅個屁！</p>
+
+<p>總是會需要建立關連的，譬如說<code>Post</code>與<code>Comment</code>。</p>
+
+<pre><code>    FactoryGirl.define do
+      factory :comment do
+        post do
+          FactoryGirl.create :post
+        end
+        author "MyString"
+        content "MyString"
+      end
+    end
+</code></pre>
+
+<p>好了，你已經知道怎麼做了 (誤</p>
+
+<h2>與 <code>db/seeds.rb</code> 邂逅</h2>
+
+<pre><code>    100.times { FactoryGirl.create :random_life }
+    10.times  { FactoryGirl.create :posted_by_hechien }
+    20.times  { FactoryGirl.create :post }
+</code></pre>
+
+<p><code>rake db:seed</code> 打完收工</p>
+
+<p>但事實上，假資料要用這個建立 => <a href="https://github.com/ryanb/populator">https://github.com/ryanb/populator</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[實作Drag and Drop上傳方式，傳到Rails + Paperclip]]></title>
@@ -159,47 +332,6 @@ end</code></pre></noscript></div>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>由於devise有<code>confirmation_instructions</code>、<code>reset_password_instructions</code>、<code>unlock_instructions</code>三個，而我只是要導到不同的app目錄去，所以就這樣子refactor，讓headers中的<code>template_path</code>可以是自訂的目錄。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OmniAuth + Devise + OpenID]]></title>
-    <link href="http://hechien.github.com/octopress/blog/omniauth-plus-devise-plus-openid/"/>
-    <updated>2012-05-08T11:46:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/omniauth-plus-devise-plus-openid</id>
-    <content type="html"><![CDATA[<p>最近內部討論結果覺得有可能需要Support Open ID的登入機制，因此就去survey了一下Devise擴展Open ID的方式。因為Devise本身支援OmniAuth，所以就直接以<code>Devise OmniAuth OpenID</code>的方式搜尋了一下，便找到這篇：<a href="http://blog.xdite.net/posts/2011/12/05/omniauth-clean-auth-provider-4/">http://blog.xdite.net/posts/2011/12/05/omniauth-clean-auth-provider-4/</a></p>
-
-<p>其實這篇照做就可以了，只不過因為原始碼是從<a href="http://ruby-taiwan.org">http://ruby-taiwan.org</a>那邊來的，所以有一些code是不能用的 ... 需要自己稍微做調整一下</p>
-
-<p>這個實作版本是Rails 3.2.3、Devise 2.0.4、OmniAuth 1.0.3</p>
-
-<p>裡面的Code在<code>omniauth_callbacks.rb</code>中第9行左右有個問題，User必須要用includes把authorizations給引入進來，不然會噴 ... XD</p>
-
-<p>可能是因為原本的Code用MongoID當做Data source的關係，所以原本的Code內並沒有寫includes這一塊吧 ...</p>
-
-<p>然後要記得在<code>user.rb</code>實作<code>bind_service</code>，不然原本的code去bind使用者的部份會有問題 ...</p>
-
-<p>要把<code>omniauth_callbacks.rb</code>放在<code>app/models/user</code>底下、把<code>omniauth_callbacks_controller.rb</code>放在<code>app/controllers/users</code>底下，總之在model的資料夾是<code>user</code>而controller的資料夾是<code>users</code>就對了。</p>
-
-<p>大致上就這樣。</p>
-
-<p>喔對，很重要的一點就是 ... 現在網路上很多範例都會叫你去<code>config/initializers/omniauth.rb</code>內設定provider，這樣做的話一定會噴掉 ... 我在這邊花很多時間才搞定囧，請記住，<strong>不必</strong>寫在這個地方！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails打索引技巧]]></title>
-    <link href="http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao/"/>
-    <updated>2012-04-24T09:36:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/railsda-suo-yin-ji-qiao</id>
-    <content type="html"><![CDATA[<p>做專案學到的一個技巧 ... 應該說，是很慘痛的學到一個技巧=_= ...</p>
-
-<p>我們都知道，Rails可以透過<code>rails g migration blahblah</code>來產生Migration file然後在裡面寫<code>add_index</code>來打索引，可是切記切記！！不要把索引寫在同一個表內 ... 當資料量大，而且其中一個index打失敗你就會哭了 ...</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Mysql2::Error: Specified key was too long; max key length is 1000 bytes: CREATE  INDEX &lt;code>index_products_on_url_identify_and_name&lt;/code> ON &lt;code>products&lt;/code> (&lt;code>url_identify&lt;/code>, &lt;code>name&lt;/code>)</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>慘痛T_T</p>
 ]]></content>
   </entry>
   

@@ -1,0 +1,181 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>N+1 Queries - 赫謙小便籤</title>
+    <meta name="author" content="赫謙">
+
+    
+    <meta name="description" content="N+1 Queries 什麼是 N+1 Query 在Rails中有個ActiveRecord，它可以很容易產生資料庫關連、操作的東西。 但是關連這種東西一用不好就有可能造成災難，看看範例。 範例？ 我有一個CrashLog model belongs_to Product， &hellip;">
+    
+    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+
+    <link href="http://feeds.feedburner.com/hechienstickies" rel="alternate" title="赫謙小便籤" type="application/atom+xml">
+    <link rel="canonical" href="">
+    <link href="/octopress/favicon.png" rel="shortcut icon">
+    <link href="/octopress/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]><script src="/octopress/javascripts/html5.js"></script><![endif]-->
+    <script src="/octopress/javascripts/jquery.min.js"></script>
+    
+    
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-9528313-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+	<header class="inner"><h1 class="left"><a href="/octopress/">赫謙小便籤</a></h1>
+<nav class="menu left"><ul class="main">
+	<li><a href="/octopress/">Blog</a></li>
+	<li><a href="/octopress/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<div class="right">
+	<form class="search right" action="http://google.com/search" method="get">
+		<input class="left" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:hechien.github.com/octopress">
+	</form>
+	<div class="social right">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/HeChian" title="Twitter">Twitter</a>
+		
+		
+		<a class="rss" href="http://feeds.feedburner.com/hechienstickies" title="RSS">RSS</a>
+		
+	</div>
+</div>
+</header>
+	
+<div id="banner" class="inner">
+	<div class="container">
+		<ul class="feed"></ul>
+	</div>
+	<small><a href="http://twitter.com/HeChian">HeChian</a> @ <a href="http://twitter.com">Twitter</a></small>
+	<div class="loading">Loading...</div>
+</div>
+<script src="/octopress/javascripts/twitter.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('#banner').getTwitterFeed('HeChian', 5);
+	})(jQuery);
+</script>
+
+	<div id="content" class="inner"><article class="post">
+    <h1 class="title">N+1 Queries</h1>
+    <div class="entry"><h1>什麼是 N+1 Query</h1>
+
+<p>在Rails中有個ActiveRecord，它可以很容易產生資料庫關連、操作的東西。</p>
+
+<p>但是關連這種東西一用不好就有可能造成災難，看看範例。</p>
+
+<h1>範例？</h1>
+
+<p>我有一個<code>CrashLog</code> model belongs_to <code>Product</code>，然後在<code>CrashLog</code>內用Delegate對應到<code>Product</code>的<code>name</code></p>
+
+<pre><code>    # crash_log.rb
+    delegate :name, to: :product, prefix: true
+</code></pre>
+
+<p>如此一來可以用<code>c = CrashLog.first; c.product_name</code>來直接存取到<code>product.name</code></p>
+
+<p>可是當你用迴圈的時候就有可能遇到 N+1 Query。</p>
+
+<p>譬如說我在首頁上面寫的是 <code>@crash_logs = CrashLog.all</code></p>
+
+<p>結果SQL跑出上百筆類似以下的東西：</p>
+
+<p>https://gist.github.com/3102285#file_n_plus_1.sql</p>
+
+<p>但是如果當我改成 <code>@crash_logs = CrashLog.includes :product</code> 就會變成另外一種結果</p>
+
+<p>https://gist.github.com/3102285#file_not_n_plus_1.sql</p>
+
+<p>怎麼樣？很恐怖吧！</p>
+</div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-13T10:16:00+08:00" pubdate data-updated="true">Jul 13<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/n-1-queries/'>N+1 Queries</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
+<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4eb4a0c47196e907"></script>
+</div>
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer class="inner">Copyright &copy; 2012 赫謙小便籤</footer>
+	<script src="/octopress/javascripts/jquery.easing.1.3.js"></script>
+<script src="/octopress/javascripts/jquery.fancybox.pack.js"></script>
+<script src="/octopress/javascripts/slash.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'hechienstickies';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hechien.github.com/octopress/blog/n-plus-1-queries/';
+        var disqus_url = 'http://hechien.github.com/octopress/blog/n-plus-1-queries/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+</html>

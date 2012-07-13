@@ -1,0 +1,280 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>用FactoryGirl建立假資料 - 赫謙小便籤</title>
+    <meta name="author" content="赫謙">
+
+    
+    <meta name="description" content="用FactoryGirl建立假資料 用FactoryGirl建立假資料 安裝FactoryGirl 先在 Gemfile 內寫： gem 'rspec-rails' gem 'factory_girl_rails' 執行 bundle install 上面這種方式會順便把RSpec給裝起來， &hellip;">
+    
+    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+
+    <link href="http://feeds.feedburner.com/hechienstickies" rel="alternate" title="赫謙小便籤" type="application/atom+xml">
+    <link rel="canonical" href="">
+    <link href="/octopress/favicon.png" rel="shortcut icon">
+    <link href="/octopress/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]><script src="/octopress/javascripts/html5.js"></script><![endif]-->
+    <script src="/octopress/javascripts/jquery.min.js"></script>
+    
+    
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-9528313-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+	<header class="inner"><h1 class="left"><a href="/octopress/">赫謙小便籤</a></h1>
+<nav class="menu left"><ul class="main">
+	<li><a href="/octopress/">Blog</a></li>
+	<li><a href="/octopress/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<div class="right">
+	<form class="search right" action="http://google.com/search" method="get">
+		<input class="left" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:hechien.github.com/octopress">
+	</form>
+	<div class="social right">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/HeChian" title="Twitter">Twitter</a>
+		
+		
+		<a class="rss" href="http://feeds.feedburner.com/hechienstickies" title="RSS">RSS</a>
+		
+	</div>
+</div>
+</header>
+	
+<div id="banner" class="inner">
+	<div class="container">
+		<ul class="feed"></ul>
+	</div>
+	<small><a href="http://twitter.com/HeChian">HeChian</a> @ <a href="http://twitter.com">Twitter</a></small>
+	<div class="loading">Loading...</div>
+</div>
+<script src="/octopress/javascripts/twitter.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('#banner').getTwitterFeed('HeChian', 5);
+	})(jQuery);
+</script>
+
+	<div id="content" class="inner"><article class="post">
+    <h1 class="title">用FactoryGirl建立假資料</h1>
+    <div class="entry"><h1>用FactoryGirl建立假資料</h1>
+
+<h2>安裝FactoryGirl</h2>
+
+<p>先在 <code>Gemfile</code> 內寫：</p>
+
+<pre><code>    gem 'rspec-rails'
+    gem 'factory_girl_rails'
+</code></pre>
+
+<p>執行 <code>bundle install</code></p>
+
+<p>上面這種方式會順便把<code>RSpec</code>給裝起來，反正沒壞處</p>
+
+<p>接著打開 <code>config/application.rb</code></p>
+
+<p>加入</p>
+
+<pre><code>    config.generators do |g|
+      g.test_framework :rspec, :fixture =&gt; true, :views =&gt; false, :fixture_replacement =&gt; :factory_girl
+      g.fixture_replacement :factory_girl, :dir =&gt; "spec/factories"
+    end
+</code></pre>
+
+<p>這樣做的話會在建立Model的時候一併建立相關檔案。</p>
+
+<h2>第一步</h2>
+
+<p>假設我們建立 <code>Post</code> model</p>
+
+<p><code>rails g model Post title:string content:string author:string state:string; rake db:migrate</code></p>
+
+<p>現在可以開始建立測試資料了，打開 <code>spec/factories/posts.rb</code></p>
+
+<p>我們先新增一個正常的資料結構</p>
+
+<pre><code>    FactoryGirl.define do
+      factory :post do
+        title "MyString"
+        content "MyString"
+        author "HeChien"
+        state "public"
+      end
+    end
+</code></pre>
+
+<p>這樣子，我們就可以在<code>rails console</code>內透過<code>FactoryGirl.create :post</code>來建立一筆Post資料了</p>
+
+<h3>怎麼了？你忘了？說好的，亂數呢？</h3>
+
+<p>誰跟你說好了=_= &#8230; 不過要亂數的話 &#8230;</p>
+
+<p>假設我們要讓<code>title</code>變亂數，那就把<code>title</code>改為</p>
+
+<pre><code>    title "MyString" # 原本是這樣
+    sequence(:title) { |n| "Title -- #{n}" } # 改成這樣
+</code></pre>
+
+<p>如此一來就會產生<code>"Title -- 1"</code>、<code>"Title -- 2"</code>之類的資料了</p>
+
+<p>但是有的時候我們想要產生客製化的資料，譬如像是又亂數標題又是<code>state</code>為<code>closed</code>的文章的話要怎辦？</p>
+
+<p>那就看下一節啊</p>
+
+<h2>第二步 - 不同狀態不同內容</h2>
+
+<p>同樣都是定義在<code>Post</code>中，我們可能需要不一樣的狀態、內容，所以我們可以這樣做</p>
+
+<pre><code>    # 1. title為亂數，content為亂數，發佈為published，author為亂數，叫做 :random_life
+    # 2. title為"Hello, world"，content為"XD"，發佈為closed，author為預設，叫做 :posted_by_hechien
+    # 改成以下這樣
+
+    FactoryGirl.define do
+      factory :post do
+        title "MyString"
+        content "MyString"
+        author "HeChien"
+        state "public"
+
+        factory :random_life do
+          sequence(:title) { |n| "Title -- #{n}" }
+          sequence(:content) { |n| "Randome #{n} Content" }
+          state "published"
+          sequence(:author) { |n| "Author: #{n}" }
+        end
+
+        factory :posted_by_hechien do
+          title "Hello, world"
+          content "XD"
+          state "closed"
+        end
+      end
+    end
+</code></pre>
+
+<p>如此一來，我們就可以用</p>
+
+<p><code>FactoryGirl.create :random_life</code> 來產生幾乎都亂數的資料，以及用 <code>FactoryGirl.create :posted_by_hechien</code> 來產生與我本人有關的資料XD</p>
+
+<h2>第三步 - Relationship :&#8221;></h2>
+
+<p>臉紅個屁！</p>
+
+<p>總是會需要建立關連的，譬如說<code>Post</code>與<code>Comment</code>。</p>
+
+<pre><code>    FactoryGirl.define do
+      factory :comment do
+        post do
+          FactoryGirl.create :post
+        end
+        author "MyString"
+        content "MyString"
+      end
+    end
+</code></pre>
+
+<p>好了，你已經知道怎麼做了 (誤</p>
+
+<h2>與 <code>db/seeds.rb</code> 邂逅</h2>
+
+<pre><code>    100.times { FactoryGirl.create :random_life }
+    10.times  { FactoryGirl.create :posted_by_hechien }
+    20.times  { FactoryGirl.create :post }
+</code></pre>
+
+<p><code>rake db:seed</code> 打完收工</p>
+
+<p>但事實上，假資料要用這個建立 => <a href="https://github.com/ryanb/populator">https://github.com/ryanb/populator</a></p>
+</div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-13T10:14:00+08:00" pubdate data-updated="true">Jul 13<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/factorygirl/'>FactoryGirl</a>, <a class='category' href='/octopress/blog/categories/fake-data/'>Fake data</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>, <a class='category' href='/octopress/blog/categories/seed/'>seed</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
+<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4eb4a0c47196e907"></script>
+</div>
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer class="inner">Copyright &copy; 2012 赫謙小便籤</footer>
+	<script src="/octopress/javascripts/jquery.easing.1.3.js"></script>
+<script src="/octopress/javascripts/jquery.fancybox.pack.js"></script>
+<script src="/octopress/javascripts/slash.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'hechienstickies';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hechien.github.com/octopress/blog/factory-girl-with-db-seeds-for-fake-data/';
+        var disqus_url = 'http://hechien.github.com/octopress/blog/factory-girl-with-db-seeds-for-fake-data/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+</body>
+</html>

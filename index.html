@@ -7,7 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="Rails 3與Ajax的邂逅 昨天晚上花了一點點時間寫了Murmur Coder，後來加上了Ajax的功能讓發出表單內容後可以不需要重新整理頁面就能夠根據response去顯示畫面。 其實Ajax這種話題應該是已經被講到爛了才對，不過我還是做一下註記好了，畢竟這種方式很Cool &#8230 &hellip;">
+    <meta name="description" content="N+1 Queries 什麼是 N+1 Query 在Rails中有個ActiveRecord，它可以很容易產生資料庫關連、操作的東西。 但是關連這種東西一用不好就有可能造成災難，看看範例。 範例？ 我有一個CrashLog model belongs_to Product， &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,6 +74,233 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/n-plus-1-queries/">N+1 Queries</a></h1>
+    <div class="entry">
+        <h1>什麼是 N+1 Query</h1>
+
+<p>在Rails中有個ActiveRecord，它可以很容易產生資料庫關連、操作的東西。</p>
+
+<p>但是關連這種東西一用不好就有可能造成災難，看看範例。</p>
+
+<h1>範例？</h1>
+
+<p>我有一個<code>CrashLog</code> model belongs_to <code>Product</code>，然後在<code>CrashLog</code>內用Delegate對應到<code>Product</code>的<code>name</code></p>
+
+<pre><code>    # crash_log.rb
+    delegate :name, to: :product, prefix: true
+</code></pre>
+
+<p>如此一來可以用<code>c = CrashLog.first; c.product_name</code>來直接存取到<code>product.name</code></p>
+
+<p>可是當你用迴圈的時候就有可能遇到 N+1 Query。</p>
+
+<p>譬如說我在首頁上面寫的是 <code>@crash_logs = CrashLog.all</code></p>
+
+<p>結果SQL跑出上百筆類似以下的東西：</p>
+
+<p>https://gist.github.com/3102285#file_n_plus_1.sql</p>
+
+<p>但是如果當我改成 <code>@crash_logs = CrashLog.includes :product</code> 就會變成另外一種結果</p>
+
+<p>https://gist.github.com/3102285#file_not_n_plus_1.sql</p>
+
+<p>怎麼樣？很恐怖吧！</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-13T10:16:00+08:00" pubdate data-updated="true">Jul 13<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/n-1-queries/'>N+1 Queries</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/factory-girl-with-db-seeds-for-fake-data/">用FactoryGirl建立假資料</a></h1>
+    <div class="entry">
+        <h1>用FactoryGirl建立假資料</h1>
+
+<h2>安裝FactoryGirl</h2>
+
+<p>先在 <code>Gemfile</code> 內寫：</p>
+
+<pre><code>    gem 'rspec-rails'
+    gem 'factory_girl_rails'
+</code></pre>
+
+<p>執行 <code>bundle install</code></p>
+
+<p>上面這種方式會順便把<code>RSpec</code>給裝起來，反正沒壞處</p>
+
+<p>接著打開 <code>config/application.rb</code></p>
+
+<p>加入</p>
+
+<pre><code>    config.generators do |g|
+      g.test_framework :rspec, :fixture =&gt; true, :views =&gt; false, :fixture_replacement =&gt; :factory_girl
+      g.fixture_replacement :factory_girl, :dir =&gt; "spec/factories"
+    end
+</code></pre>
+
+<p>這樣做的話會在建立Model的時候一併建立相關檔案。</p>
+
+<h2>第一步</h2>
+
+<p>假設我們建立 <code>Post</code> model</p>
+
+<p><code>rails g model Post title:string content:string author:string state:string; rake db:migrate</code></p>
+
+<p>現在可以開始建立測試資料了，打開 <code>spec/factories/posts.rb</code></p>
+
+<p>我們先新增一個正常的資料結構</p>
+
+<pre><code>    FactoryGirl.define do
+      factory :post do
+        title "MyString"
+        content "MyString"
+        author "HeChien"
+        state "public"
+      end
+    end
+</code></pre>
+
+<p>這樣子，我們就可以在<code>rails console</code>內透過<code>FactoryGirl.create :post</code>來建立一筆Post資料了</p>
+
+<h3>怎麼了？你忘了？說好的，亂數呢？</h3>
+
+<p>誰跟你說好了=_= &#8230; 不過要亂數的話 &#8230;</p>
+
+<p>假設我們要讓<code>title</code>變亂數，那就把<code>title</code>改為</p>
+
+<pre><code>    title "MyString" # 原本是這樣
+    sequence(:title) { |n| "Title -- #{n}" } # 改成這樣
+</code></pre>
+
+<p>如此一來就會產生<code>"Title -- 1"</code>、<code>"Title -- 2"</code>之類的資料了</p>
+
+<p>但是有的時候我們想要產生客製化的資料，譬如像是又亂數標題又是<code>state</code>為<code>closed</code>的文章的話要怎辦？</p>
+
+<p>那就看下一節啊</p>
+
+<h2>第二步 - 不同狀態不同內容</h2>
+
+<p>同樣都是定義在<code>Post</code>中，我們可能需要不一樣的狀態、內容，所以我們可以這樣做</p>
+
+<pre><code>    # 1. title為亂數，content為亂數，發佈為published，author為亂數，叫做 :random_life
+    # 2. title為"Hello, world"，content為"XD"，發佈為closed，author為預設，叫做 :posted_by_hechien
+    # 改成以下這樣
+
+    FactoryGirl.define do
+      factory :post do
+        title "MyString"
+        content "MyString"
+        author "HeChien"
+        state "public"
+
+        factory :random_life do
+          sequence(:title) { |n| "Title -- #{n}" }
+          sequence(:content) { |n| "Randome #{n} Content" }
+          state "published"
+          sequence(:author) { |n| "Author: #{n}" }
+        end
+
+        factory :posted_by_hechien do
+          title "Hello, world"
+          content "XD"
+          state "closed"
+        end
+      end
+    end
+</code></pre>
+
+<p>如此一來，我們就可以用</p>
+
+<p><code>FactoryGirl.create :random_life</code> 來產生幾乎都亂數的資料，以及用 <code>FactoryGirl.create :posted_by_hechien</code> 來產生與我本人有關的資料XD</p>
+
+<h2>第三步 - Relationship :&#8221;></h2>
+
+<p>臉紅個屁！</p>
+
+<p>總是會需要建立關連的，譬如說<code>Post</code>與<code>Comment</code>。</p>
+
+<pre><code>    FactoryGirl.define do
+      factory :comment do
+        post do
+          FactoryGirl.create :post
+        end
+        author "MyString"
+        content "MyString"
+      end
+    end
+</code></pre>
+
+<p>好了，你已經知道怎麼做了 (誤</p>
+
+<h2>與 <code>db/seeds.rb</code> 邂逅</h2>
+
+<pre><code>    100.times { FactoryGirl.create :random_life }
+    10.times  { FactoryGirl.create :posted_by_hechien }
+    20.times  { FactoryGirl.create :post }
+</code></pre>
+
+<p><code>rake db:seed</code> 打完收工</p>
+
+<p>但事實上，假資料要用這個建立 => <a href="https://github.com/ryanb/populator">https://github.com/ryanb/populator</a></p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-13T10:14:00+08:00" pubdate data-updated="true">Jul 13<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/factorygirl/'>FactoryGirl</a>, <a class='category' href='/octopress/blog/categories/fake-data/'>Fake data</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>, <a class='category' href='/octopress/blog/categories/seed/'>seed</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -573,113 +800,6 @@ end</code></pre></noscript></div>
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/rails-3/'>Rails 3</a>, <a class='category' href='/octopress/blog/categories/subdomain/'>Subdomain</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/why-i-use-the-mac/">為什麼我用Mac？</a></h1>
-    <div class="entry">
-        <p>這是很有趣的問題，不是嗎？</p>
-
-<p>我是一名軟體工程師、網站開發人員、網頁設計師、學生、兒子 … etc (但其中並沒有包含<strong>男朋友</strong>這個身分&#8230;)，總之，我有著很多的身分，但我為什麼不選擇大多數人用的PC，裡面裝著Windows或Linux？</p>
-
-
-        
-        <a href="/octopress/blog/why-i-use-the-mac/" class="more-link">繼續閱讀 &rarr;</a>
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-19T15:42:00+08:00" pubdate data-updated="true">May 19<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/mac/'>mac</a>, <a class='category' href='/octopress/blog/categories/murmur/'>murmur</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/2012nian-de-mu-biao/">2012年的目標</a></h1>
-    <div class="entry">
-        <p>希望自己在2012年可以做好這些事情</p>
-
-<p>討論內容在：<a href="https://www.facebook.com/hechien/posts/431153790229954">https://www.facebook.com/hechien/posts/431153790229954</a></p>
-
-<h2>一定要做的事</h2>
-
-<ol>
-<li>每天固定抄寫幾檔的最高、最低、開盤、收盤、昨收、交易量</li>
-<li>三年級下學期搞定專題 (不含 UI/UE)</li>
-<li>暑假把專題的UI/UE調好</li>
-<li>耶誕節前解決專題並且正式開始測試</li>
-<li>想好除資訊業外其他可以發展的領域</li>
-<li>撰寫好一本網頁設計的書</li>
-<li>撰寫好一本Ruby on Rails的書</li>
-<li>把<code>CoffeeScript</code>、<code>SCSS</code>、<code>Compass</code>、<code>Middleman</code>與CSS Frameworks練熟</li>
-<li>六月開始至少每個月三部Mac教學影片、一部Mac Podcast教學、一篇Mac教學文章</li>
-<li>至少今年辦兩場Mac聚會 (大小不拘)</li>
-</ol>
-
-
-<h2>逼自己去嘗試</h2>
-
-<ol>
-<li>每天誦三次心經</li>
-<li>每天讀ㄧ篇道德經</li>
-<li>每天一篇Rework的內容</li>
-<li>每個禮拜一篇以上與工作或技術無關的文章</li>
-<li>重新學好奇門遁甲與易經</li>
-</ol>
-
-
-<p>希望自己能夠好好的實踐這些事情。
-今天是2012/05/12，加油。</p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-12T11:42:00+08:00" pubdate data-updated="true">May 12<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/目標/'>目標</a>
   
 </div>
 

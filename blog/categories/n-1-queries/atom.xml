@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: N+1 Queries | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/n-1-queries/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-07-13T10:17:39+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[N+1 Queries]]></title>
+    <link href="http://hechien.github.com/octopress/blog/n-plus-1-queries/"/>
+    <updated>2012-07-13T10:16:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/n-plus-1-queries</id>
+    <content type="html"><![CDATA[<h1>什麼是 N+1 Query</h1>
+
+<p>在Rails中有個ActiveRecord，它可以很容易產生資料庫關連、操作的東西。</p>
+
+<p>但是關連這種東西一用不好就有可能造成災難，看看範例。</p>
+
+<h1>範例？</h1>
+
+<p>我有一個<code>CrashLog</code> model belongs_to <code>Product</code>，然後在<code>CrashLog</code>內用Delegate對應到<code>Product</code>的<code>name</code></p>
+
+<pre><code>    # crash_log.rb
+    delegate :name, to: :product, prefix: true
+</code></pre>
+
+<p>如此一來可以用<code>c = CrashLog.first; c.product_name</code>來直接存取到<code>product.name</code></p>
+
+<p>可是當你用迴圈的時候就有可能遇到 N+1 Query。</p>
+
+<p>譬如說我在首頁上面寫的是 <code>@crash_logs = CrashLog.all</code></p>
+
+<p>結果SQL跑出上百筆類似以下的東西：</p>
+
+<p>https://gist.github.com/3102285#file_n_plus_1.sql</p>
+
+<p>但是如果當我改成 <code>@crash_logs = CrashLog.includes :product</code> 就會變成另外一種結果</p>
+
+<p>https://gist.github.com/3102285#file_not_n_plus_1.sql</p>
+
+<p>怎麼樣？很恐怖吧！</p>
+]]></content>
+  </entry>
+  
+</feed>
