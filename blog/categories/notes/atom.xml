@@ -4,7 +4,7 @@
   <title><![CDATA[Category: notes | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/notes/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-07-13T10:17:39+08:00</updated>
+  <updated>2012-07-13T10:19:01+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -55,9 +55,7 @@
     <link href="http://hechien.github.com/octopress/blog/factory-girl-with-db-seeds-for-fake-data/"/>
     <updated>2012-07-13T10:14:00+08:00</updated>
     <id>http://hechien.github.com/octopress/blog/factory-girl-with-db-seeds-for-fake-data</id>
-    <content type="html"><![CDATA[<h1>用FactoryGirl建立假資料</h1>
-
-<h2>安裝FactoryGirl</h2>
+    <content type="html"><![CDATA[<h2>安裝FactoryGirl</h2>
 
 <p>先在 <code>Gemfile</code> 內寫：</p>
 
