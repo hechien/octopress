@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: github | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/github/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-07-16T14:39:59+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Sinatra 與 Bundler共舞]]></title>
+    <link href="http://hechien.github.com/octopress/blog/sinatra-with-bundler-and-github-gem/"/>
+    <updated>2012-07-16T14:38:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/sinatra-with-bundler-and-github-gem</id>
+    <content type="html"><![CDATA[<p>Bundler是個好東西，但是Sinatra似乎不會直接讀取到用Bundler裝的Rubygems ...</p>
+
+<p>Okay，上網找了一下，知道了該怎做才對</p>
+
+<p><div><script src='https://gist.github.com/3120418.js?file=sinatra_main.rb'></script>
+<noscript><pre><code>require 'bundler/setup'
+require 'apns'</code></pre></noscript></div>
+</p>
+
+<p>另外，Bundler如果要用到Github上的套件，可以這樣寫</p>
+
+<p><div><script src='https://gist.github.com/3120418.js?file=Gemfile'></script>
+<noscript><pre><code>gem 'apns', git: 'https://github.com/jpoz/APNS.git', require: 'apns', branch: :master</code></pre></noscript></div>
+</p>
+
+<p>除了可指定<code>branch</code>外，也能指定<code>ref</code>或者是<code>tag</code>，十分彈性。</p>
+
+<p>詳情可參考：<a href="http://gembundler.com/git.html">http://gembundler.com/git.html</a></p>
+
+<p>打完收工。</p>
+]]></content>
+  </entry>
+  
+</feed>

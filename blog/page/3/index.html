@@ -7,7 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="RVM與cron 今天發生了一件事情，crontab設定的task不能正常的跑Ruby script，檢查一下原以為是Path的問題，不管怎樣設定Path都會沒辦法正常的load rubygems，後來找了一下後發現原來官方就有教學了 &#8230; 總之，把cron內加上rvm &hellip;">
+    <meta name="description" content="加上了Disqus留言系統囉 根據這篇在 Octopress 佈署出去前要注意的小地方中所提到的幾點我有一一在調整，除了404還沒弄好跟導覽列的部份以外其他都加上去了。 所以現在我的RSS URL是Feedburner提供的、網址也不會有日期、Disqus也掛上了(而且好簡單喔！)、 &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,6 +74,44 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/jia-shang-liao-disqusliu-yan-xi-tong-luo/">加上了Disqus留言系統囉</a></h1>
+    <div class="entry">
+        <p>根據這篇<a href="http://whiteball.tw/blog/before-you-deploy-octopress/">在 Octopress 佈署出去前要注意的小地方</a>中所提到的幾點我有一一在調整，除了404還沒弄好跟導覽列的部份以外其他都加上去了。</p>
+
+<p>所以現在我的RSS URL是Feedburner提供的、網址也不會有日期、Disqus也掛上了(而且好簡單喔！)、清單項目的縮排也弄好了 &#8230; octopress真的超好用的>///&lt;</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-24T11:56:00+08:00" pubdate data-updated="true">Apr 24<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -459,65 +497,6 @@
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/rails-best-practice/'>Rails Best Practice</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>, <a class='category' href='/octopress/blog/categories/refactor/'>refactor</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/paperclip-shang-chuan-yan-zheng/">Paperclip 上傳驗證</a></h1>
-    <div class="entry">
-        <p>因為一些原因，需要驗證使用者是否有上傳照片，若有上傳照片才需要驗證檔案大小、檔案格式</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># model.rb</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">validates_attachment_size</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">less_than</span><span class="p">:</span> <span class="mi">300</span><span class="o">.</span><span class="n">kilobytes</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span><span class="p">{</span><span class="o">|</span><span class="n">imports</span><span class="o">|</span> <span class="n">imports</span><span class="o">.</span><span class="n">avatar</span><span class="o">.</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">present?</span><span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">validates_attachment_content_type</span> <span class="ss">:avatar</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>  <span class="n">content_type</span><span class="p">:</span> <span class="o">[</span><span class="s2">&quot;image/png&quot;</span><span class="p">,</span> <span class="s2">&quot;image/jpeg&quot;</span><span class="p">,</span> <span class="s2">&quot;image/jpg&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">:</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span><span class="p">{</span><span class="o">|</span><span class="n">imports</span><span class="o">|</span> <span class="n">imports</span><span class="o">.</span><span class="n">avatar</span><span class="o">.</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">present?</span><span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-23T11:44:00+08:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/paperclip/'>paperclip</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
   
 </div>
 
