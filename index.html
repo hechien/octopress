@@ -7,8 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="Sinatra 與 Bundler共舞 Bundler是個好東西，但是Sinatra似乎不會直接讀取到用Bundler裝的Rubygems &#8230; Okay，上網找了一下，知道了該怎做才對 require 'bundler/setup'
-require 'apns' 另外， &hellip;">
+    <meta name="description" content="Rails 的 DateTime#change 最近在寫一個東西，要取得時間並且扔到SQL內做BETWEEN運算，所以我這樣寫 now = Time.now objs = Obj.where({created_at: (now..(now+1.minutes))}) 這樣執行後我發現會有問題， &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -75,6 +74,99 @@ require 'apns' 另外， &hellip;">
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/change-datetime-by-change-in-rails/">Rails 的 DateTime#change</a></h1>
+    <div class="entry">
+        <p>最近在寫一個東西，要取得時間並且扔到SQL內做BETWEEN運算，所以我這樣寫</p>
+
+<pre><code>    now = Time.now
+    objs = Obj.where({created_at: (now..(now+1.minutes))})
+</code></pre>
+
+<p>這樣執行後我發現會有問題，因為我其實只要把精準度調到分鐘，但是傳入的卻是到秒，也就是說我要的是類似 <code>2012-01-01 10:20:00</code> 這樣的格式，但是傳入的會是 <code>2012-01-01 10:20:30</code> 這樣的格式</p>
+
+<p>所以為了解決這個辦法，我只好寫了很髒的code</p>
+
+<pre><code>    now = Time.now; now -= now.sec.seconds
+</code></pre>
+
+<p>這真的夠髒了 &#8230;</p>
+
+<p>後來為了某個功能(也許下篇會說)跑去APIDock查API，發現到Rails擴充了<code>DateTime</code>加入了<code>change</code>這個功能，才發現原來我API真的不熟啊 &#8230; Orz</p>
+
+<p>所以要怎麼用呢？</p>
+
+<p>假設我現在時間是<code>2012-01-02 03:04:05</code>，想要把秒數改為<code>30</code>的話，我可以這樣做：</p>
+
+<pre><code>    now = "2012-01-02 03:04:05"
+    now.change({sec: 30})
+</code></pre>
+
+<p>除了改秒數，也能改年份，所有可以改的參數：</p>
+
+<ul>
+<li>year</li>
+<li>month</li>
+<li>day</li>
+<li>hour</li>
+<li>min</li>
+<li>sec</li>
+<li>offset</li>
+<li>start</li>
+</ul>
+
+
+<p>但是要注意，如果修改時間部分的話(也就是<code>hour</code>、<code>min</code>、<code>sec</code>)會根據順序去重新設定值。這是什麼意思呢？</p>
+
+<p>假設我只修改<code>hour</code>的話，會把<code>min</code>跟<code>sec</code>給改為<code>00</code>；如果我只修改<code>min</code>的話，那只有<code>sec</code>會被改變為<code>00</code>。</p>
+
+<p>所以如果我只要修改<code>hour</code>而其餘不變的話，就得把整個<code>hour</code>,<code>min</code>,<code>sec</code>都給傳進去才會正常。</p>
+
+<div><script src='https://gist.github.com/3155780.js?file=test.rb'></script>
+<noscript><pre><code>now = Time.now
+#=&gt; 2012-07-21 21:08:55 +0800
+
+now.change({year: 2015})
+#=&gt; 2015-07-21 21:08:55 +0800
+
+now.change({min: 30})
+#=&gt; 2012-07-21 21:30:00 +0800
+
+now.change({hour: 14, min: 10})
+#=&gt; 2012-07-21 14:10:00 +0800</code></pre></noscript></div>
+
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-25T16:38:00+08:00" pubdate data-updated="true">Jul 25<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>, <a class='category' href='/octopress/blog/categories/時間/'>時間</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -1245,79 +1337,6 @@ end</code></pre></noscript></div>
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/background/'>background</a>, <a class='category' href='/octopress/blog/categories/jquery/'>jQuery</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/toggleclass/'>toggleClass</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/html5-video-transform-first-view/">HTML5 Video 標籤初探</a></h1>
-    <div class="entry">
-        <div><script src='https://gist.github.com/2785414.js?file='></script>
-<noscript><pre><code>&lt;!doctype html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;script src=&quot;http://code.jquery.com/jquery-1.7.2.min.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-    &lt;style&gt;
-      video{
-        /*-webkit-transform: rotate3d(3, 4, 3, 45deg) sca;*/
-        /*-webkit-transform: rotate3d(40, 1, 30, 45deg);*/
-        margin: auto auto;
-        margin-top:200px;
-      }
-    &lt;/style&gt;
-    &lt;script&gt;
-      // References:
-      //   http://www.eleqtriq.com/2010/05/understanding-css-3d-transforms/
-      //   http://www.w3schools.com/css3/css3_3dtransforms.asp
-      $(function(){
-        var index = 0;
-        setInterval(function(){
-          if((index === 9) || (index === 27)) index+=1;
-          if (index === 37) index = 1;
-          $('video').css({
-            '-webkit-transform': 'rotateX('+(index*10)+'deg) rotateY('+(index*10)+'deg) rotateZ('+(index*10)+'deg)'
-          });
-          index++;
-        }, 100);
-      });
-    &lt;/script&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;video class=&quot;persistentNativePlayer nativeEmbedPlayerPid&quot; poster=&quot;http://cdnbakmi.kaltura.com/p/243342/sp/24334200/thumbnail/entry_id/0_ntovmku5/version/100004/height/480&quot; id=&quot;pid_kaltura-video&quot; style=&quot;display: block; width: 480px; height: 271px; top: 0px; &quot; kwidgetid=&quot;_243342&quot; kuiconfid=&quot;5349042&quot; kentryid=&quot;0_ntovmku5&quot; src=&quot;http://cdnapi.kaltura.com/p/243342/sp/24334200/playManifest/entryId/0_ntovmku5/flavorIds/0_nvp2quz3,0_o0bikcqg/format/applehttp/protocol/http/a.m3u8?ks=NmRmYmMxOWIzNWUzMWE3Mzg1MmU5MzhjY2YzNjg2ZmQ3OGM2YTNkYXwyNDMzNDI7MjQzMzQyOzEzMzc5OTYwMTQ7MDsxMzM3OTA5NjE0LjIxNjY7MDt2aWV3Oio7Ow==&amp;amp;referrer=aHR0cDovL2h0bWw1dmlkZW8ub3JnLw==&quot; autoplay=&quot;autoplay&quot; loop=&quot;-1&quot;&gt;&lt;/video&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre></noscript></div>
-
-
-<p>可以在這邊看到範例：<a href="http://hechien.host22.com/html5video.html">http://hechien.host22.com/html5video.html</a></p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-25T10:29:00+08:00" pubdate data-updated="true">May 25<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/css3/'>css3</a>, <a class='category' href='/octopress/blog/categories/html5/'>html5</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/transform/'>transform</a>, <a class='category' href='/octopress/blog/categories/video/'>video</a>
   
 </div>
 

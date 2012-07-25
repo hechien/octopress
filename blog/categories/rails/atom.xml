@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | 赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-07-16T14:39:59+08:00</updated>
+  <updated>2012-07-25T16:40:10+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 的 DateTime#change]]></title>
+    <link href="http://hechien.github.com/octopress/blog/change-datetime-by-change-in-rails/"/>
+    <updated>2012-07-25T16:38:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/change-datetime-by-change-in-rails</id>
+    <content type="html"><![CDATA[<p>最近在寫一個東西，要取得時間並且扔到SQL內做BETWEEN運算，所以我這樣寫</p>
+
+<pre><code>    now = Time.now
+    objs = Obj.where({created_at: (now..(now+1.minutes))})
+</code></pre>
+
+<p>這樣執行後我發現會有問題，因為我其實只要把精準度調到分鐘，但是傳入的卻是到秒，也就是說我要的是類似 <code>2012-01-01 10:20:00</code> 這樣的格式，但是傳入的會是 <code>2012-01-01 10:20:30</code> 這樣的格式</p>
+
+<p>所以為了解決這個辦法，我只好寫了很髒的code</p>
+
+<pre><code>    now = Time.now; now -= now.sec.seconds
+</code></pre>
+
+<p>這真的夠髒了 ...</p>
+
+<p>後來為了某個功能(也許下篇會說)跑去APIDock查API，發現到Rails擴充了<code>DateTime</code>加入了<code>change</code>這個功能，才發現原來我API真的不熟啊 ... Orz</p>
+
+<p>所以要怎麼用呢？</p>
+
+<p>假設我現在時間是<code>2012-01-02 03:04:05</code>，想要把秒數改為<code>30</code>的話，我可以這樣做：</p>
+
+<pre><code>    now = "2012-01-02 03:04:05"
+    now.change({sec: 30})
+</code></pre>
+
+<p>除了改秒數，也能改年份，所有可以改的參數：</p>
+
+<ul>
+<li>year</li>
+<li>month</li>
+<li>day</li>
+<li>hour</li>
+<li>min</li>
+<li>sec</li>
+<li>offset</li>
+<li>start</li>
+</ul>
+
+
+<p>但是要注意，如果修改時間部分的話(也就是<code>hour</code>、<code>min</code>、<code>sec</code>)會根據順序去重新設定值。這是什麼意思呢？</p>
+
+<p>假設我只修改<code>hour</code>的話，會把<code>min</code>跟<code>sec</code>給改為<code>00</code>；如果我只修改<code>min</code>的話，那只有<code>sec</code>會被改變為<code>00</code>。</p>
+
+<p>所以如果我只要修改<code>hour</code>而其餘不變的話，就得把整個<code>hour</code>,<code>min</code>,<code>sec</code>都給傳進去才會正常。</p>
+
+<p><div><script src='https://gist.github.com/3155780.js?file=test.rb'></script>
+<noscript><pre><code>now = Time.now
+#=&gt; 2012-07-21 21:08:55 +0800
+
+now.change({year: 2015})
+#=&gt; 2015-07-21 21:08:55 +0800
+
+now.change({min: 30})
+#=&gt; 2012-07-21 21:30:00 +0800
+
+now.change({hour: 14, min: 10})
+#=&gt; 2012-07-21 14:10:00 +0800</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[N+1 Queries]]></title>
@@ -777,64 +843,6 @@ end</code></pre></noscript></div>
 <p>若以上面的例子來說的話，就是 <code>Post.reset_counters(1, :comments)</code></p>
 
 <p>如何？很簡單吧？</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用Subdomain時自定Devise的Mailer Template]]></title>
-    <link href="http://hechien.github.com/octopress/blog/custom-devise-mailer-template-with-subdomain/"/>
-    <updated>2012-06-05T17:03:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/custom-devise-mailer-template-with-subdomain</id>
-    <content type="html"><![CDATA[<p>這問題其實也是忽然間被雷到 ... 在這樣做之前要先去修改 <code>config/initializers/devise.rb</code>，設定自定的Mailer，然後我們還要自己手動產生一個Mailer。</p>
-
-<!-- more -->
-
-
-<p>我原本的作法是用Namespace來寫整個站，所以View的分類就是已經有分好資料夾了，我直接貼code可以嗎XD</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="sx">%w&#39;confirmation_instructions reset_password_instructions unlock_instructions&#39;</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">method</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;define_method &quot;</span><span class="si">#{</span><span class="nb">method</span><span class="si">}</span><span class="sr">&quot; do |record|</span>
-</span><span class='line'><span class="sr">  send_mail_with_record_and_action(record, method.to_s)</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="kp">private</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  def send_mail_with_record_and_action(record, action)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">initialize_from_record</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
-</span><span class='line'><span class="n">headers</span> <span class="o">=</span> <span class="n">headers_for</span><span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
-</span><span class='line'><span class="n">headers</span><span class="o">[</span><span class="ss">:template_path</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">record</span><span class="o">.</span><span class="n">from_app</span><span class="si">}</span><span class="s2">/mailer&quot;</span>
-</span><span class='line'><span class="n">mail</span> <span class="n">headers</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>由於devise有<code>confirmation_instructions</code>、<code>reset_password_instructions</code>、<code>unlock_instructions</code>三個，而我只是要導到不同的app目錄去，所以就這樣子refactor，讓headers中的<code>template_path</code>可以是自訂的目錄。</p>
 ]]></content>
   </entry>
   

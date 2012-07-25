@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-07-16T14:39:59+08:00</updated>
+  <updated>2012-07-25T16:40:10+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 的 DateTime#change]]></title>
+    <link href="http://hechien.github.com/octopress/blog/change-datetime-by-change-in-rails/"/>
+    <updated>2012-07-25T16:38:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/change-datetime-by-change-in-rails</id>
+    <content type="html"><![CDATA[<p>最近在寫一個東西，要取得時間並且扔到SQL內做BETWEEN運算，所以我這樣寫</p>
+
+<pre><code>    now = Time.now
+    objs = Obj.where({created_at: (now..(now+1.minutes))})
+</code></pre>
+
+<p>這樣執行後我發現會有問題，因為我其實只要把精準度調到分鐘，但是傳入的卻是到秒，也就是說我要的是類似 <code>2012-01-01 10:20:00</code> 這樣的格式，但是傳入的會是 <code>2012-01-01 10:20:30</code> 這樣的格式</p>
+
+<p>所以為了解決這個辦法，我只好寫了很髒的code</p>
+
+<pre><code>    now = Time.now; now -= now.sec.seconds
+</code></pre>
+
+<p>這真的夠髒了 &#8230;</p>
+
+<p>後來為了某個功能(也許下篇會說)跑去APIDock查API，發現到Rails擴充了<code>DateTime</code>加入了<code>change</code>這個功能，才發現原來我API真的不熟啊 &#8230; Orz</p>
+
+<p>所以要怎麼用呢？</p>
+
+<p>假設我現在時間是<code>2012-01-02 03:04:05</code>，想要把秒數改為<code>30</code>的話，我可以這樣做：</p>
+
+<pre><code>    now = "2012-01-02 03:04:05"
+    now.change({sec: 30})
+</code></pre>
+
+<p>除了改秒數，也能改年份，所有可以改的參數：</p>
+
+<ul>
+<li>year</li>
+<li>month</li>
+<li>day</li>
+<li>hour</li>
+<li>min</li>
+<li>sec</li>
+<li>offset</li>
+<li>start</li>
+</ul>
+
+
+<p>但是要注意，如果修改時間部分的話(也就是<code>hour</code>、<code>min</code>、<code>sec</code>)會根據順序去重新設定值。這是什麼意思呢？</p>
+
+<p>假設我只修改<code>hour</code>的話，會把<code>min</code>跟<code>sec</code>給改為<code>00</code>；如果我只修改<code>min</code>的話，那只有<code>sec</code>會被改變為<code>00</code>。</p>
+
+<p>所以如果我只要修改<code>hour</code>而其餘不變的話，就得把整個<code>hour</code>,<code>min</code>,<code>sec</code>都給傳進去才會正常。</p>
+
+<div><script src='https://gist.github.com/3155780.js?file=test.rb'></script>
+<noscript><pre><code>now = Time.now
+#=&gt; 2012-07-21 21:08:55 +0800
+
+now.change({year: 2015})
+#=&gt; 2015-07-21 21:08:55 +0800
+
+now.change({min: 30})
+#=&gt; 2012-07-21 21:30:00 +0800
+
+now.change({hour: 14, min: 10})
+#=&gt; 2012-07-21 14:10:00 +0800</code></pre></noscript></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sinatra 與 Bundler共舞]]></title>
@@ -1478,46 +1544,6 @@ area@ | Resize image to have specified area in pixels. Aspect ratio is preserved
 
 
 <p>其實蠻炫的XD</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AppleScript for Numbers example]]></title>
-    <link href="http://hechien.github.com/octopress/blog/applescript-for-numbers-example/"/>
-    <updated>2012-04-25T11:12:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/applescript-for-numbers-example</id>
-    <content type="html"><![CDATA[<p>剛好想到Excel等Office的套裝軟體都有VBA可以用，那Mac上的iWork呢？</p>
-
-<p>嗯 &#8230; 是的，就是超威的AppleScript來處理啦～</p>
-
-<p>底下是找到的Example:</p>
-
-<div><script src='https://gist.github.com/2485918.js?file='></script>
-<noscript><pre><code>-- Source: https://discussions.apple.com/thread/1857867?start=0&amp;tstart=0
-
-tell application &quot;Numbers&quot;
-  activate
-  tell document 1
-    tell sheet 1
-      set newtable to make new table with properties {name:&quot;Test Table 2&quot;}
-      tell newtable
-        set value of cell 3 of row 2 to count of rows
-        set background color of cell 3 of row 2 to {0, 65535, 0} as RGB color
-        remove row 1
-        set myRange to range &quot;B1:C2&quot;
-        
-        repeat with i from 1 to count of rows
-          set value of cell i of column 3 to i * 3
-        end repeat
-        
-        set selection range to range &quot;a1:c3&quot;
-      end tell
-    end tell
-  end tell
-end tell</code></pre></noscript></div>
-
-
-<p>其實真的蠻屌的 &#8230;</p>
 ]]></content>
   </entry>
   

@@ -7,7 +7,8 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="Rails 3 與 Subdomain 的初次邂逅 終於成功解決掉這個問題了 &#8230; 在進行這個操作之前請先到 /etc/hosts 內手動新增對應： 127.0.0.1 site1.product.local site3.product.local 請務必寫上這樣，我一開始寫成 &hellip;">
+    <meta name="description" content="HTML5 Video 標籤初探 &lt;!doctype html&gt;
+&lt;html&gt; &lt;head&gt; &lt;meta charset=&quot;utf-8&quot;&gt; &lt;script src=&quot;http://code.jquery.com/ &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,6 +75,79 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/html5-video-transform-first-view/">HTML5 Video 標籤初探</a></h1>
+    <div class="entry">
+        <div><script src='https://gist.github.com/2785414.js?file='></script>
+<noscript><pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;script src=&quot;http://code.jquery.com/jquery-1.7.2.min.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+      video{
+        /*-webkit-transform: rotate3d(3, 4, 3, 45deg) sca;*/
+        /*-webkit-transform: rotate3d(40, 1, 30, 45deg);*/
+        margin: auto auto;
+        margin-top:200px;
+      }
+    &lt;/style&gt;
+    &lt;script&gt;
+      // References:
+      //   http://www.eleqtriq.com/2010/05/understanding-css-3d-transforms/
+      //   http://www.w3schools.com/css3/css3_3dtransforms.asp
+      $(function(){
+        var index = 0;
+        setInterval(function(){
+          if((index === 9) || (index === 27)) index+=1;
+          if (index === 37) index = 1;
+          $('video').css({
+            '-webkit-transform': 'rotateX('+(index*10)+'deg) rotateY('+(index*10)+'deg) rotateZ('+(index*10)+'deg)'
+          });
+          index++;
+        }, 100);
+      });
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;video class=&quot;persistentNativePlayer nativeEmbedPlayerPid&quot; poster=&quot;http://cdnbakmi.kaltura.com/p/243342/sp/24334200/thumbnail/entry_id/0_ntovmku5/version/100004/height/480&quot; id=&quot;pid_kaltura-video&quot; style=&quot;display: block; width: 480px; height: 271px; top: 0px; &quot; kwidgetid=&quot;_243342&quot; kuiconfid=&quot;5349042&quot; kentryid=&quot;0_ntovmku5&quot; src=&quot;http://cdnapi.kaltura.com/p/243342/sp/24334200/playManifest/entryId/0_ntovmku5/flavorIds/0_nvp2quz3,0_o0bikcqg/format/applehttp/protocol/http/a.m3u8?ks=NmRmYmMxOWIzNWUzMWE3Mzg1MmU5MzhjY2YzNjg2ZmQ3OGM2YTNkYXwyNDMzNDI7MjQzMzQyOzEzMzc5OTYwMTQ7MDsxMzM3OTA5NjE0LjIxNjY7MDt2aWV3Oio7Ow==&amp;amp;referrer=aHR0cDovL2h0bWw1dmlkZW8ub3JnLw==&quot; autoplay=&quot;autoplay&quot; loop=&quot;-1&quot;&gt;&lt;/video&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></noscript></div>
+
+
+<p>可以在這邊看到範例：<a href="http://hechien.host22.com/html5video.html">http://hechien.host22.com/html5video.html</a></p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-25T10:29:00+08:00" pubdate data-updated="true">May 25<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/css3/'>css3</a>, <a class='category' href='/octopress/blog/categories/html5/'>html5</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/transform/'>transform</a>, <a class='category' href='/octopress/blog/categories/video/'>video</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -591,73 +665,6 @@
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/array-list/'>Array#list</a>, <a class='category' href='/octopress/blog/categories/coffeescript/'>CoffeeScript</a>, <a class='category' href='/octopress/blog/categories/extend/'>extend</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/applescript-for-numbers-example/">AppleScript for Numbers Example</a></h1>
-    <div class="entry">
-        <p>剛好想到Excel等Office的套裝軟體都有VBA可以用，那Mac上的iWork呢？</p>
-
-<p>嗯 &#8230; 是的，就是超威的AppleScript來處理啦～</p>
-
-<p>底下是找到的Example:</p>
-
-<div><script src='https://gist.github.com/2485918.js?file='></script>
-<noscript><pre><code>-- Source: https://discussions.apple.com/thread/1857867?start=0&amp;tstart=0
-
-tell application &quot;Numbers&quot;
-  activate
-  tell document 1
-    tell sheet 1
-      set newtable to make new table with properties {name:&quot;Test Table 2&quot;}
-      tell newtable
-        set value of cell 3 of row 2 to count of rows
-        set background color of cell 3 of row 2 to {0, 65535, 0} as RGB color
-        remove row 1
-        set myRange to range &quot;B1:C2&quot;
-        
-        repeat with i from 1 to count of rows
-          set value of cell i of column 3 to i * 3
-        end repeat
-        
-        set selection range to range &quot;a1:c3&quot;
-      end tell
-    end tell
-  end tell
-end tell</code></pre></noscript></div>
-
-
-<p>其實真的蠻屌的 &#8230;</p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-25T11:12:00+08:00" pubdate data-updated="true">Apr 25<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/applescript/'>AppleScript</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
   
 </div>
 
