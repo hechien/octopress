@@ -7,8 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="HTML5 Video 標籤初探 &lt;!doctype html&gt;
-&lt;html&gt; &lt;head&gt; &lt;meta charset=&quot;utf-8&quot;&gt; &lt;script src=&quot;http://code.jquery.com/ &hellip;">
+    <meta name="description" content="用jQuery的toggleClass來動態切換背景圖片 公司的某個開發中網站要實作一個登入按鈕會閃爍的功能，這個按鈕有兩張圖片(我知道CSS Sprite，但即便我有Compass我也懶得弄 &#8230;)來做相互切換。 原本的作法我是用一個index去當counter用， &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -75,6 +74,45 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/jquery-toggleclass-dynamic-background/">用jQuery的toggleClass來動態切換背景圖片</a></h1>
+    <div class="entry">
+        <p>公司的某個開發中網站要實作一個登入按鈕會閃爍的功能，這個按鈕有兩張圖片(我知道CSS Sprite，但即便我有Compass我也懶得弄 &#8230;)來做相互切換。</p>
+
+<p>原本的作法我是用一個index去當counter用，然後用<code>setInterval</code>的方式每秒用<code>$(obj).css({background: 'url()'})</code>的方式，但是這樣有一個問題就是會每次切換的時候都跟Server要圖片，這很麻煩真的 &#8230; 所以我就改成用指定class切換Background就好了。</p>
+
+
+        
+        <a href="/octopress/blog/jquery-toggleclass-dynamic-background/" class="more-link">繼續閱讀 &rarr;</a>
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-29T18:13:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/background/'>background</a>, <a class='category' href='/octopress/blog/categories/jquery/'>jQuery</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/toggleclass/'>toggleClass</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -594,77 +632,6 @@
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/scss/'>scss</a>, <a class='category' href='/octopress/blog/categories/tricks/'>tricks</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/yong-coffeescriptshi-zuo-array-number-list/">用CoffeeScript實作Array#list</a></h1>
-    <div class="entry">
-        <p>在寫專案的過程當中想要操作Array，可是在JavaScript中沒有<code>[1, 2, 3].last()</code>這種東西可以用，只好自己擴充啦～</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">Array</span><span class="o">::</span><span class="nv">last = </span><span class="o">-&gt;</span>
-</span><span class='line'>  <span class="err">@</span><span class="p">[</span><span class="err">@</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>這樣就會回傳</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">last</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然後網路上的高見龍前輩在Slideshare的投影片 <a href="http://www.slideshare.net/aquarianboy/coffeescriptrubytuesday">http://www.slideshare.net/aquarianboy/coffeescriptrubytuesday</a> 中第160頁也有一些針對字串的擴充：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">repeat = </span><span class="nf">(n) -&gt;</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">join</span> <span class="err">@</span>
-</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">downcase = </span><span class="o">-&gt;</span> <span class="nx">@toLowerCase</span><span class="p">()</span>
-</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">upcase = </span><span class="o">-&gt;</span> <span class="nx">@toUpperCase</span><span class="p">()</span>
-</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">find = </span><span class="nf">(str) -&gt;</span> <span class="nx">@indexOf</span> <span class="nx">str</span>
-</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">has = </span><span class="nf">(str) -&gt;</span> <span class="p">(</span><span class="nx">@indexOf</span> <span class="nx">str</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其實蠻炫的XD</p>
-
-        
-        
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-27T15:21:00+08:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/array-list/'>Array#list</a>, <a class='category' href='/octopress/blog/categories/coffeescript/'>CoffeeScript</a>, <a class='category' href='/octopress/blog/categories/extend/'>extend</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>
   
 </div>
 

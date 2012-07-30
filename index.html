@@ -7,7 +7,7 @@
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="Rails 的 DateTime#change 最近在寫一個東西，要取得時間並且扔到SQL內做BETWEEN運算，所以我這樣寫 now = Time.now objs = Obj.where({created_at: (now..(now+1.minutes))}) 這樣執行後我發現會有問題， &hellip;">
+    <meta name="description" content="HTTP Basic Authentication in Rails 3 有的時候想要偷懶採用比較簡單的認證方式時其實用HTTP Basic Authentication就可以了，但是在Rails中要怎樣實現呢？ 答案是這個： &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -74,6 +74,68 @@
 </script>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+    <h1 class="title"><a href="/octopress/blog/http-basic-authentication-in-rails-3/">HTTP Basic Authentication in Rails 3</a></h1>
+    <div class="entry">
+        <p>有的時候想要偷懶採用比較簡單的認證方式時其實用HTTP Basic Authentication就可以了，但是在Rails中要怎樣實現呢？</p>
+
+<p>答案是這個：<code>authenticate_or_request_with_http_basic</code></p>
+
+<p>把這個加在<code>application_controller.rb</code>內用<code>before_filter</code>去弄就好，像是</p>
+
+<div><script src='https://gist.github.com/3205501.js?file=code_1.rb'></script>
+<noscript><pre><code>class ApplicationController &lt; ActionController::Base
+  before_filter :authenticate, except: [:index, :show]
+
+  def authenticate
+    authenticate_or_request_with_http_basic('Auth!') do |username, password|
+      username == &quot;user&quot; &amp;&amp; password == &quot;pass&quot;
+    end
+  end
+end</code></pre></noscript></div>
+
+
+<p>然後，另外一個比較簡單的方式是：<code>http_basic_authenticate_with</code>，用了這個我們就不需要再自己寫<code>before_filter</code>弄了，像是：</p>
+
+<div><script src='https://gist.github.com/3205501.js?file=code_2.rb'></script>
+<noscript><pre><code>class ApplicationController &lt; ActionController::Base
+  http_basic_authenticate_with username: 'user', password: 'pass', realm: 'Auth!', except: [:index, :show]
+end</code></pre></noscript></div>
+
+
+<p>其中，<code>realm</code>是會提示給使用者看的訊息。</p>
+
+        
+        
+    </div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-30T15:31:00+08:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time></div>
+        <div class="tags">
+
+<div class="cat">
+  
+    <a class='category' href='/octopress/blog/categories/http-basic-authentication/'>HTTP Basic Authentication</a>, <a class='category' href='/octopress/blog/categories/note/'>note</a>, <a class='category' href='/octopress/blog/categories/rails3/'>rails3</a>
+  
+</div>
+
+</div>
+        
+    </div>
+</article>
 
 
     <article class="post">
@@ -1298,45 +1360,6 @@ end</code></pre></noscript></div>
 <div class="cat">
   
     <a class='category' href='/octopress/blog/categories/devise/'>devise</a>, <a class='category' href='/octopress/blog/categories/mailer-template/'>mailer template</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails/'>rails</a>
-  
-</div>
-
-</div>
-        
-    </div>
-</article>
-
-
-    <article class="post">
-    <h1 class="title"><a href="/octopress/blog/jquery-toggleclass-dynamic-background/">用jQuery的toggleClass來動態切換背景圖片</a></h1>
-    <div class="entry">
-        <p>公司的某個開發中網站要實作一個登入按鈕會閃爍的功能，這個按鈕有兩張圖片(我知道CSS Sprite，但即便我有Compass我也懶得弄 &#8230;)來做相互切換。</p>
-
-<p>原本的作法我是用一個index去當counter用，然後用<code>setInterval</code>的方式每秒用<code>$(obj).css({background: 'url()'})</code>的方式，但是這樣有一個問題就是會每次切換的時候都跟Server要圖片，這很麻煩真的 &#8230; 所以我就改成用指定class切換Background就好了。</p>
-
-
-        
-        <a href="/octopress/blog/jquery-toggleclass-dynamic-background/" class="more-link">繼續閱讀 &rarr;</a>
-    </div>
-    <div class="meta">
-        <div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-29T18:13:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2012</time></div>
-        <div class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/background/'>background</a>, <a class='category' href='/octopress/blog/categories/jquery/'>jQuery</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/toggleclass/'>toggleClass</a>
   
 </div>
 

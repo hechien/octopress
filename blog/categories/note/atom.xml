@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: note | 赫謙小便籤]]></title>
+  <link href="http://hechien.github.com/octopress/blog/categories/note/atom.xml" rel="self"/>
+  <link href="http://hechien.github.com/octopress/"/>
+  <updated>2012-07-30T15:32:11+08:00</updated>
+  <id>http://hechien.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[赫謙]]></name>
+    <email><![CDATA[hechien@me.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[HTTP Basic Authentication in Rails 3]]></title>
+    <link href="http://hechien.github.com/octopress/blog/http-basic-authentication-in-rails-3/"/>
+    <updated>2012-07-30T15:31:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/http-basic-authentication-in-rails-3</id>
+    <content type="html"><![CDATA[<p>有的時候想要偷懶採用比較簡單的認證方式時其實用HTTP Basic Authentication就可以了，但是在Rails中要怎樣實現呢？</p>
+
+<p>答案是這個：<code>authenticate_or_request_with_http_basic</code></p>
+
+<p>把這個加在<code>application_controller.rb</code>內用<code>before_filter</code>去弄就好，像是</p>
+
+<p><div><script src='https://gist.github.com/3205501.js?file=code_1.rb'></script>
+<noscript><pre><code>class ApplicationController &lt; ActionController::Base
+  before_filter :authenticate, except: [:index, :show]
+
+  def authenticate
+    authenticate_or_request_with_http_basic('Auth!') do |username, password|
+      username == &quot;user&quot; &amp;&amp; password == &quot;pass&quot;
+    end
+  end
+end</code></pre></noscript></div>
+</p>
+
+<p>然後，另外一個比較簡單的方式是：<code>http_basic_authenticate_with</code>，用了這個我們就不需要再自己寫<code>before_filter</code>弄了，像是：</p>
+
+<p><div><script src='https://gist.github.com/3205501.js?file=code_2.rb'></script>
+<noscript><pre><code>class ApplicationController &lt; ActionController::Base
+  http_basic_authenticate_with username: 'user', password: 'pass', realm: 'Auth!', except: [:index, :show]
+end</code></pre></noscript></div>
+</p>
+
+<p>其中，<code>realm</code>是會提示給使用者看的訊息。</p>
+]]></content>
+  </entry>
+  
+</feed>

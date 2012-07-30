@@ -4,7 +4,7 @@
   <title><![CDATA[赫謙小便籤]]></title>
   <link href="http://hechien.github.com/octopress/atom.xml" rel="self"/>
   <link href="http://hechien.github.com/octopress/"/>
-  <updated>2012-07-25T16:40:10+08:00</updated>
+  <updated>2012-07-30T15:32:11+08:00</updated>
   <id>http://hechien.github.com/octopress/</id>
   <author>
     <name><![CDATA[赫謙]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HTTP Basic Authentication in Rails 3]]></title>
+    <link href="http://hechien.github.com/octopress/blog/http-basic-authentication-in-rails-3/"/>
+    <updated>2012-07-30T15:31:00+08:00</updated>
+    <id>http://hechien.github.com/octopress/blog/http-basic-authentication-in-rails-3</id>
+    <content type="html"><![CDATA[<p>有的時候想要偷懶採用比較簡單的認證方式時其實用HTTP Basic Authentication就可以了，但是在Rails中要怎樣實現呢？</p>
+
+<p>答案是這個：<code>authenticate_or_request_with_http_basic</code></p>
+
+<p>把這個加在<code>application_controller.rb</code>內用<code>before_filter</code>去弄就好，像是</p>
+
+<div><script src='https://gist.github.com/3205501.js?file=code_1.rb'></script>
+<noscript><pre><code>class ApplicationController &lt; ActionController::Base
+  before_filter :authenticate, except: [:index, :show]
+
+  def authenticate
+    authenticate_or_request_with_http_basic('Auth!') do |username, password|
+      username == &quot;user&quot; &amp;&amp; password == &quot;pass&quot;
+    end
+  end
+end</code></pre></noscript></div>
+
+
+<p>然後，另外一個比較簡單的方式是：<code>http_basic_authenticate_with</code>，用了這個我們就不需要再自己寫<code>before_filter</code>弄了，像是：</p>
+
+<div><script src='https://gist.github.com/3205501.js?file=code_2.rb'></script>
+<noscript><pre><code>class ApplicationController &lt; ActionController::Base
+  http_basic_authenticate_with username: 'user', password: 'pass', realm: 'Auth!', except: [:index, :show]
+end</code></pre></noscript></div>
+
+
+<p>其中，<code>realm</code>是會提示給使用者看的訊息。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails 的 DateTime#change]]></title>
@@ -1500,50 +1535,6 @@ area@ | Resize image to have specified area in pixels. Aspect ratio is preserved
 
 
 <p>怎麼樣？是不是很簡潔整齊呢？</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用CoffeeScript實作Array#list]]></title>
-    <link href="http://hechien.github.com/octopress/blog/yong-coffeescriptshi-zuo-array-number-list/"/>
-    <updated>2012-04-27T15:21:00+08:00</updated>
-    <id>http://hechien.github.com/octopress/blog/yong-coffeescriptshi-zuo-array-number-list</id>
-    <content type="html"><![CDATA[<p>在寫專案的過程當中想要操作Array，可是在JavaScript中沒有<code>[1, 2, 3].last()</code>這種東西可以用，只好自己擴充啦～</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">Array</span><span class="o">::</span><span class="nv">last = </span><span class="o">-&gt;</span>
-</span><span class='line'>  <span class="err">@</span><span class="p">[</span><span class="err">@</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>這樣就會回傳</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">last</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>然後網路上的高見龍前輩在Slideshare的投影片 <a href="http://www.slideshare.net/aquarianboy/coffeescriptrubytuesday">http://www.slideshare.net/aquarianboy/coffeescriptrubytuesday</a> 中第160頁也有一些針對字串的擴充：</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">repeat = </span><span class="nf">(n) -&gt;</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">join</span> <span class="err">@</span>
-</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">downcase = </span><span class="o">-&gt;</span> <span class="nx">@toLowerCase</span><span class="p">()</span>
-</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">upcase = </span><span class="o">-&gt;</span> <span class="nx">@toUpperCase</span><span class="p">()</span>
-</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">find = </span><span class="nf">(str) -&gt;</span> <span class="nx">@indexOf</span> <span class="nx">str</span>
-</span><span class='line'><span class="nb">String</span><span class="o">::</span><span class="nv">has = </span><span class="nf">(str) -&gt;</span> <span class="p">(</span><span class="nx">@indexOf</span> <span class="nx">str</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其實蠻炫的XD</p>
 ]]></content>
   </entry>
   

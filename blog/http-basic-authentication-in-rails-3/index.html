@@ -3,11 +3,11 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Category: rails3 - 赫謙小便籤</title>
+    <title>HTTP Basic Authentication in Rails 3 - 赫謙小便籤</title>
     <meta name="author" content="赫謙">
 
     
-    <meta name="description" content="Category: rails3">
+    <meta name="description" content="HTTP Basic Authentication in Rails 3 有的時候想要偷懶採用比較簡單的認證方式時其實用HTTP Basic Authentication就可以了，但是在Rails中要怎樣實現呢？ 答案是這個： &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -73,19 +73,51 @@
 	})(jQuery);
 </script>
 
-	<div id="content" class="inner">
-<section class="archive">
-	
-	
-		
-		<h1 class="archive-title">2012</h1>
-	
-	<article class="archive">
-		
-<h1 class="title"><a href="/octopress/blog/http-basic-authentication-in-rails-3/">HTTP Basic Authentication in Rails 3</a></h1>
-<div class="meta">
-	<span class="date">Jul 30</span>
-	<span class="tags">
+	<div id="content" class="inner"><article class="post">
+    <h1 class="title">HTTP Basic Authentication in Rails 3</h1>
+    <div class="entry"><p>有的時候想要偷懶採用比較簡單的認證方式時其實用HTTP Basic Authentication就可以了，但是在Rails中要怎樣實現呢？</p>
+
+<p>答案是這個：<code>authenticate_or_request_with_http_basic</code></p>
+
+<p>把這個加在<code>application_controller.rb</code>內用<code>before_filter</code>去弄就好，像是</p>
+
+<div><script src='https://gist.github.com/3205501.js?file=code_1.rb'></script>
+<noscript><pre><code>class ApplicationController &lt; ActionController::Base
+  before_filter :authenticate, except: [:index, :show]
+
+  def authenticate
+    authenticate_or_request_with_http_basic('Auth!') do |username, password|
+      username == &quot;user&quot; &amp;&amp; password == &quot;pass&quot;
+    end
+  end
+end</code></pre></noscript></div>
+
+
+<p>然後，另外一個比較簡單的方式是：<code>http_basic_authenticate_with</code>，用了這個我們就不需要再自己寫<code>before_filter</code>弄了，像是：</p>
+
+<div><script src='https://gist.github.com/3205501.js?file=code_2.rb'></script>
+<noscript><pre><code>class ApplicationController &lt; ActionController::Base
+  http_basic_authenticate_with username: 'user', password: 'pass', realm: 'Auth!', except: [:index, :show]
+end</code></pre></noscript></div>
+
+
+<p>其中，<code>realm</code>是會提示給使用者看的訊息。</p>
+</div>
+    <div class="meta">
+        <div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-30T15:31:00+08:00" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time></div>
+        <div class="tags">
 
 <div class="cat">
   
@@ -93,38 +125,31 @@
   
 </div>
 
-</span>
-    
-    <span class="comments"><a href="#disqus_thread">Comments</a></span>
-    
 </div>
-	</article>
-</section>
-
-<section class="archive">
+        
+    </div>
+</article>
+<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
 	
 	
-	<article class="archive">
-		
-<h1 class="title"><a href="/octopress/blog/rails3-meets-ajax/">Rails 3與Ajax的邂逅</a></h1>
-<div class="meta">
-	<span class="date">Jul  3</span>
-	<span class="tags">
-
-<div class="cat">
-  
-    <a class='category' href='/octopress/blog/categories/ajax/'>ajax</a>, <a class='category' href='/octopress/blog/categories/notes/'>notes</a>, <a class='category' href='/octopress/blog/categories/rails3/'>rails3</a>
-  
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4eb4a0c47196e907"></script>
 </div>
 
-</span>
-    
-    <span class="comments"><a href="#disqus_thread">Comments</a></span>
-    
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-	</article>
 </section>
-
 </div>
 	<footer class="inner">Copyright &copy; 2012 赫謙小便籤</footer>
 	<script src="/octopress/javascripts/jquery.easing.1.3.js"></script>
@@ -136,7 +161,10 @@
       var disqus_shortname = 'hechienstickies';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hechien.github.com/octopress/blog/http-basic-authentication-in-rails-3/';
+        var disqus_url = 'http://hechien.github.com/octopress/blog/http-basic-authentication-in-rails-3/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
